@@ -42,7 +42,7 @@
       color: white;
     }
 
-    /* Tabla Registro de Evaluaciones Parciales */
+    /* Tabla exacta al diseño de evaluaciones parciales */
     .table-evaluaciones {
       border: 2px solid #1f3b5c;
       border-collapse: collapse;
@@ -83,7 +83,7 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between">
 
-  <!-- ==================== PANTALLA LOGIN (SELECCIÓN DE PERFIL) ==================== -->
+  <!-- ==================== PANTALLA LOGIN ==================== -->
   <div id="loginView" class="login-bg min-h-screen flex flex-col justify-center items-center px-4 py-8">
     <div class="w-full max-w-sm bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden border border-white/20">
       
@@ -104,7 +104,7 @@
         <h1 class="text-xl font-extrabold text-slate-900 tracking-tight">Portal del Estudiante UContinental</h1>
         <p class="text-xs text-slate-500 mt-1 mb-5">Inicie sesión con su correo institucional.</p>
 
-        <!-- Botón de Acceso Directo de Google como en el video -->
+        <!-- Botón de Acceso Directo de Google -->
         <button onclick="directAccess()" class="w-full bg-white hover:bg-slate-50 border border-slate-300 rounded-xl p-3 flex items-center justify-between shadow-sm transition active:scale-[0.98] mb-4">
           <div class="flex items-center space-x-2.5 overflow-hidden">
             <div class="w-8 h-8 rounded-full bg-[#7A2B89] text-white flex items-center justify-center font-bold text-sm flex-shrink-0">
@@ -128,7 +128,7 @@
 
         <div class="relative flex py-2 items-center">
           <div class="flex-grow border-t border-slate-200"></div>
-          <span class="flex-shrink mx-2 text-[10px] text-slate-400 uppercase tracking-widest font-bold">O escribir credenciales</span>
+          <span class="flex-shrink mx-2 text-[10px] text-slate-400 uppercase tracking-widest font-bold">O ingresar credenciales</span>
           <div class="flex-grow border-t border-slate-200"></div>
         </div>
 
@@ -168,7 +168,7 @@
   <!-- ==================== PORTAL ESTUDIANTE PRINCIPAL ==================== -->
   <div id="mainPortal" class="hidden min-h-screen flex flex-col bg-[#F8F9FA]">
     
-    <!-- Barra Superior Oscura -->
+    <!-- Barra Superior -->
     <header class="bg-[#132433] text-white px-4 h-14 flex items-center justify-between sticky top-0 z-50 shadow-md">
       <div class="flex items-center space-x-3">
         <button onclick="toggleSidebar()" class="text-white hover:text-slate-300">
@@ -205,7 +205,7 @@
       <div class="absolute inset-y-0 left-0 max-w-[310px] w-full bg-[#1b2b3a] text-slate-100 shadow-2xl flex flex-col justify-between overflow-y-auto z-10">
         
         <div>
-          <!-- Cabecera Usuario Oficial -->
+          <!-- Cabecera Usuario -->
           <div class="p-4 border-b border-slate-700/80 bg-[#152330]">
             <div class="flex items-center space-x-3 mb-2">
               <div class="w-11 h-11 rounded-full bg-blue-500 flex items-center justify-center text-white text-lg">
@@ -230,7 +230,7 @@
             </button>
           </div>
 
-          <!-- Opciones de Navegación del video -->
+          <!-- Opciones de Navegación -->
           <div class="p-2 space-y-1 text-xs">
             <div class="text-[10px] font-bold text-slate-400 px-3 py-1 uppercase tracking-wider">Menú principal</div>
             
@@ -319,16 +319,25 @@
       <!-- ================= VISTA: INICIO COMPLETA ================= -->
       <div id="viewInicio" class="space-y-4">
         
-        <!-- Alerta de Deudas del video -->
-        <div class="bg-amber-500 text-white p-3.5 rounded-xl shadow-sm flex items-center justify-between">
-          <div class="flex items-center space-x-2.5">
-            <i class="fa-solid fa-triangle-exclamation text-lg"></i>
+        <!-- BANNER DE PAGOS: 100% AL DÍA Y VERIFICADO (ELEGANTE EN VERDE) -->
+        <div class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white p-3.5 rounded-2xl shadow-sm border border-emerald-500/30 flex items-center justify-between">
+          <div class="flex items-center space-x-3">
+            <div class="w-9 h-9 rounded-xl bg-white/20 backdrop-blur-xs flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid fa-circle-check text-xl text-emerald-100"></i>
+            </div>
             <div>
-              <div class="font-bold text-xs">¡Alerta!</div>
-              <div class="text-[11px] text-amber-100">Tienes deudas pendientes</div>
+              <div class="flex items-center space-x-1.5">
+                <span class="font-extrabold text-xs tracking-wide">ESTADO FINANCIERO: AL DÍA</span>
+                <span class="bg-emerald-400 text-emerald-950 text-[9px] font-black px-1.5 py-0.2 rounded-full uppercase">Verificado</span>
+              </div>
+              <div class="text-[11px] text-emerald-100/90 leading-tight mt-0.5">
+                No registras cuotas pendientes ni compromisos vencidos (2026-2).
+              </div>
             </div>
           </div>
-          <button class="bg-white text-amber-600 font-bold text-xs px-3 py-1 rounded-md shadow-sm">Ver</button>
+          <button class="bg-white text-emerald-800 hover:bg-emerald-50 font-bold text-[11px] px-2.5 py-1 rounded-lg shadow-xs transition flex-shrink-0">
+            Detalle
+          </button>
         </div>
 
         <!-- Las 4 Tarjetas Icónicas con arcos redondeados -->
@@ -376,11 +385,11 @@
             </div>
           </div>
 
-          <!-- Información económica -->
+          <!-- Información económica (Confirmando pagos al día) -->
           <div class="bg-white rounded-2xl custom-shadow border border-slate-100 h-28 relative overflow-hidden flex flex-col justify-center px-5">
             <div class="w-7/12">
               <h2 class="text-xl font-black text-slate-900 leading-tight">Información económica</h2>
-              <p class="text-xs text-slate-500 mt-0.5">Revisa tu información económica y beneficios.</p>
+              <p class="text-xs text-emerald-600 font-semibold mt-0.5">Al día • Sin obligaciones pendientes</p>
               <div class="mt-2 flex items-center text-xs text-slate-400 font-semibold">
                 <i class="fa-solid fa-circle-arrow-right mr-1.5 text-slate-500"></i> Más información
               </div>
@@ -448,7 +457,7 @@
           </div>
         </div>
 
-        <!-- PA: ADMINISTRACIÓN Y NEGOCIOS INTERNACIONALES (Bloque Oficial) -->
+        <!-- PA: ADMINISTRACIÓN Y NEGOCIOS INTERNACIONALES -->
         <div class="bg-white rounded-2xl p-4 border border-slate-200 custom-shadow space-y-3">
           <div class="flex items-center space-x-2 border-b border-slate-100 pb-2 text-slate-800 font-black text-xs uppercase tracking-tight">
             <i class="fa-solid fa-landmark text-[#7A2B89]"></i>
@@ -469,15 +478,15 @@
               <div class="text-[10px] text-slate-400">Campus</div>
             </div>
             <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100">
-              <div class="text-[#7A2B89] font-black text-xs">1 / 10</div>
+              <div class="text-[#7A2B89] font-black text-xs">6 / 10</div>
               <div class="text-[10px] text-slate-400">Período</div>
             </div>
             <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100">
-              <div class="text-slate-800 font-black text-xs">3 / 214</div>
+              <div class="text-slate-800 font-black text-xs">103 / 214</div>
               <div class="text-[10px] text-slate-400">Créditos</div>
             </div>
             <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100">
-              <div class="text-emerald-600 font-black text-xs">3.65</div>
+              <div class="text-emerald-600 font-black text-xs">15.54</div>
               <div class="text-[10px] text-slate-400">Promedio Ponderado Acumulado (PPA)</div>
             </div>
             <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100">
@@ -490,7 +499,7 @@
             </div>
           </div>
 
-          <!-- Pestañas de Progresión Académica con íconos circulares -->
+          <!-- Pestañas de Progresión Académica -->
           <div class="pt-3 border-t border-slate-100">
             <div class="grid grid-cols-5 gap-1 text-center text-[10px] font-semibold text-slate-600 pb-2">
               <div class="flex flex-col items-center">
@@ -526,7 +535,7 @@
               </div>
             </div>
 
-            <!-- Lista de requisitos como en el video -->
+            <!-- Requisitos -->
             <div class="space-y-2 pt-2 border-t border-slate-100 text-xs">
               <div class="flex items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-200">
                 <span class="text-slate-700 font-medium">Inglés (prerrequisito para cursar Inglés Profesional I)</span>
@@ -581,12 +590,17 @@
               <h2 class="text-xs sm:text-sm font-black text-slate-800 tracking-wide uppercase">
                 REGISTRO DE EVALUACIONES PARCIALES
               </h2>
-              <select id="periodSelector" onchange="renderEvaluaciones(this.value)" class="text-xs font-bold text-slate-800 bg-white border border-slate-400 rounded px-2 py-0.5 focus:outline-none cursor-pointer">
-                <option value="4" selected>2025-2</option>
-                <option value="1">2024-1</option>
-                <option value="2">2024-2</option>
-                <option value="3">2025-1</option>
+              <select id="periodSelector" onchange="onPeriodChange(this.value)" class="text-xs font-bold text-slate-800 bg-white border border-slate-400 rounded px-2 py-0.5 focus:outline-none cursor-pointer">
+                <option value="6" selected>2026-2</option>
                 <option value="5">2026-1</option>
+                <option value="4">2025-2</option>
+                <option value="3">2025-1</option>
+                <option value="2">2024-2</option>
+                <option value="1">2024-1</option>
+                <option value="7">2027-1</option>
+                <option value="8">2027-2</option>
+                <option value="9">2028-1</option>
+                <option value="10">2028-2</option>
               </select>
             </div>
 
@@ -600,12 +614,15 @@
             </div>
           </div>
 
-          <!-- TABLA EXACTA AL DISEÑO EN AZUL MARINO Y GRIS -->
-          <div class="overflow-x-auto mt-4 rounded border border-[#1f3b5c]">
+          <!-- Selector de Ciclos (Pestañas horizontales) -->
+          <div class="flex space-x-1.5 overflow-x-auto py-2.5 scrollbar-none" id="cycleTabsBar"></div>
+
+          <!-- TABLA EXACTA EN AZUL MARINO Y GRIS -->
+          <div class="overflow-x-auto mt-2 rounded border border-[#1f3b5c]">
             <table class="table-evaluaciones">
               <thead>
                 <tr>
-                  <th rowspan="2" class="main-header" style="min-width: 200px;">Nombre del Curso</th>
+                  <th rowspan="2" class="main-header" style="min-width: 220px;">Nombre del Curso</th>
                   <th colspan="4" class="main-header">MÓDULO I</th>
                   <th colspan="4" class="main-header">MÓDULO II</th>
                   <th colspan="4" class="main-header">MÓDULO III</th>
@@ -635,7 +652,7 @@
                 </tr>
               </thead>
               <tbody id="evaluacionesBody">
-                <!-- Generado por JS -->
+                <!-- Se llena con JS -->
               </tbody>
               <tfoot>
                 <tr style="height: 22px;">
@@ -689,7 +706,7 @@
 
     </main>
 
-    <!-- Botón Flotante Redondo Azul (Mapa Oficial) -->
+    <!-- Botón Flotante Redondo Azul -->
     <div class="fixed bottom-4 right-4 z-40">
       <button class="w-12 h-12 rounded-full bg-[#007BFF] text-white shadow-xl flex items-center justify-center active:scale-95 transition">
         <i class="fa-regular fa-map text-lg"></i>
@@ -704,24 +721,138 @@
   </div>
 
   <script>
-    const cursosData = {
-      4: [
-        { nombre: "ESTADÍSTICA INFERENCIAL", m1: [16, 13, 14, "14.3"], m2: [18, 13, 15, "15.3"], m3: [12, 14, 18, "14.7"], m4: [16, 14, 18, "16.0"], pf: "15.0" },
-        { nombre: "COSTOS Y PRESUPUESTOS", m1: [17, 17, 18, "17.3"], m2: [16, 17, 17, "16.7"], m3: [16, 17, 17, "16.7"], m4: [15, 18, 17, "16.7"], pf: "16.7" },
-        { nombre: "MARKETING", m1: [14, 15, 17, "15.3"], m2: [16, 16, 14, "15.0"], m3: [17, 16, 14, "15.7"], m4: [16, 14, 15, "15.0"], pf: "15.3" },
-        { nombre: "ELECTIVO GENERAL 1", m1: [14, 14, 14, "14.0"], m2: [14, 14, 14, "14.0"], m3: [15, 18, 14, "15.7"], m4: [14, 17, 15, "15.3"], pf: "15.0" },
-        { nombre: "ELECTIVO GENERAL 2", m1: [14, 14, 14, "14.0"], m2: [16, 12, 17, "12.0"], m3: [15, 11, 14, "13.3"], m4: [18, 15, 13, "15.3"], pf: "14.0" },
-        { nombre: "ENGLISH COURSE 1", m1: [17, 17, 17, "17.0"], m2: [14, 14, 14, "14.0"], m3: [17, 13, 18, "16.0"], m4: [13, 16, 19, "16.0"], pf: "15.7" }
-      ],
-      1: [
-        { nombre: "COMPRENSIÓN Y PRODUCCIÓN DE TEXTOS 1", m1: [16, 16, 17, "16.3"], m2: [17, 17, 17, "17.0"], m3: [16, 16, 17, "16.3"], m4: [18, 18, 18, "18.0"], pf: "16.9" },
-        { nombre: "LABORATORIO DE LIDERAZGO E INNOVACIÓN", m1: [17, 17, 18, "17.3"], m2: [18, 18, 19, "18.3"], m3: [17, 17, 17, "17.0"], m4: [19, 19, 18, "18.7"], pf: "17.8" },
-        { nombre: "ESTRATEGIAS Y HERRAMIENTAS DIGITALES...", m1: [18, 18, 18, "18.0"], m2: [18, 19, 18, "18.3"], m3: [19, 18, 19, "18.7"], m4: [17, 17, 18, "17.3"], pf: "18.1" },
-        { nombre: "FUNDAMENTOS DE MATEMÁTICA", m1: [15, 15, 16, "15.3"], m2: [14, 14, 15, "14.3"], m3: [16, 16, 16, "16.0"], m4: [16, 16, 17, "16.3"], pf: "15.5" },
-        { nombre: "ECONOMÍA 1", m1: [16, 16, 17, "16.3"], m2: [17, 16, 17, "16.7"], m3: [15, 15, 16, "15.3"], m4: [17, 17, 17, "17.0"], pf: "16.3" },
-        { nombre: "INTRODUCCIÓN A LA ADMINISTRACIÓN Y NEG.", m1: [17, 17, 18, "17.3"], m2: [18, 18, 18, "18.0"], m3: [18, 18, 19, "18.3"], m4: [19, 19, 19, "19.0"], pf: "18.2" }
-      ]
+    // BASE DE DATOS EXACTA DE LAS CALIFICACIONES POR CICLO
+    const databaseCiclos = {
+      // 1er Ciclo (2024-1): Cursos Oficiales de la Malla
+      1: {
+        periodo: "2024-1",
+        cursos: [
+          { nombre: "Comprensión y Producción de Textos 1", m1: [16, 16, 17, "16.3"], m2: [17, 17, 17, "17.0"], m3: [16, 16, 17, "16.3"], m4: [18, 18, 18, "18.0"], pf: "16.9" },
+          { nombre: "Laboratorio de Liderazgo e Innovación", m1: [17, 17, 18, "17.3"], m2: [18, 18, 19, "18.3"], m3: [17, 17, 17, "17.0"], m4: [19, 19, 18, "18.7"], pf: "17.8" },
+          { nombre: "Estrategias y Herramientas Digitales para el Aprendizaje", m1: [18, 18, 18, "18.0"], m2: [18, 19, 18, "18.3"], m3: [19, 18, 19, "18.7"], m4: [17, 17, 18, "17.3"], pf: "18.1" },
+          { nombre: "Fundamentos de Matemática", m1: [15, 15, 16, "15.3"], m2: [14, 14, 15, "14.3"], m3: [16, 16, 16, "16.0"], m4: [16, 16, 17, "16.3"], pf: "15.5" },
+          { nombre: "Economía 1", m1: [16, 16, 17, "16.3"], m2: [17, 16, 17, "16.7"], m3: [15, 15, 16, "15.3"], m4: [17, 17, 17, "17.0"], pf: "16.3" },
+          { nombre: "Introducción a la Administración y Negocios Internacionales", m1: [17, 17, 18, "17.3"], m2: [18, 18, 18, "18.0"], m3: [18, 18, 19, "18.3"], m4: [19, 19, 19, "19.0"], pf: "18.2" }
+        ]
+      },
+
+      // 2do Ciclo (2024-2): COPIA EXACTA DE LA IMAGEN
+      2: {
+        periodo: "2024-2",
+        cursos: [
+          { nombre: "Fundamentos de Contabilidad", m1: [20, 16, 16, "17.2"], m2: [13, 15, 14, "14.0"], m3: [13, 13, 14, "13.3"], m4: [14, 12, 12, "12.6"], pf: "14.2" },
+          { nombre: "Comprensión y Producción de Textos 2", m1: [14, 16, 16, "15.4"], m2: [16, 16, 16, "16.0"], m3: [15, 17, 16, "16.0"], m4: [10, 14, 14, "12.8"], pf: "15.0" },
+          { nombre: "Matemática 2.1", m1: [15, 16, 17, "16.0"], m2: [14, 16, 16, "15.4"], m3: [20, 13, 15, "15.8"], m4: [15, 16, 18, "16.4"], pf: "15.9" },
+          { nombre: "Economía 2", m1: ["07", 16, 17, "13.6"], m2: ["09", 18, 18, "15.3"], m3: ["08", "07", 17, "10.8"], m4: [12, 17, 20, "16.5"], pf: "14.0" },
+          { nombre: "Electivo General 1", m1: [18, 16, 14, "15.9"], m2: [16, "08", 11, "11.4"], m3: [20, 14, 16, "16.5"], m4: [19, 16, 17, "17.2"], pf: "15.2" },
+          { nombre: "Administración Global", m1: [19, 17, 17, "17.6"], m2: [19, 15, 15, "16.2"], m3: [16, 15, 16, "15.6"], m4: [17, 17, 17, "17.0"], pf: "16.6" }
+        ]
+      },
+
+      // 3er Ciclo (2025-1): Cursos Oficiales de la Malla
+      3: {
+        periodo: "2025-1",
+        cursos: [
+          { nombre: "Estadística y Probabilidades", m1: [15, 15, 16, "15.3"], m2: [16, 16, 16, "16.0"], m3: [15, 15, 16, "15.3"], m4: [17, 17, 17, "17.0"], pf: "15.9" },
+          { nombre: "Laboratorio de Liderazgo e Innovación Intermedio", m1: [18, 18, 18, "18.0"], m2: [18, 19, 18, "18.3"], m3: [17, 17, 18, "17.3"], m4: [19, 19, 19, "19.0"], pf: "18.2" },
+          { nombre: "Comportamiento Organizacional", m1: [17, 17, 17, "17.0"], m2: [17, 17, 18, "17.3"], m3: [18, 18, 18, "18.0"], m4: [17, 17, 18, "17.3"], pf: "17.4" },
+          { nombre: "Derecho Empresarial", m1: [16, 16, 16, "16.0"], m2: [16, 17, 16, "16.3"], m3: [17, 17, 17, "17.0"], m4: [16, 16, 17, "16.3"], pf: "16.4" },
+          { nombre: "Matemáticas Financieras", m1: [15, 15, 16, "15.3"], m2: [16, 16, 16, "16.0"], m3: [16, 16, 17, "16.3"], m4: [16, 16, 16, "16.0"], pf: "15.9" },
+          { nombre: "Electivo General 2", m1: [18, 18, 19, "18.3"], m2: [19, 19, 19, "19.0"], m3: [18, 18, 18, "18.0"], m4: [18, 18, 19, "18.3"], pf: "18.4" }
+        ]
+      },
+
+      // 4to Ciclo (2025-2): COPIA EXACTA DE LA IMAGEN
+      4: {
+        periodo: "2025-2",
+        cursos: [
+          { nombre: "ESTADÍSTICA INFERENCIAL", m1: [16, 13, 14, "14.3"], m2: [18, 13, 15, "15.3"], m3: [12, 14, 18, "14.7"], m4: [16, 14, 18, "16.0"], pf: "15.0" },
+          { nombre: "COSTOS Y PRESUPUESTOS", m1: [17, 17, 18, "17.3"], m2: [16, 17, 17, "16.7"], m3: [16, 17, 17, "16.7"], m4: [15, 18, 17, "16.7"], pf: "16.7" },
+          { nombre: "MARKETING", m1: [14, 15, 17, "15.3"], m2: [16, 16, 14, "15.0"], m3: [17, 16, 14, "15.7"], m4: [16, 14, 15, "15.0"], pf: "15.3" },
+          { nombre: "ELECTIVO GENERAL 1", m1: [14, 14, 14, "14.0"], m2: [14, 14, 14, "14.0"], m3: [15, 18, 14, "15.7"], m4: [14, 17, 15, "15.3"], pf: "15.0" },
+          { nombre: "ELECTIVO GENERAL 2", m1: [14, 14, 14, "14.0"], m2: [16, 12, 17, "12.0"], m3: [15, 11, 14, "13.3"], m4: [18, 15, 13, "15.3"], pf: "14.0" },
+          { nombre: "ENGLISH COURSE 1", m1: [17, 17, 17, "17.0"], m2: [14, 14, 14, "14.0"], m3: [17, 13, 18, "16.0"], m4: [13, 16, 19, "16.0"], pf: "15.7" }
+        ]
+      },
+
+      // 5to Ciclo (2026-1): COPIA EXACTA DE LA IMAGEN
+      5: {
+        periodo: "2026-1",
+        cursos: [
+          { nombre: "LABORATORIO DE LIDERAZGO E INNOVACIÓN AVANZADO", m1: [15, 14, 15, "14.6"], m2: [15, 13, 14, "14.0"], m3: [14, 16, 14, "14.7"], m4: [15, 15, 15, "15.0"], pf: "14.6" },
+          { nombre: "INVESTIGACIÓN DE MERCADOS", m1: [16, 16, 16, "16.0"], m2: [16, 16, 17, "16.3"], m3: [15, 14, 15, "14.7"], m4: [16, 16, 16, "16.0"], pf: "15.8" },
+          { nombre: "ENGLISH COURSE 2", m1: [16, 20, 16, "17.4"], m2: [17, 15, 16, "16.0"], m3: [16, 17, 16, "16.3"], m4: [17, 17, 17, "17.0"], pf: "16.7" },
+          { nombre: "GESTIÓN DEL TALENTO HUMANO", m1: [20, 15, 16, "16.8"], m2: [14, 14, 15, "14.3"], m3: [13, 13, 12, "12.7"], m4: [13, 13, 13, "13.0"], pf: "14.2" },
+          { nombre: "FINANZAS 1", m1: [14, 16, 14, "14.7"], m2: [13, 12, 13, "12.7"], m3: [12, 14, 13, "13.0"], m4: [14, 14, 14, "14.0"], pf: "13.6" },
+          { nombre: "GESTIÓN INTERNACIONAL E INTERCULTURAL", m1: [15, 14, 12, "13.6"], m2: [15, 15, 14, "14.7"], m3: [16, 16, 16, "16.0"], m4: [12, 12, 12, "12.0"], pf: "14.1" }
+        ]
+      },
+
+      // 6to Ciclo (2026-2): COPIA EXACTA DE LA IMAGEN (Módulo I y II con notas, Módulo III, IV y PF en '--')
+      6: {
+        periodo: "2026-2",
+        cursos: [
+          { nombre: "HERRAMIENTAS TECNOLÓGICAS APLICADAS A LOS NEGOCIOS 1", m1: [16, 17, 16, "16.3"], m2: [15, 16, 15, "15.3"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "INVESTIGACIÓN ACADÉMICA", m1: [16, 16, 16, "16.0"], m2: [16, 16, 16, "16.0"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "ENGLISH COURSE 3", m1: [16, 20, 16, "17.4"], m2: [14, 16, 17, "15.8"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "FINANZAS 2", m1: [14, 15, 16, "15.0"], m2: [15, 14, 16, "15.0"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "GESTIÓN DE COMERCIO INTERNACIONAL", m1: [15, 16, 14, "15.0"], m2: [16, 16, 15, "15.8"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "DISTRIBUCIÓN FÍSICA INTERNACIONAL", m1: [15, 14, 12, "13.6"], m2: [14, 16, 12, "14.3"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" }
+        ]
+      },
+
+      // Ciclos 7 al 10: Pendientes
+      7: {
+        periodo: "2027-1",
+        cursos: [
+          { nombre: "ENGLISH COURSE 4", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "HERRAMIENTAS TECNOLÓGICAS APLICADAS A LOS NEGOCIOS 2", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "AGILIDAD PARA LA GESTIÓN DE PROYECTOS", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "GERENCIA DE OPERACIONES", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "GESTIÓN ADUANERA Y CAMBIARIA", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "ESTÁNDARES INTERNACIONALES DE CALIDAD", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "ELECTIVO GENERAL 5", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" }
+        ]
+      },
+      8: {
+        periodo: "2027-2",
+        cursos: [
+          { nombre: "FORMULACIÓN Y EVALUACIÓN DE PROYECTOS", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "ENTORNO GLOBAL PARA LOS NEGOCIOS", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "ANÁLISIS DE RECURSOS Y CAPACIDADES ORGANIZACIONALES", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "DESARROLLO DE PRODUCTOS Y SERVICIOS INTERNACIONALES", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "POLÍTICA ECONÓMICA INTERNACIONAL", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "LEGISLACIÓN DEL COMERCIO INTERNACIONAL", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" }
+        ]
+      },
+      9: {
+        periodo: "2028-1",
+        cursos: [
+          { nombre: "ESTRATEGIA COMPETITIVA", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "DECISIONES BASADAS EN DATOS", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "INVESTIGACIÓN 1 EN ADMINISTRACIÓN", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "COSTOS, PRECIOS Y COTIZACIONES INTERNACIONALES", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "PLAN DE NEGOCIOS INTERNACIONALES", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "INTELIGENCIA DE MERCADOS INTERNACIONALES", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "ELECTIVO DE ESPECIALIDAD O TRANSVERSAL 1", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" }
+        ]
+      },
+      10: {
+        periodo: "2028-2",
+        cursos: [
+          { nombre: "INTELIGENCIA ARTIFICIAL APLICADA A LOS NEGOCIOS", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "SIMULACIÓN DE NEGOCIOS DIGITALES", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "TRANSFORMACIÓN DIGITAL", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "INVESTIGACIÓN 2 EN ADMINISTRACIÓN", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "GERENCIA COMERCIAL INTERNACIONAL", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "NEGOCIOS DIGITALES GLOBALES", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "NEGOCIACIONES Y TRANSACCIONES INTERNACIONALES", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "ELECTIVO DE ESPECIALIDAD O TRANSVERSAL 2", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" }
+        ]
+      }
     };
+
+    let selectedCycle = 6; // Por defecto inicia en el ciclo 6 (en curso)
 
     function directAccess() {
       enterPortal();
@@ -753,7 +884,8 @@
     function enterPortal() {
       document.getElementById("loginView").classList.add("hidden");
       document.getElementById("mainPortal").classList.remove("hidden");
-      renderEvaluaciones(4);
+      renderCycleTabs();
+      loadCycle(6);
     }
 
     function handleLogout() {
@@ -781,19 +913,46 @@
       } else if (name === 'notas') {
         document.getElementById("viewNotas").classList.remove("hidden");
         document.getElementById("breadcrumbCurrent").innerText = "Registro de Evaluaciones";
-        renderEvaluaciones(document.getElementById("periodSelector").value);
+        loadCycle(selectedCycle);
       } else if (name === 'plan') {
         document.getElementById("viewPlan").classList.remove("hidden");
         document.getElementById("breadcrumbCurrent").innerText = "Plan de estudios";
       }
     }
 
-    function renderEvaluaciones(periodKey) {
-      const list = cursosData[periodKey] || cursosData[4];
+    function onPeriodChange(cycleNum) {
+      loadCycle(parseInt(cycleNum));
+    }
+
+    function renderCycleTabs() {
+      const container = document.getElementById("cycleTabsBar");
+      container.innerHTML = "";
+      for (let i = 1; i <= 10; i++) {
+        const btn = document.createElement("button");
+        const isActive = i === selectedCycle;
+        btn.className = `px-3 py-1 rounded-lg text-xs font-bold transition flex-shrink-0 border ${
+          isActive 
+            ? "bg-[#1f3b5c] text-white border-[#1f3b5c] shadow-xs" 
+            : "bg-white text-slate-700 border-slate-300 hover:bg-slate-100"
+        }`;
+        btn.innerText = `Ciclo 0${i === 10 ? '10' : i}`;
+        btn.onclick = () => loadCycle(i);
+        container.appendChild(btn);
+      }
+    }
+
+    function loadCycle(cycleNum) {
+      selectedCycle = cycleNum;
+      renderCycleTabs();
+
+      const selectEl = document.getElementById("periodSelector");
+      if (selectEl) selectEl.value = cycleNum;
+
+      const data = databaseCiclos[cycleNum];
       const tbody = document.getElementById("evaluacionesBody");
       tbody.innerHTML = "";
 
-      list.forEach(c => {
+      data.cursos.forEach(c => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
           <td class="course-name">${c.nombre}</td>
