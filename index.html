@@ -42,7 +42,7 @@
       color: white;
     }
 
-    /* Tabla exacta de evaluaciones parciales */
+    /* Tabla de Evaluaciones Parciales */
     .table-evaluaciones {
       border: 2px solid #1f3b5c;
       border-collapse: collapse;
@@ -317,24 +317,17 @@
       <!-- ================= VISTA: INICIO COMPLETA ================= -->
       <div id="viewInicio" class="space-y-4">
         
-        <!-- BANNER DE PAGOS AL DÍA (INTERACTIVO) -->
-        <div onclick="openPaymentModal()" class="cursor-pointer bg-gradient-to-r from-emerald-600 to-teal-700 text-white p-3.5 rounded-2xl shadow-sm border border-emerald-500/30 flex items-center justify-between hover:shadow-md transition active:scale-[0.99]">
-          <div class="flex items-center space-x-3">
-            <div class="w-9 h-9 rounded-xl bg-white/20 backdrop-blur-xs flex items-center justify-center flex-shrink-0">
-              <i class="fa-solid fa-circle-check text-xl text-emerald-100"></i>
-            </div>
+        <!-- BANNER DE ALERTA DE DEUDAS (SINCRONIZADO CON EL SALDO PENDIENTE) -->
+        <div onclick="openPaymentModal()" class="cursor-pointer bg-amber-500 hover:bg-amber-600 text-white p-3.5 rounded-2xl shadow-sm flex items-center justify-between transition active:scale-[0.99]">
+          <div class="flex items-center space-x-2.5">
+            <i class="fa-solid fa-triangle-exclamation text-lg"></i>
             <div>
-              <div class="flex items-center space-x-1.5">
-                <span class="font-extrabold text-xs tracking-wide">ESTADO FINANCIERO: AL DÍA</span>
-                <span class="bg-emerald-400 text-emerald-950 text-[9px] font-black px-1.5 py-0.2 rounded-full uppercase">Escala F</span>
-              </div>
-              <div class="text-[11px] text-emerald-100/90 leading-tight mt-0.5">
-                5 cuotas de S/ 574.90 • Sin compromisos vencidos.
-              </div>
+              <div class="font-bold text-xs">¡Alerta!</div>
+              <div class="text-[11px] text-amber-100">Tienes deudas pendientes (Saldo: S/ 579.38)</div>
             </div>
           </div>
-          <button onclick="event.stopPropagation(); openPaymentModal();" class="bg-white text-emerald-800 hover:bg-emerald-50 font-bold text-[11px] px-3 py-1 rounded-lg shadow-xs transition flex-shrink-0">
-            Detalle
+          <button onclick="event.stopPropagation(); openPaymentModal();" class="bg-white text-amber-600 font-bold text-xs px-3 py-1 rounded-md shadow-sm">
+            Ver
           </button>
         </div>
 
@@ -387,9 +380,9 @@
           <div onclick="openPaymentModal()" class="cursor-pointer bg-white rounded-2xl custom-shadow border border-slate-100 h-28 relative overflow-hidden flex flex-col justify-center px-5 active:scale-[0.99] transition">
             <div class="w-7/12">
               <h2 class="text-xl font-black text-slate-900 leading-tight">Información económica</h2>
-              <p class="text-xs text-emerald-600 font-semibold mt-0.5">Al día • Costo x crédito S/ 136,90</p>
+              <p class="text-xs text-amber-600 font-semibold mt-0.5">Cuota 02 pendiente • Saldo: S/ 579.38</p>
               <div class="mt-2 flex items-center text-xs text-slate-500 font-semibold">
-                <i class="fa-solid fa-receipt mr-1.5 text-emerald-600"></i> Ver estado de cuenta
+                <i class="fa-solid fa-receipt mr-1.5 text-amber-600"></i> Ver estado de cuenta
               </div>
             </div>
             <div class="card-corner bg-[#28A745]">
@@ -700,7 +693,7 @@
 
     </main>
 
-    <!-- ==================== MODAL DE NOTIFICACIONES (INTERACTIVO) ==================== -->
+    <!-- ==================== MODAL DE NOTIFICACIONES ==================== -->
     <div id="modalNotifications" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
       <div onclick="toggleNotifications()" class="absolute inset-0 bg-black/60 backdrop-blur-xs"></div>
       <div class="relative bg-white w-full max-w-md rounded-2xl shadow-2xl overflow-hidden border border-slate-200 z-10">
@@ -716,28 +709,28 @@
         <div class="p-3 max-h-96 overflow-y-auto space-y-2 text-xs divide-y divide-slate-100">
           
           <div class="pt-2 flex items-start space-x-3">
+            <div class="w-8 h-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fa-solid fa-receipt text-xs"></i>
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-slate-900">Recordatorio de Pago: Cuota 02</span>
+                <span class="text-[10px] text-slate-400">Hace 1 hora</span>
+              </div>
+              <p class="text-slate-600 text-[11px] mt-0.5">Tienes una cuota con saldo pendiente de S/ 579.38. Evita recargos adicionales.</p>
+            </div>
+          </div>
+
+          <div class="pt-2 flex items-start space-x-3">
             <div class="w-8 h-8 rounded-full bg-purple-100 text-[#7A2B89] flex items-center justify-center flex-shrink-0 mt-0.5">
               <i class="fa-solid fa-graduation-cap text-xs"></i>
             </div>
             <div class="flex-1">
               <div class="flex items-center justify-between">
                 <span class="font-bold text-slate-900">Registro de Calificaciones Módulo II</span>
-                <span class="text-[10px] text-slate-400">Hace 2 horas</span>
+                <span class="text-[10px] text-slate-400">Hace 3 horas</span>
               </div>
               <p class="text-slate-600 text-[11px] mt-0.5">Se han publicado las notas parciales correspondientes al Módulo II del período 2026-2.</p>
-            </div>
-          </div>
-
-          <div class="pt-2 flex items-start space-x-3">
-            <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center flex-shrink-0 mt-0.5">
-              <i class="fa-solid fa-receipt text-xs"></i>
-            </div>
-            <div class="flex-1">
-              <div class="flex items-center justify-between">
-                <span class="font-bold text-slate-900">Tesorería: Cuota 2026-2 Al Día</span>
-                <span class="text-[10px] text-slate-400">Ayer</span>
-              </div>
-              <p class="text-slate-600 text-[11px] mt-0.5">Tu pago de pensión ha sido verificado satisfactoriamente. No registras deuda pendiente.</p>
             </div>
           </div>
 
@@ -803,7 +796,7 @@
       </div>
     </div>
 
-    <!-- ==================== MODAL DE ESTADO FINANCIERO (CON ESCALA F Y 5 CUOTAS DE S/ 574.90) ==================== -->
+    <!-- ==================== MODAL DE ESTADO FINANCIERO (CON CUOTA 2 VENCIDA Y SALDO S/ 579.38) ==================== -->
     <div id="modalPaymentDetail" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
       <div onclick="closePaymentModal()" class="absolute inset-0 bg-black/60 backdrop-blur-xs"></div>
       <div class="relative bg-white w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden border border-slate-200 z-10">
@@ -821,7 +814,7 @@
 
         <div class="p-4 space-y-3.5 max-h-[82vh] overflow-y-auto">
           
-          <!-- Bloque 1: Datos del estudiante idéntico a tu captura -->
+          <!-- Bloque 1: Datos del estudiante -->
           <div class="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
             <div class="bg-slate-50 px-4 py-2 border-b border-slate-200 text-xs font-bold text-slate-700">
               Datos del estudiante
@@ -850,7 +843,7 @@
             </div>
           </div>
 
-          <!-- Bloque 2: Tarjeta Costo x 1 crédito y Escala actual F idéntica a tu captura -->
+          <!-- Bloque 2: Tarjeta Costo x 1 crédito y Escala actual F -->
           <div class="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
             <div class="px-4 py-2 border-b border-slate-100 text-xs text-slate-600 font-medium">
               Costo x 1 crédito
@@ -866,15 +859,16 @@
             </div>
           </div>
 
-          <!-- Bloque 3: Las 5 cuotas del ciclo de un valor de 574.90 soles -->
+          <!-- Bloque 3: Las 5 cuotas del ciclo con Cuota 02 VENCIDA -->
           <div class="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
             <div class="bg-slate-50 px-4 py-2 border-b border-slate-200 text-xs font-bold text-slate-700 flex items-center justify-between">
               <span>Cuotas de estudio por ciclo</span>
-              <span class="text-emerald-700 font-extrabold">5 cuotas de S/ 574.90</span>
+              <span class="text-slate-600 font-extrabold">5 cuotas de S/ 574.90</span>
             </div>
             
             <div class="divide-y divide-slate-100 text-xs">
               
+              <!-- Cuota 01: Único pago realizado -->
               <div class="p-3 flex items-center justify-between hover:bg-slate-50">
                 <div>
                   <div class="font-bold text-slate-900">Cuota 01 (Semestre 2026-2)</div>
@@ -886,17 +880,19 @@
                 </div>
               </div>
 
-              <div class="p-3 flex items-center justify-between hover:bg-slate-50">
+              <!-- Cuota 02: VENCIDO -->
+              <div class="p-3 flex items-center justify-between bg-red-50/50 hover:bg-red-50">
                 <div>
-                  <div class="font-bold text-slate-900">Cuota 02 (Semestre 2026-2)</div>
-                  <div class="text-[10px] text-slate-400">Vencimiento: 15/09/2026 • Op. #984311</div>
+                  <div class="font-bold text-red-900">Cuota 02 (Semestre 2026-2)</div>
+                  <div class="text-[10px] text-red-600 font-semibold">Vencimiento: 15/09/2026 • Pendiente</div>
                 </div>
                 <div class="text-right">
-                  <div class="font-extrabold text-slate-800">S/ 574.90</div>
-                  <span class="inline-block px-2 py-0.2 rounded-full bg-emerald-100 text-emerald-800 font-bold text-[10px]">PAGADO</span>
+                  <div class="font-extrabold text-red-700">S/ 574.90</div>
+                  <span class="inline-block px-2 py-0.2 rounded-full bg-red-100 text-red-800 font-bold text-[10px]">VENCIDO</span>
                 </div>
               </div>
 
+              <!-- Cuota 03: VIGENTE -->
               <div class="p-3 flex items-center justify-between hover:bg-slate-50">
                 <div>
                   <div class="font-bold text-slate-900">Cuota 03 (Semestre 2026-2)</div>
@@ -908,6 +904,7 @@
                 </div>
               </div>
 
+              <!-- Cuota 04: POR VENCER -->
               <div class="p-3 flex items-center justify-between hover:bg-slate-50">
                 <div>
                   <div class="font-bold text-slate-900">Cuota 04 (Semestre 2026-2)</div>
@@ -919,6 +916,7 @@
                 </div>
               </div>
 
+              <!-- Cuota 05: POR VENCER -->
               <div class="p-3 flex items-center justify-between hover:bg-slate-50">
                 <div>
                   <div class="font-bold text-slate-900">Cuota 05 (Semestre 2026-2)</div>
@@ -933,15 +931,15 @@
             </div>
           </div>
 
-          <!-- Resumen de deuda cero -->
-          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-3 flex items-center justify-between text-xs text-emerald-900">
+          <!-- Resumen con Saldo Vencido Pendiente S/ 579.38 -->
+          <div class="bg-red-50 border border-red-200 rounded-xl p-3 flex items-center justify-between text-xs text-red-900">
             <div>
-              <div class="font-bold">Saldo Vencido Pendiente:</div>
-              <div class="text-[10px] text-emerald-700">Sin retención financiera para matrícula ni notas</div>
+              <div class="font-bold text-red-800">Saldo Vencido Pendiente:</div>
+              <div class="text-[10px] text-red-600">Incluye cuota 02 e interés compensatorio moratorio</div>
             </div>
             <div class="text-right">
-              <div class="text-lg font-black text-emerald-700">S/ 0.00</div>
-              <div class="text-[10px] font-bold text-emerald-600">HABILITADO</div>
+              <div class="text-lg font-black text-red-600">S/ 579.38</div>
+              <div class="text-[10px] font-bold text-red-700">PENDIENTE</div>
             </div>
           </div>
 
@@ -972,7 +970,7 @@
 
   <script>
     const databaseCiclos = {
-      // 1er Ciclo: Malla oficial exacta
+      // 1er Ciclo: Cursos oficiales de la malla
       1: {
         periodo: "2024-1",
         cursos: [
@@ -998,7 +996,7 @@
         ]
       },
 
-      // 3er Ciclo: Cursos Oficiales
+      // 3er Ciclo: Cursos oficiales
       3: {
         periodo: "2025-1",
         cursos: [
@@ -1037,7 +1035,7 @@
         ]
       },
 
-      // 6to Ciclo: Exacto a la imagen (Módulo I y II con notas, Módulos III, IV y PF en '--')
+      // 6to Ciclo: Exacto a la imagen (en curso)
       6: {
         periodo: "2026-2",
         cursos: [
