@@ -2,40 +2,46 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Portal del Estudiante | Universidad Continental</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    :root {
+      --uc-header: #132433;
+      --uc-blue: #007BFF;
+      --uc-purple: #7A2B89;
+      --uc-orange: #F37021;
+      --uc-green: #28A745;
+      --navy-main: #1f3b5c;
+      --navy-sub: #26466d;
+      --table-gray: #c7cfdb;
+    }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background-color: #F8F9FA;
       color: #333333;
-    }
-    .login-bg {
-      background-color: #1a2a3a;
-      background-image: linear-gradient(135deg, #132433 0%, #203a43 50%, #2c5364 100%);
+      -webkit-tap-highlight-color: transparent;
     }
     .custom-shadow {
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
     }
     .card-corner {
       position: absolute;
       right: 0;
       top: 0;
       bottom: 0;
-      width: 40%;
-      border-top-left-radius: 120px;
-      border-bottom-left-radius: 120px;
+      width: 42%;
+      border-top-left-radius: 125px;
+      border-bottom-left-radius: 125px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
     }
-
-    /* Tabla exacta al diseño de la imagen */
+    /* Estilos exactos para la tabla de registro de evaluaciones */
     .table-evaluaciones {
-      border: 2px solid #1f3b5c;
+      border: 2px solid var(--navy-main);
       border-collapse: collapse;
       font-size: 11px;
       background-color: #ffffff;
@@ -43,25 +49,25 @@
     }
     .table-evaluaciones th, .table-evaluaciones td {
       border: 1px solid #8ca0ba;
-      padding: 5px 4px;
+      padding: 5px 3px;
       text-align: center;
       white-space: nowrap;
     }
     .table-evaluaciones th.main-header {
-      background-color: #1f3b5c;
+      background-color: var(--navy-main);
       color: #ffffff;
       font-weight: 700;
       font-size: 11px;
       letter-spacing: 0.5px;
     }
     .table-evaluaciones th.sub-header {
-      background-color: #26466d;
+      background-color: var(--navy-sub);
       color: #ffffff;
       font-weight: 700;
       font-size: 10px;
     }
     .table-evaluaciones td.col-avg {
-      background-color: #c7cfdb;
+      background-color: var(--table-gray);
       font-weight: 700;
       color: #0f172a;
     }
@@ -75,11 +81,11 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between">
 
-  <!-- ==================== PANTALLA LOGIN ==================== -->
-  <div id="loginView" class="login-bg min-h-screen flex flex-col justify-center items-center px-4 py-8">
+  <!-- ==================== PANTALLA LOGIN MANUAL ==================== -->
+  <div id="loginView" class="min-h-screen flex flex-col justify-center items-center px-4 py-8 bg-[#132433]">
     <div class="w-full max-w-sm bg-white rounded-2xl shadow-2xl overflow-hidden border border-slate-200">
       
-      <!-- Cabecera Logo -->
+      <!-- Logo Superior Oficial -->
       <div class="bg-white py-5 px-6 border-b border-slate-100 flex items-center justify-center space-x-3">
         <svg class="w-10 h-10" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M82 22 H35 C24 22 16 31 16 43 V57 C16 69 24 78 35 78 H82 V70 H36 C29 70 24 64 24 57 V43 C24 36 29 30 36 30 H82 V22 Z" fill="#1E293B"/>
@@ -93,31 +99,40 @@
       </div>
 
       <div class="p-6 text-center">
-        <h1 class="text-xl font-extrabold text-slate-900 tracking-tight">Portal del Estudiante</h1>
-        <p class="text-xs text-slate-500 mt-1 mb-5">Inicie sesión con su usuario institucional.</p>
+        <h1 class="text-xl font-extrabold text-slate-900 tracking-tight">Portal del Estudiante UContinental</h1>
+        <p class="text-xs text-slate-500 mt-1 mb-5">Inicie sesión con su correo institucional.</p>
 
-        <!-- Formulario Manual de Ingreso -->
-        <form onsubmit="handleManualLogin(event)" class="space-y-3">
-          <div class="text-left">
-            <label class="text-[11px] font-bold text-slate-600 uppercase">Usuario o Correo</label>
-            <input type="text" id="inputUser" placeholder="2024200955@continental.pe" required
-              class="w-full px-3 py-2 text-xs border border-slate-300 rounded-lg bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#1f3b5c]">
+        <!-- Formulario Manual Seguro -->
+        <form onsubmit="handleManualLogin(event)" class="space-y-3 text-left">
+          <div>
+            <label class="text-[11px] font-bold text-slate-600 uppercase">Correo o Código</label>
+            <input type="text" id="inputUser" placeholder="ejemplo@continental.edu.pe" required
+              class="w-full px-3 py-2 text-xs border border-slate-300 rounded-lg bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#7A2B89]">
           </div>
 
-          <div class="text-left">
+          <div>
             <label class="text-[11px] font-bold text-slate-600 uppercase">Contraseña</label>
             <input type="password" id="inputPass" placeholder="••••••••" required
-              class="w-full px-3 py-2 text-xs border border-slate-300 rounded-lg bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#1f3b5c]">
+              class="w-full px-3 py-2 text-xs border border-slate-300 rounded-lg bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#7A2B89]">
           </div>
 
-          <div id="loginPassError" class="hidden text-[11px] text-red-600 font-semibold bg-red-50 p-1.5 rounded">
-            Credenciales no válidas. Verifique usuario y contraseña.
+          <div id="loginPassError" class="hidden text-[11px] text-red-600 font-semibold bg-red-50 p-2 rounded border border-red-200">
+            <i class="fa-solid fa-circle-exclamation mr-1"></i> Credenciales no válidas. Verifique usuario y contraseña.
           </div>
 
-          <button type="submit" class="w-full py-2.5 bg-[#1f3b5c] hover:bg-[#152a42] text-white font-bold rounded-lg text-xs shadow-md transition mt-2">
+          <button type="submit" class="w-full py-2.5 bg-[#7A2B89] hover:bg-[#631f70] text-white font-bold rounded-lg text-xs shadow-md transition mt-2">
             Iniciar Sesión
           </button>
         </form>
+
+        <div class="mt-4 space-y-2">
+          <button type="button" class="w-full text-slate-600 hover:text-slate-800 text-xs font-medium py-1.5 border border-slate-300 rounded-lg bg-slate-50">
+            <i class="fa-solid fa-asterisk text-[10px] mr-1 text-slate-400"></i> Olvidé mi contraseña
+          </button>
+          <button type="button" class="w-full text-slate-600 hover:text-slate-800 text-xs font-medium py-1.5 border border-slate-300 rounded-lg bg-slate-50">
+            <i class="fa-solid fa-house text-[10px] mr-1 text-slate-400"></i> Volver al portal principal
+          </button>
+        </div>
 
         <div class="mt-6 text-[11px] text-slate-400">
           © 2026 - Universidad Continental
@@ -127,64 +142,164 @@
     </div>
   </div>
 
-  <!-- ==================== PORTAL ESTUDIANTE ==================== -->
+  <!-- ==================== PORTAL ESTUDIANTE COMPLETO ==================== -->
   <div id="mainPortal" class="hidden min-h-screen flex flex-col bg-[#F8F9FA]">
     
-    <!-- Barra Superior -->
+    <!-- Barra Superior Oscura (Idéntica al Video) -->
     <header class="bg-[#132433] text-white px-4 h-14 flex items-center justify-between sticky top-0 z-50 shadow-md">
       <div class="flex items-center space-x-3">
-        <button onclick="toggleSidebar()" class="text-white hover:text-slate-300">
+        <button onclick="toggleSidebar()" class="text-white hover:text-slate-300 focus:outline-none">
           <i class="fa-solid fa-bars text-xl"></i>
         </button>
-        <span class="font-extrabold text-xs sm:text-sm tracking-wide">PORTAL DEL ESTUDIANTE</span>
+      </div>
+
+      <div class="flex-1 max-w-xs mx-3">
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none text-slate-400">
+            <i class="fa-solid fa-magnifying-glass text-xs"></i>
+          </div>
+          <input type="text" placeholder="Buscar..." class="w-full pl-8 pr-3 py-1 bg-white/10 text-white placeholder-slate-400 rounded-md text-xs focus:outline-none focus:bg-white/20">
+        </div>
       </div>
 
       <div class="flex items-center space-x-3">
-        <div class="text-right hidden sm:block">
-          <div class="text-xs font-bold leading-tight">STACE MELODY FERRO GARAY</div>
-          <div class="text-[10px] text-slate-300">Código: 76920198</div>
+        <div class="relative">
+          <i class="fa-regular fa-bell text-lg"></i>
+          <span class="absolute -top-1 -right-2 bg-amber-500 text-slate-900 text-[10px] font-extrabold px-1.5 py-0.2 rounded-full">6</span>
         </div>
-        <button onclick="handleLogout()" class="px-2.5 py-1 bg-red-600/80 hover:bg-red-700 text-white rounded text-xs font-semibold">
-          Salir
+        <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs font-bold">
+          <i class="fa-solid fa-user"></i>
+        </div>
+        <button onclick="toggleSidebar()" class="text-white">
+          <i class="fa-solid fa-ellipsis-vertical"></i>
         </button>
       </div>
     </header>
 
-    <!-- Menú Desplegable Lateral -->
+    <!-- Menú Lateral Desplegable (Con todos los datos de Stace Melody) -->
     <div id="sideDrawer" class="fixed inset-0 z-50 hidden">
       <div onclick="toggleSidebar()" class="absolute inset-0 bg-black/60"></div>
-      <div class="absolute inset-y-0 left-0 max-w-[280px] w-full bg-[#1b2b3a] text-slate-100 shadow-2xl flex flex-col justify-between p-4 z-10">
+      <div class="absolute inset-y-0 left-0 max-w-[310px] w-full bg-[#1b2b3a] text-slate-100 shadow-2xl flex flex-col justify-between overflow-y-auto z-10">
+        
         <div>
-          <div class="border-b border-slate-700 pb-3 mb-3">
-            <h3 class="font-extrabold text-sm uppercase text-white">Stace Melody Ferro Garay</h3>
-            <div class="text-xs text-slate-300">Código: 76920198</div>
-            <div class="text-[10px] text-slate-400 mt-1 uppercase">Administración y Negocios Internacionales</div>
-          </div>
-          <div class="space-y-2 text-xs">
-            <button onclick="showSection('inicio'); toggleSidebar();" class="w-full text-left py-2 px-3 rounded hover:bg-slate-700 block">
-              <i class="fa-solid fa-house mr-2"></i> Inicio
+          <!-- Cabecera Usuario oficial -->
+          <div class="p-4 border-b border-slate-700 bg-[#152330]">
+            <div class="flex items-center space-x-3 mb-2">
+              <div class="w-11 h-11 rounded-full bg-blue-500 flex items-center justify-center text-white text-lg">
+                <i class="fa-solid fa-user"></i>
+              </div>
+              <div>
+                <h3 class="font-extrabold text-sm uppercase text-white">Stace Melody</h3>
+                <div class="text-[11px] text-slate-300">Código: <span class="font-bold text-white">76920198</span></div>
+                <div class="inline-flex items-center space-x-1 text-[11px] text-emerald-400 font-semibold mt-0.5">
+                  <i class="fa-solid fa-check"></i>
+                  <span>ESTUDIANTE - VIR</span>
+                </div>
+              </div>
+            </div>
+            <div class="text-[10px] text-slate-400 uppercase font-semibold leading-tight">
+              [PG] [UVIR] FILIAL LIMA<br>
+              ADMINISTRACIÓN Y NEGOCIOS INTERNACIONALES<br>
+              CIENCIAS DE LA EMPRESA
+            </div>
+            <button class="mt-2 text-[10px] text-cyan-400 hover:underline font-semibold block">
+              Cambiar perfil del estudiante
             </button>
-            <button onclick="showSection('notas'); toggleSidebar();" class="w-full text-left py-2 px-3 rounded bg-[#1f3b5c] font-bold block">
-              <i class="fa-solid fa-table-list mr-2"></i> Evaluaciones Parciales
+          </div>
+
+          <!-- Opciones de Navegación -->
+          <div class="p-2 space-y-1 text-xs">
+            <div class="text-[10px] font-bold text-slate-400 px-3 py-1 uppercase tracking-wider">Menú principal</div>
+            
+            <button onclick="showSection('inicio'); toggleSidebar();" class="w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-slate-200 hover:bg-slate-700/60 font-medium">
+              <i class="fa-solid fa-house w-4 text-center text-slate-400"></i>
+              <span>Inicio</span>
+            </button>
+
+            <!-- Menú Vida Académica -->
+            <div>
+              <button onclick="toggleSubmenu('subVida')" class="w-full flex items-center justify-between px-3 py-2 rounded-lg text-slate-200 hover:bg-slate-700/60 font-medium">
+                <div class="flex items-center space-x-3">
+                  <i class="fa-solid fa-graduation-cap w-4 text-center text-purple-400"></i>
+                  <span>Vida académica</span>
+                </div>
+                <i class="fa-solid fa-chevron-down text-[10px] text-slate-400"></i>
+              </button>
+              <div id="subVida" class="pl-9 pr-2 py-1 space-y-1 text-xs text-slate-300">
+                <button onclick="showSection('notas'); toggleSidebar();" class="w-full text-left py-1.5 hover:text-white flex items-center justify-between">
+                  <span>Evaluaciones Parciales</span>
+                  <span class="text-[9px] bg-purple-500/40 text-purple-200 px-1.5 py-0.5 rounded font-bold">Ver</span>
+                </button>
+                <button class="w-full text-left py-1.5 hover:text-white">Plan de estudios</button>
+                <button class="w-full text-left py-1.5 hover:text-white">Consolidado de asignaturas</button>
+                <button class="w-full text-left py-1.5 hover:text-white">Horario de asignaturas</button>
+                <button class="w-full text-left py-1.5 hover:text-white">Ficha socioeconómica</button>
+              </div>
+            </div>
+
+            <!-- Menú Matrícula -->
+            <div>
+              <button onclick="toggleSubmenu('subMatricula')" class="w-full flex items-center justify-between px-3 py-2 rounded-lg text-slate-200 hover:bg-slate-700/60 font-medium">
+                <div class="flex items-center space-x-3">
+                  <i class="fa-solid fa-book-open w-4 text-center text-blue-400"></i>
+                  <span>Matrícula</span>
+                </div>
+                <i class="fa-solid fa-chevron-down text-[10px] text-slate-400"></i>
+              </button>
+              <div id="subMatricula" class="hidden pl-9 pr-2 py-1 space-y-1 text-xs text-slate-300">
+                <a href="#" class="block py-1 hover:text-white">Plan de estudios</a>
+                <a href="#" class="block py-1 hover:text-white">Oferta horaria</a>
+                <a href="#" class="block py-1 hover:text-white">Calendario académico</a>
+              </div>
+            </div>
+
+            <button class="w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-slate-200 hover:bg-slate-700/60 font-medium">
+              <i class="fa-solid fa-file-lines w-4 text-center text-orange-400"></i>
+              <span>Trámites</span>
+            </button>
+            <button class="w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-slate-200 hover:bg-slate-700/60 font-medium">
+              <i class="fa-solid fa-building-columns w-4 text-center text-emerald-400"></i>
+              <span>Información económica</span>
+            </button>
+            <button class="w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-slate-200 hover:bg-slate-700/60 font-medium">
+              <i class="fa-regular fa-circle-question w-4 text-center text-cyan-400"></i>
+              <span>Centro de ayuda</span>
             </button>
           </div>
         </div>
-        <button onclick="handleLogout()" class="w-full py-2 bg-red-600 text-white rounded text-xs font-bold">
-          Cerrar sesión
-        </button>
+
+        <div class="p-3 border-t border-slate-700">
+          <button onclick="handleLogout()" class="w-full py-2 bg-red-600/80 hover:bg-red-700 text-white rounded-lg text-xs font-bold flex items-center justify-center space-x-2">
+            <i class="fa-solid fa-power-off"></i>
+            <span>Cerrar sesión</span>
+          </button>
+        </div>
+
       </div>
     </div>
 
-    <!-- Contenido Principal -->
-    <main class="flex-1 max-w-5xl mx-auto w-full p-3 sm:p-5 space-y-4">
+    <!-- Breadcrumb e indicador -->
+    <div class="bg-white border-b border-slate-200 px-4 py-2 text-xs text-slate-500 flex items-center justify-between">
+      <div class="flex items-center space-x-1">
+        <span class="font-extrabold text-slate-800">Portal del Estudiante</span>
+        <i class="fa-solid fa-chevron-right text-[10px] text-slate-300"></i>
+        <span id="breadcrumbCurrent">Inicio</span>
+      </div>
+      <button onclick="showSection('notas')" class="text-[11px] font-bold text-[#7A2B89] bg-purple-50 px-2.5 py-1 rounded border border-purple-200">
+        <i class="fa-solid fa-table-list mr-1"></i> Ver Evaluaciones
+      </button>
+    </div>
 
-      <!-- ================= VISTA: INICIO ================= -->
-      <div id="viewInicio" class="space-y-4 max-w-lg mx-auto">
+    <!-- CONTENEDOR PRINCIPAL DINÁMICO -->
+    <main class="flex-1 max-w-lg mx-auto w-full p-4 space-y-4">
+
+      <!-- ================= VISTA: INICIO (CON TODO EL DISEÑO DEL VIDEO) ================= -->
+      <div id="viewInicio" class="space-y-4">
         
-        <!-- ESTADO DE PAGOS: TOTALMENTE AL DÍA (EN VERDE) -->
+        <!-- ESTADO DE PAGOS: AL DÍA (EN VERDE, CERO DEUDAS) -->
         <div class="bg-emerald-600 text-white p-3.5 rounded-xl shadow-sm flex items-center justify-between">
           <div class="flex items-center space-x-2.5">
-            <div class="w-8 h-8 rounded-full bg-emerald-500/80 flex items-center justify-center flex-shrink-0">
+            <div class="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center flex-shrink-0">
               <i class="fa-solid fa-circle-check text-lg text-white"></i>
             </div>
             <div>
@@ -195,232 +310,127 @@
           <span class="bg-white/20 text-white font-bold text-[11px] px-2.5 py-1 rounded-md">Al día</span>
         </div>
 
-        <div class="bg-white rounded-2xl p-5 border border-slate-200 custom-shadow text-center">
-          <div class="w-14 h-14 rounded-full bg-[#1f3b5c] text-white flex items-center justify-center font-bold text-xl mx-auto mb-2">
-            SF
+        <!-- LAS 4 TARJETAS PRINCIPALES DEL VIDEO -->
+        <div class="space-y-3">
+          
+          <!-- Matrícula (Azul) -->
+          <div class="bg-white rounded-2xl custom-shadow border border-slate-100 h-28 relative overflow-hidden flex flex-col justify-center px-5">
+            <div class="w-7/12">
+              <h2 class="text-xl font-black text-slate-900 leading-tight">Matrícula</h2>
+              <p class="text-xs text-slate-500 mt-0.5">Realiza tu matrícula.</p>
+              <div class="mt-2 flex items-center text-xs text-slate-400 font-semibold">
+                <i class="fa-solid fa-circle-arrow-right mr-1.5 text-slate-500"></i> Más información
+              </div>
+            </div>
+            <div class="card-corner bg-[#007BFF]">
+              <i class="fa-solid fa-laptop-file text-4xl"></i>
+            </div>
           </div>
-          <h2 class="text-base font-black text-slate-800 uppercase">Stace Melody Ferro Garay</h2>
-          <p class="text-xs text-slate-500 font-medium">Administración y Negocios Internacionales</p>
-          <p class="text-xs text-slate-400 mt-0.5">Código: 76920198 | Modalidad: A distancia</p>
 
-          <button onclick="showSection('notas')" class="mt-4 w-full py-2.5 bg-[#1f3b5c] hover:bg-[#152a42] text-white rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2">
-            <i class="fa-solid fa-table-list"></i>
-            <span>Ver Registro de Evaluaciones Parciales</span>
+          <!-- Vida académica (Morado - Lleva directo a Evaluaciones Parciales) -->
+          <div onclick="showSection('notas')" class="cursor-pointer bg-white rounded-2xl custom-shadow border border-slate-100 h-28 relative overflow-hidden flex flex-col justify-center px-5 active:scale-[0.99] transition">
+            <div class="w-7/12">
+              <h2 class="text-xl font-black text-slate-900 leading-tight">Vida académica</h2>
+              <p class="text-xs text-slate-500 mt-0.5">Revisa tu estado en la universidad.</p>
+              <div class="mt-2 flex items-center text-xs text-purple-700 font-bold">
+                <i class="fa-solid fa-circle-arrow-right mr-1.5 text-purple-600"></i> Evaluaciones Parciales
+              </div>
+            </div>
+            <div class="card-corner bg-[#7A2B89]">
+              <i class="fa-solid fa-building-columns text-4xl"></i>
+            </div>
+          </div>
+
+          <!-- Trámites (Naranja) -->
+          <div class="bg-white rounded-2xl custom-shadow border border-slate-100 h-28 relative overflow-hidden flex flex-col justify-center px-5">
+            <div class="w-7/12">
+              <h2 class="text-xl font-black text-slate-900 leading-tight">Trámites</h2>
+              <p class="text-xs text-slate-500 mt-0.5">Gestiona tus solicitudes.</p>
+              <div class="mt-2 flex items-center text-xs text-slate-400 font-semibold">
+                <i class="fa-solid fa-circle-arrow-right mr-1.5 text-slate-500"></i> Más información
+              </div>
+            </div>
+            <div class="card-corner bg-[#F37021]">
+              <i class="fa-solid fa-file-signature text-4xl"></i>
+            </div>
+          </div>
+
+          <!-- Información económica (Verde) -->
+          <div class="bg-white rounded-2xl custom-shadow border border-slate-100 h-28 relative overflow-hidden flex flex-col justify-center px-5">
+            <div class="w-7/12">
+              <h2 class="text-xl font-black text-slate-900 leading-tight">Información económica</h2>
+              <p class="text-xs text-slate-500 mt-0.5">Revisa tu información económica y beneficios.</p>
+              <div class="mt-2 flex items-center text-xs text-emerald-600 font-bold">
+                <i class="fa-solid fa-circle-check mr-1.5"></i> Todo pagado y conforme
+              </div>
+            </div>
+            <div class="card-corner bg-[#28A745]">
+              <i class="fa-solid fa-wallet text-4xl"></i>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- CENTRO DE AYUDA (Como en el video) -->
+        <div class="bg-white rounded-2xl p-4 border border-slate-200 custom-shadow space-y-2">
+          <div class="text-xs font-bold text-slate-700 flex items-center space-x-1.5 pb-1">
+            <i class="fa-regular fa-circle-question text-[#007BFF]"></i>
+            <span>Centro de Ayuda</span>
+          </div>
+          <button class="w-full py-2 bg-[#007BFF] text-white font-bold text-xs rounded-lg shadow-xs">
+            + Nuevo Ticket
+          </button>
+          <button class="w-full py-2 bg-white border border-slate-300 text-[#007BFF] font-bold text-xs rounded-lg">
+            <i class="fa-solid fa-list-check mr-1"></i> Mis Tickets
+          </button>
+          <button class="w-full py-2 bg-[#7A2B89] text-white font-bold text-xs rounded-lg shadow-xs">
+            ContiGuía <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
           </button>
         </div>
 
-        <!-- Tarjetas del portal -->
-        <div class="space-y-3">
-          <div onclick="showSection('notas')" class="cursor-pointer bg-white rounded-2xl custom-shadow border border-slate-100 h-24 relative overflow-hidden flex flex-col justify-center px-5">
-            <div class="w-7/12">
-              <h2 class="text-lg font-black text-slate-900 leading-tight">Vida académica</h2>
-              <p class="text-xs text-slate-500">Consulta de notas y evaluaciones.</p>
-            </div>
-            <div class="card-corner bg-[#7A2B89]">
-              <i class="fa-solid fa-graduation-cap text-3xl"></i>
-            </div>
+        <!-- OFICINAS VIRTUALES (Como en el video) -->
+        <div class="bg-white rounded-2xl p-4 border border-slate-200 custom-shadow space-y-2">
+          <div class="text-xs font-bold text-slate-700 flex items-center space-x-1.5 pb-1">
+            <i class="fa-solid fa-building text-slate-600"></i>
+            <span>Oficinas virtuales</span>
           </div>
-
-          <div class="bg-white rounded-2xl custom-shadow border border-slate-100 h-24 relative overflow-hidden flex flex-col justify-center px-5">
-            <div class="w-7/12">
-              <h2 class="text-lg font-black text-slate-900 leading-tight">Matrícula</h2>
-              <p class="text-xs text-slate-500">Plan de estudios y asignaturas.</p>
-            </div>
-            <div class="card-corner bg-[#007BFF]">
-              <i class="fa-solid fa-book-open text-3xl"></i>
-            </div>
-          </div>
-
-          <div class="bg-white rounded-2xl custom-shadow border border-slate-100 h-24 relative overflow-hidden flex flex-col justify-center px-5">
-            <div class="w-7/12">
-              <h2 class="text-lg font-black text-slate-900 leading-tight">Información económica</h2>
-              <p class="text-xs text-emerald-600 font-semibold">Todo pagado y al día.</p>
-            </div>
-            <div class="card-corner bg-[#28A745]">
-              <i class="fa-solid fa-wallet text-3xl"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ================= VISTA: REGISTRO DE EVALUACIONES (TABLA EXACTA) ================= -->
-      <div id="viewNotas" class="hidden space-y-4">
-        
-        <div class="bg-white rounded-xl p-4 sm:p-6 border border-slate-300 custom-shadow">
-          
-          <!-- Encabezado con el selector 2025-2 -->
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-200 gap-3">
-            <div class="flex items-center space-x-2">
-              <h2 class="text-xs sm:text-sm font-black text-slate-800 tracking-wide uppercase">
-                REGISTRO DE EVALUACIONES PARCIALES
-              </h2>
-              <select id="periodSelector" onchange="renderEvaluaciones(this.value)" class="text-xs font-bold text-slate-800 bg-white border border-slate-400 rounded px-2 py-0.5 focus:outline-none cursor-pointer">
-                <option value="4" selected>2025-2</option>
-                <option value="1">2024-1</option>
-                <option value="2">2024-2</option>
-                <option value="3">2025-1</option>
-                <option value="5">2026-1</option>
-              </select>
-            </div>
-
-            <div class="flex items-center space-x-2">
-              <button onclick="window.print()" class="text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded border border-slate-300 transition">
-                <i class="fa-solid fa-print mr-1"></i> Imprimir
-              </button>
-              <button onclick="showSection('inicio')" class="text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded border border-slate-300 transition">
-                <i class="fa-solid fa-arrow-left mr-1"></i> Volver
-              </button>
-            </div>
-          </div>
-
-          <!-- TABLA CON EL FORMATO, COLORES Y NOTAS EXACTAS DE TU IMAGEN -->
-          <div class="overflow-x-auto mt-4 rounded border border-[#1f3b5c]">
-            <table class="table-evaluaciones">
-              <thead>
-                <tr>
-                  <th rowspan="2" class="main-header" style="min-width: 220px;">Nombre del Curso</th>
-                  <th colspan="4" class="main-header">MÓDULO I</th>
-                  <th colspan="4" class="main-header">MÓDULO II</th>
-                  <th colspan="4" class="main-header">MÓDULO III</th>
-                  <th colspan="4" class="main-header">MÓDULO IV</th>
-                  <th rowspan="2" class="main-header" style="min-width: 45px;">P.F.</th>
-                </tr>
-                <tr>
-                  <th class="sub-header">EC1</th>
-                  <th class="sub-header">EP1</th>
-                  <th class="sub-header">ED1</th>
-                  <th class="sub-header">PM1</th>
-
-                  <th class="sub-header">EC2</th>
-                  <th class="sub-header">EP2</th>
-                  <th class="sub-header">ED2</th>
-                  <th class="sub-header">PM2</th>
-
-                  <th class="sub-header">EC3</th>
-                  <th class="sub-header">EP3</th>
-                  <th class="sub-header">ED3</th>
-                  <th class="sub-header">PM3</th>
-
-                  <th class="sub-header">EC4</th>
-                  <th class="sub-header">EP4</th>
-                  <th class="sub-header">ED4</th>
-                  <th class="sub-header">PM4</th>
-                </tr>
-              </thead>
-              <tbody id="evaluacionesBody">
-                <!-- Se llena dinámicamente con JS -->
-              </tbody>
-              <tfoot>
-                <tr style="height: 22px;">
-                  <td></td>
-                  <td></td><td></td><td></td><td></td>
-                  <td></td><td></td><td></td><td></td>
-                  <td></td><td></td><td></td><td></td>
-                  <td></td><td></td><td></td><td></td>
-                  <td></td>
-                </tr>
-              </tfoot>
-            </table>
-          </div>
-
-          <div class="mt-3 text-[11px] text-slate-500 flex flex-wrap gap-3">
-            <span><strong>EC:</strong> Evaluación Continua</span>
-            <span><strong>EP:</strong> Examen Parcial</span>
-            <span><strong>ED:</strong> Evaluación de Desempeño</span>
-            <span><strong>PM:</strong> Promedio Modular</span>
-            <span><strong>P.F.:</strong> Promedio Final</span>
-          </div>
-
+          <button class="w-full py-2 bg-[#007BFF] text-white font-bold text-xs rounded-lg shadow-xs">
+            + Nueva Atención
+          </button>
+          <button class="w-full py-2 bg-white border border-slate-300 text-[#007BFF] font-bold text-xs rounded-lg">
+            <i class="fa-solid fa-list-check mr-1"></i> Mis Atenciones
+          </button>
+          <button class="w-full py-2 bg-white border border-slate-300 text-[#007BFF] font-bold text-xs rounded-lg">
+            <i class="fa-regular fa-calendar-days mr-1"></i> Cronograma de Trámites
+          </button>
         </div>
 
-      </div>
+        <!-- BLOQUE PA: ADMINISTRACIÓN Y NEGOCIOS INTERNACIONALES (Como en el video) -->
+        <div class="bg-white rounded-2xl p-4 border border-slate-200 custom-shadow space-y-3">
+          <div class="flex items-center space-x-2 border-b border-slate-100 pb-2 text-slate-800 font-black text-xs uppercase tracking-tight">
+            <i class="fa-solid fa-landmark text-[#7A2B89]"></i>
+            <span>PA: ADMINISTRACIÓN Y NEGOCIOS INTERNACIONALES</span>
+          </div>
 
-    </main>
-
-    <footer class="bg-white border-t border-slate-200 py-3 text-center text-[11px] text-slate-400">
-      Copyright © 2026 Universidad Continental. Todos los derechos reservados.
-    </footer>
-
-  </div>
-
-  <script>
-    const cursosData = {
-      4: [
-        { nombre: "ESTADÍSTICA INFERENCIAL", m1: [16, 13, 14, "14.3"], m2: [18, 13, 15, "15.3"], m3: [12, 14, 18, "14.7"], m4: [16, 14, 18, "16.0"], pf: "15.0" },
-        { nombre: "COSTOS Y PRESUPUESTOS", m1: [17, 17, 18, "17.3"], m2: [16, 17, 17, "16.7"], m3: [16, 17, 17, "16.7"], m4: [15, 18, 17, "16.7"], pf: "16.7" },
-        { nombre: "MARKETING", m1: [14, 15, 17, "15.3"], m2: [16, 16, 14, "15.0"], m3: [17, 16, 14, "15.7"], m4: [16, 14, 15, "15.0"], pf: "15.3" },
-        { nombre: "ELECTIVO GENERAL 1", m1: [14, 14, 14, "14.0"], m2: [14, 14, 14, "14.0"], m3: [15, 18, 14, "15.7"], m4: [14, 17, 15, "15.3"], pf: "15.0" },
-        { nombre: "ELECTIVO GENERAL 2", m1: [14, 14, 14, "14.0"], m2: [16, 12, 17, "12.0"], m3: [15, 11, 14, "13.3"], m4: [18, 15, 13, "15.3"], pf: "14.0" },
-        { nombre: "ENGLISH COURSE 1", m1: [17, 17, 17, "17.0"], m2: [14, 14, 14, "14.0"], m3: [17, 13, 18, "16.0"], m4: [13, 16, 19, "16.0"], pf: "15.7" }
-      ],
-      1: [
-        { nombre: "COMPRENSIÓN Y PRODUCCIÓN DE TEXTOS 1", m1: [16, 16, 17, "16.3"], m2: [17, 17, 17, "17.0"], m3: [16, 16, 17, "16.3"], m4: [18, 18, 18, "18.0"], pf: "16.9" },
-        { nombre: "LABORATORIO DE LIDERAZGO E INNOVACIÓN", m1: [17, 17, 18, "17.3"], m2: [18, 18, 19, "18.3"], m3: [17, 17, 17, "17.0"], m4: [19, 19, 18, "18.7"], pf: "17.8" },
-        { nombre: "ESTRATEGIAS Y HERRAMIENTAS DIGITALES...", m1: [18, 18, 18, "18.0"], m2: [18, 19, 18, "18.3"], m3: [19, 18, 19, "18.7"], m4: [17, 17, 18, "17.3"], pf: "18.1" },
-        { nombre: "FUNDAMENTOS DE MATEMÁTICA", m1: [15, 15, 16, "15.3"], m2: [14, 14, 15, "14.3"], m3: [16, 16, 16, "16.0"], m4: [16, 16, 17, "16.3"], pf: "15.5" },
-        { nombre: "ECONOMÍA 1", m1: [16, 16, 17, "16.3"], m2: [17, 16, 17, "16.7"], m3: [15, 15, 16, "15.3"], m4: [17, 17, 17, "17.0"], pf: "16.3" },
-        { nombre: "INTRODUCCIÓN A LA ADMINISTRACIÓN Y NEG.", m1: [17, 17, 18, "17.3"], m2: [18, 18, 18, "18.0"], m3: [18, 18, 19, "18.3"], m4: [19, 19, 19, "19.0"], pf: "18.2" }
-      ]
-    };
-
-    function handleManualLogin(e) {
-      e.preventDefault();
-      const user = document.getElementById("inputUser").value.trim().toLowerCase();
-      const pass = document.getElementById("inputPass").value.trim();
-      const err = document.getElementById("loginPassError");
-
-      const validUsers = ["2024200955@continental.pe", "76920198@continental.edu.pe", "2024200955", "76920198"];
-
-      if (validUsers.includes(user) && pass === "28012004") {
-        err.classList.add("hidden");
-        document.getElementById("loginView").classList.add("hidden");
-        document.getElementById("mainPortal").classList.remove("hidden");
-        renderEvaluaciones(4);
-      } else {
-        err.classList.remove("hidden");
-      }
-    }
-
-    function handleLogout() {
-      document.getElementById("mainPortal").classList.add("hidden");
-      document.getElementById("loginView").classList.remove("hidden");
-      document.getElementById("sideDrawer").classList.add("hidden");
-    }
-
-    function toggleSidebar() {
-      document.getElementById("sideDrawer").classList.toggle("hidden");
-    }
-
-    function showSection(name) {
-      document.getElementById("viewInicio").classList.add("hidden");
-      document.getElementById("viewNotas").classList.add("hidden");
-
-      if (name === 'inicio') {
-        document.getElementById("viewInicio").classList.remove("hidden");
-      } else if (name === 'notas') {
-        document.getElementById("viewNotas").classList.remove("hidden");
-        renderEvaluaciones(document.getElementById("periodSelector").value);
-      }
-    }
-
-    function renderEvaluaciones(periodKey) {
-      const list = cursosData[periodKey] || cursosData[4];
-      const tbody = document.getElementById("evaluacionesBody");
-      tbody.innerHTML = "";
-
-      list.forEach(c => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td class="course-name">${c.nombre}</td>
-          <td>${c.m1[0]}</td><td>${c.m1[1]}</td><td>${c.m1[2]}</td><td class="col-avg">${c.m1[3]}</td>
-          <td>${c.m2[0]}</td><td>${c.m2[1]}</td><td>${c.m2[2]}</td><td class="col-avg">${c.m2[3]}</td>
-          <td>${c.m3[0]}</td><td>${c.m3[1]}</td><td>${c.m3[2]}</td><td class="col-avg">${c.m3[3]}</td>
-          <td>${c.m4[0]}</td><td>${c.m4[1]}</td><td>${c.m4[2]}</td><td class="col-avg">${c.m4[3]}</td>
-          <td class="col-avg" style="background-color: #bcc3cd; font-weight: 800;">${c.pf}</td>
-        `;
-        tbody.appendChild(tr);
-      });
-    }
-  </script>
-</body>
-</html>
+          <div class="grid grid-cols-2 gap-2 text-center text-xs">
+            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <div class="text-[#007BFF] font-black text-xs">Ciencias de la empresa</div>
+              <div class="text-[10px] text-slate-400">Facultad</div>
+            </div>
+            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <div class="text-slate-800 font-black text-xs">A distancia</div>
+              <div class="text-[10px] text-slate-400">Modalidad de educación</div>
+            </div>
+            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <div class="text-slate-800 font-black text-xs">Virtual</div>
+              <div class="text-[10px] text-slate-400">Campus</div>
+            </div>
+            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <div class="text-[#7A2B89] font-black text-xs">6 / 10</div>
+              <div class="text-[10px] text-slate-400">Período</div>
+            </div>
+            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <div class="text-slate-800 font-black text-xs">103 / 214</div>
+              <div class="text-[10px] text-slate-400">Créditos</div>
+            </div>
+            <div class="bg-slate-50 p-2.5 rounded-
