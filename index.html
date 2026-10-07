@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal Académico | Universidad Continental</title>
+  <title>Portal del Estudiante | Universidad Continental</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -12,7 +12,6 @@
       --uc-purple-dark: #321356;
       --uc-purple-light: #6A32B0;
       --uc-orange: #F39200;
-      --uc-accent: #00B4D8;
     }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -22,13 +21,10 @@
     .bg-uc-purple-dark { background-color: var(--uc-purple-dark); }
     .text-uc-purple { color: var(--uc-purple); }
     .border-uc-purple { border-color: var(--uc-purple); }
-    .bg-uc-orange { background-color: var(--uc-orange); }
-    .text-uc-orange { color: var(--uc-orange); }
     
     @media print {
       .no-print { display: none !important; }
       body { background: white !important; }
-      .print-shadow-none { box-shadow: none !important; border: 1px solid #ddd !important; }
     }
   </style>
 </head>
@@ -52,33 +48,36 @@
           </div>
         </div>
         <h1 class="text-xl font-bold tracking-tight">UNIVERSIDAD CONTINENTAL</h1>
-        <p class="text-xs text-purple-200 mt-1 uppercase tracking-wider font-medium">Portal de Consulta Académica y Calificaciones</p>
+        <p class="text-xs text-purple-200 mt-1 uppercase tracking-wider font-medium">Portal del Estudiante • Intranet Académica</p>
       </div>
 
-      <!-- Formulario Login -->
+      <!-- Formulario Login Manual -->
       <div class="p-8">
-        <div class="mb-5 bg-amber-50 border-l-4 border-amber-500 p-3 rounded text-xs text-amber-800 flex items-start space-x-2">
-          <i class="fa-solid fa-clock mt-0.5 text-amber-600"></i>
+        <div class="mb-5 bg-purple-50 border-l-4 border-[#4B207F] p-3 rounded text-xs text-purple-900 flex items-start space-x-2">
+          <i class="fa-solid fa-lock mt-0.5 text-[#4B207F]"></i>
           <div>
-            <span class="font-bold">Periodo Lectivo Activo:</span> Consulta oficial de actas y consolidados por módulos.
+            Ingrese con su cuenta de correo institucional y contraseña asignada para acceder al registro de notas.
           </div>
         </div>
 
         <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4">
           <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Correo Institucional / Código</label>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Correo Institucional o Código</label>
             <div class="relative">
               <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
                 <i class="fa-solid fa-user text-sm"></i>
               </div>
               <input type="text" id="usernameInput" required 
-                placeholder="2024200955@continental.pe" 
+                placeholder="ejemplo@continental.pe" 
                 class="w-full pl-10 pr-3 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:bg-white transition">
             </div>
           </div>
 
           <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Contraseña</label>
+            <div class="flex justify-between items-center mb-1">
+              <label class="block text-xs font-bold text-slate-700 uppercase">Contraseña</label>
+              <a href="#" onclick="alert('Comuníquese con Soporte TI para el restablecimiento de su clave.'); return false;" class="text-[11px] text-purple-700 hover:underline">¿Olvidó su contraseña?</a>
+            </div>
             <div class="relative">
               <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
                 <i class="fa-solid fa-lock text-sm"></i>
@@ -93,21 +92,19 @@
           </div>
 
           <div id="loginError" class="hidden text-xs text-red-600 font-semibold bg-red-50 p-2.5 rounded border border-red-200">
-            <i class="fa-solid fa-circle-exclamation mr-1"></i> Credenciales incorrectas. Verifique correo y clave.
+            <i class="fa-solid fa-circle-exclamation mr-1"></i> Credenciales no válidas. Verifique su usuario y contraseña.
           </div>
 
-          <button type="submit" class="w-full py-3 bg-[#4B207F] hover:bg-[#391563] text-white font-bold rounded-lg text-sm shadow-lg hover:shadow-xl transition transform active:scale-[0.99] flex items-center justify-center space-x-2">
-            <span>INGRESAR AL PORTAL</span>
+          <button type="submit" class="w-full py-3 bg-[#4B207F] hover:bg-[#391563] text-white font-bold rounded-lg text-sm shadow-md hover:shadow-lg transition transform active:scale-[0.99] flex items-center justify-center space-x-2">
+            <span>INICIAR SESIÓN</span>
             <i class="fa-solid fa-arrow-right"></i>
           </button>
         </form>
 
-        <!-- Botón de acceso directo para prueba rápida -->
-        <div class="mt-6 pt-5 border-t border-slate-200 text-center">
-          <p class="text-xs text-slate-500 mb-2">Acceso de prueba con un clic:</p>
-          <button type="button" onclick="fillQuickAccess()" class="px-3 py-1.5 bg-slate-100 hover:bg-purple-100 hover:text-purple-800 text-slate-700 rounded-md text-xs font-semibold transition border border-slate-300">
-            Cargar credenciales de Stace Ferro
-          </button>
+        <div class="mt-6 pt-4 border-t border-slate-200 text-center">
+          <p class="text-[11px] text-slate-400">
+            <i class="fa-solid fa-shield-halved mr-1 text-slate-500"></i> Conexión cifrada institucional
+          </p>
         </div>
 
       </div>
@@ -135,7 +132,7 @@
           </div>
           <div>
             <div class="font-extrabold text-sm sm:text-base tracking-wide leading-none">UNIVERSIDAD CONTINENTAL</div>
-            <div class="text-[10px] text-purple-200">INTRANET ACADÉMICA VIRTUAL</div>
+            <div class="text-[10px] text-purple-200">PORTAL DEL ESTUDIANTE • INTRANET</div>
           </div>
         </div>
 
@@ -254,7 +251,7 @@
   </div>
 
   <script>
-    // Datos completos de la malla curricular (10 ciclos de Administración y Negocios Internacionales)
+    // Malla curricular con los 10 ciclos
     const curriculumData = {
       1: {
         creditos: 20,
@@ -384,14 +381,20 @@
 
     let selectedCycle = 6;
 
-    // Login logic
+    // Lógica de inicio de sesión manual
     function handleLogin(e) {
       e.preventDefault();
       const user = document.getElementById("usernameInput").value.trim().toLowerCase();
       const pass = document.getElementById("passwordInput").value.trim();
       const errorMsg = document.getElementById("loginError");
 
-      if ((user === "2024200955@continental.pe" || user === "2024200955") && pass === "28012004") {
+      const validUsers = [
+        "2024200955@continental.pe",
+        "2024200955@continental.edu.pe",
+        "2024200955"
+      ];
+
+      if (validUsers.includes(user) && pass === "28012004") {
         errorMsg.classList.add("hidden");
         document.getElementById("loginSection").classList.add("hidden");
         document.getElementById("portalSection").classList.remove("hidden");
@@ -408,11 +411,6 @@
       document.getElementById("passwordInput").value = "";
     }
 
-    function fillQuickAccess() {
-      document.getElementById("usernameInput").value = "2024200955@continental.pe";
-      document.getElementById("passwordInput").value = "28012004";
-    }
-
     function togglePassword() {
       const input = document.getElementById("passwordInput");
       const icon = document.getElementById("eyeIcon");
@@ -425,7 +423,6 @@
       }
     }
 
-    // Renderizado de Ciclos
     function renderTabs() {
       const container = document.getElementById("cycleTabs");
       container.innerHTML = "";
@@ -484,22 +481,4 @@
             ${
               prom === "--" 
                 ? '<span class="text-xs text-slate-400 font-semibold">Pendiente</span>'
-                : isApproved 
-                  ? '<span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded-full font-bold text-[11px]">Aprobado</span>'
-                  : '<span class="px-2 py-0.5 bg-red-100 text-red-800 rounded-full font-bold text-[11px]">Desaprobado</span>'
-            }
-          </td>
-        `;
-        tbody.appendChild(tr);
-      });
-
-      const avgEl = document.getElementById("cycleAverageFinal");
-      if (sumCreditos > 0) {
-        avgEl.innerText = (sumPonderada / sumCreditos).toFixed(2);
-      } else {
-        avgEl.innerText = "Por cursar";
-      }
-    }
-  </script>
-</body>
-</html>
+                : isApproved
