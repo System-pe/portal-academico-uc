@@ -533,7 +533,7 @@
           </div>
         </div>
 
-        <!-- PA: ADMINISTRACIÓN Y NEGOCIOS INTERNACIONALES -->
+        <!-- PA: ADMINISTRACIÓN Y NEGOCIOS INTERNACIONALES (ACTUALIZADO A 43.75%) -->
         <div class="bg-white rounded-2xl p-4 border border-slate-200 custom-shadow space-y-3">
           <div class="flex items-center space-x-2 border-b border-slate-100 pb-2 text-slate-800 font-black text-xs uppercase tracking-tight">
             <i class="fa-solid fa-landmark text-[#7A2B89]"></i>
@@ -569,8 +569,9 @@
               <div class="text-slate-800 font-black text-xs">0</div>
               <div class="text-[10px] text-slate-400">Porcentaje presencialidad ℹ️</div>
             </div>
+            <!-- PORCENTAJE VIRTUAL ACTUALIZADO -->
             <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100">
-              <div class="text-slate-800 font-black text-xs">1.43</div>
+              <div class="text-slate-800 font-black text-xs">43.75%</div>
               <div class="text-[10px] text-slate-400">Porcentaje virtual ℹ️</div>
             </div>
           </div>
@@ -1465,7 +1466,7 @@
             ? "bg-[#1f3b5c] text-white border-[#1f3b5c] shadow-xs" 
             : "bg-white text-slate-700 border-slate-300 hover:bg-slate-100"
         }`;
-        // Corrección: del 1 al 9 lleva '0' y el 10 queda como 'Ciclo 10'
+        // Formato limpio: 'Ciclo 01' al 'Ciclo 09', y exactamente 'Ciclo 10'
         btn.innerText = `Ciclo ${i < 10 ? '0' + i : i}`;
         btn.onclick = () => loadCycle(i);
         container.appendChild(btn);
