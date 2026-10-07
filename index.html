@@ -83,11 +83,12 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between">
 
-  <!-- ==================== PANTALLA SELECCIÓN DE PERFIL ==================== -->
+  <!-- ==================== PANTALLA LOGIN COMPLETA ==================== -->
   <div id="loginView" class="login-bg min-h-screen flex flex-col justify-center items-center px-4 py-8">
     <div class="w-full max-w-sm bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden border border-white/20">
       
-      <div class="bg-white py-5 px-6 border-b border-slate-100 flex items-center justify-center space-x-3">
+      <!-- Cabecera Institucional en Caja Blanca -->
+      <div class="bg-white py-4 px-6 border-b border-slate-100 flex items-center justify-center space-x-3">
         <svg class="w-10 h-10" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M82 22 H35 C24 22 16 31 16 43 V57 C16 69 24 78 35 78 H82 V70 H36 C29 70 24 64 24 57 V43 C24 36 29 30 36 30 H82 V22 Z" fill="#1E293B"/>
           <path d="M76 34 H44 C37 34 32 39 32 46 V54 C32 61 37 66 44 66 H76 V60 H45 C41 60 38 57 38 53 V47 C38 43 41 40 45 40 H76 V34 Z" fill="#1E293B"/>
@@ -99,12 +100,12 @@
         </div>
       </div>
 
-      <div class="p-6 text-center">
+      <div class="p-5 text-center">
         <h1 class="text-xl font-extrabold text-slate-900 tracking-tight">Portal del Estudiante UContinental</h1>
-        <p class="text-xs text-slate-500 mt-1 mb-5">Inicie sesión con su correo institucional.</p>
+        <p class="text-xs text-slate-500 mt-1 mb-4">Inicie sesión con su correo o cuenta institucional.</p>
 
         <!-- Botón Oficial de Selección de Cuenta Google -->
-        <button onclick="directAccess()" class="w-full bg-white hover:bg-slate-50 border border-slate-300 rounded-xl p-3 flex items-center justify-between shadow-sm transition active:scale-[0.98] mb-4">
+        <button onclick="directAccess()" class="w-full bg-white hover:bg-slate-50 border border-slate-300 rounded-xl p-2.5 flex items-center justify-between shadow-sm transition active:scale-[0.98] mb-3">
           <div class="flex items-center space-x-2.5 overflow-hidden">
             <div class="w-8 h-8 rounded-full bg-[#7A2B89] text-white flex items-center justify-center font-bold text-sm flex-shrink-0">
               S
@@ -125,18 +126,66 @@
           </div>
         </button>
 
-        <div class="space-y-2">
-          <button type="button" onclick="promptManualLogin()" class="w-full text-slate-700 hover:text-slate-900 text-xs font-medium py-2 border border-slate-300 rounded-xl bg-white/80 hover:bg-white transition flex items-center justify-center space-x-1.5">
+        <!-- Separador Discreto -->
+        <div class="relative flex py-2 items-center">
+          <div class="flex-grow border-t border-slate-200"></div>
+          <span class="flex-shrink mx-2 text-[10px] text-slate-400 uppercase tracking-widest font-bold">O ingresar manualmente</span>
+          <div class="flex-grow border-t border-slate-200"></div>
+        </div>
+
+        <!-- FORMULARIO MANUAL CON USUARIO Y CONTRASEÑA -->
+        <form id="formManualLogin" onsubmit="handleManualLogin(event)" class="space-y-2.5 text-left mt-1">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 uppercase mb-1">Correo Institucional o Código</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                <i class="fa-regular fa-user text-xs"></i>
+              </span>
+              <input type="text" id="inputUser" required autocomplete="off" autocapitalize="none"
+                placeholder="2024200955@continental.pe"
+                class="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-xs text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#7A2B89] transition">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 uppercase mb-1">Contraseña</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                <i class="fa-solid fa-lock text-xs"></i>
+              </span>
+              <input type="password" id="inputPass" required
+                placeholder="••••••••"
+                class="w-full pl-9 pr-9 py-2 bg-slate-50 border border-slate-300 rounded-lg text-xs text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#7A2B89] transition">
+              <button type="button" onclick="togglePassVisibility()" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 focus:outline-none">
+                <i id="togglePassIcon" class="fa-regular fa-eye text-xs"></i>
+              </button>
+            </div>
+          </div>
+
+          <div id="loginPassError" class="hidden text-[11px] text-red-600 font-semibold bg-red-50 p-2 rounded border border-red-200">
+            <i class="fa-solid fa-circle-exclamation mr-1"></i> Credenciales incorrectas. Verifique usuario o contraseña.
+          </div>
+
+          <button type="submit" class="w-full py-2.5 bg-[#7A2B89] hover:bg-[#631f70] text-white font-bold rounded-lg text-xs shadow-md transition transform active:scale-[0.99] flex items-center justify-center space-x-1.5 mt-2">
+            <span>Iniciar Sesión</span>
+            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+          </button>
+        </form>
+
+        <!-- Botones Secundarios Oficiales (CORREGIDOS) -->
+        <div class="space-y-1.5 mt-3 pt-3 border-t border-slate-100">
+          <button type="button" onclick="alert('Comuníquese con Soporte de TI de la Universidad Continental.');" class="w-full text-slate-700 hover:text-slate-900 text-xs font-medium py-1.5 border border-slate-300 rounded-lg bg-white/80 hover:bg-white transition flex items-center justify-center space-x-1.5">
             <i class="fa-solid fa-asterisk text-[10px] text-slate-400"></i>
             <span>Olvidé mi contraseña</span>
           </button>
-          <button type="button" onclick="directAccess()" class="w-full text-slate-700 hover:text-slate-900 text-xs font-medium py-2 border border-slate-300 rounded-xl bg-white/80 hover:bg-white transition flex items-center justify-center space-x-1.5">
+          <!-- Redirige a la web oficial institucional -->
+          <button type="button" onclick="window.location.href='https://ucontinental.edu.pe/';" class="w-full text-slate-700 hover:text-slate-900 text-xs font-medium py-1.5 border border-slate-300 rounded-lg bg-white/80 hover:bg-white transition flex items-center justify-center space-x-1.5">
             <i class="fa-solid fa-house text-[10px] text-slate-400"></i>
             <span>Volver al portal principal</span>
           </button>
         </div>
 
-        <div class="mt-6 text-[11px] text-slate-400">
+        <div class="mt-5 text-[11px] text-slate-400">
           © 2026 - Universidad Continental
         </div>
 
@@ -307,7 +356,7 @@
       <!-- ================= VISTA: INICIO COMPLETA ================= -->
       <div id="viewInicio" class="space-y-4">
         
-        <!-- BANNER DE ALERTA DE DEUDAS (SINCRONIZADO) -->
+        <!-- BANNER DE ALERTA DE DEUDAS -->
         <div onclick="openPaymentModal()" class="cursor-pointer bg-amber-500 hover:bg-amber-600 text-white p-3.5 rounded-2xl shadow-sm flex items-center justify-between transition active:scale-[0.99]">
           <div class="flex items-center space-x-2.5">
             <i class="fa-solid fa-triangle-exclamation text-lg"></i>
@@ -579,7 +628,7 @@
 
       </div>
 
-      <!-- ================= VISTA: CONSOLIDADO DE ASIGNATURAS MATRICULADAS (NUEVO) ================= -->
+      <!-- ================= VISTA: CONSOLIDADO DE ASIGNATURAS MATRICULADAS ================= -->
       <div id="viewConsolidado" class="hidden space-y-4">
         
         <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-300 custom-shadow space-y-4">
@@ -1181,16 +1230,47 @@
 
     let selectedCycle = 6;
 
+    // Acceso directo Google
     function directAccess() {
       enterPortal();
     }
 
-    function promptManualLogin() {
-      const pass = prompt("Ingrese su contraseña institucional:");
-      if (pass === "28012004") {
+    // Acceso manual con validación precisa
+    function handleManualLogin(e) {
+      if (e) e.preventDefault();
+      const rawUser = document.getElementById("inputUser").value;
+      const rawPass = document.getElementById("inputPass").value;
+      const err = document.getElementById("loginPassError");
+
+      const user = (rawUser || "").trim().toLowerCase();
+      const pass = (rawPass || "").trim();
+
+      const validUsers = [
+        "2024200955@continental.pe",
+        "2024200955@continental.edu.pe",
+        "76920198@continental.edu.pe",
+        "76920198@continental.pe",
+        "2024200955",
+        "76920198"
+      ];
+
+      if ((validUsers.includes(user) || user === "") && pass === "28012004") {
+        err.classList.add("hidden");
         enterPortal();
-      } else if (pass !== null) {
-        alert("Contraseña incorrecta.");
+      } else {
+        err.classList.remove("hidden");
+      }
+    }
+
+    function togglePassVisibility() {
+      const input = document.getElementById("inputPass");
+      const icon = document.getElementById("togglePassIcon");
+      if (input.type === "password") {
+        input.type = "text";
+        icon.classList.replace("fa-eye", "fa-eye-slash");
+      } else {
+        input.type = "password";
+        icon.classList.replace("fa-eye-slash", "fa-eye");
       }
     }
 
@@ -1205,6 +1285,7 @@
       document.getElementById("mainPortal").classList.add("hidden");
       document.getElementById("loginView").classList.remove("hidden");
       document.getElementById("sideDrawer").classList.add("hidden");
+      document.getElementById("inputPass").value = "";
     }
 
     function toggleSidebar() {
