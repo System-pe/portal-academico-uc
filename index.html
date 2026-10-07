@@ -42,7 +42,7 @@
       color: white;
     }
 
-    /* Tabla exacta al diseño de evaluaciones parciales */
+    /* Tabla exacta de evaluaciones parciales */
     .table-evaluaciones {
       border: 2px solid #1f3b5c;
       border-collapse: collapse;
@@ -87,7 +87,6 @@
   <div id="loginView" class="login-bg min-h-screen flex flex-col justify-center items-center px-4 py-8">
     <div class="w-full max-w-sm bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden border border-white/20">
       
-      <!-- Logo Superior en caja blanca -->
       <div class="bg-white py-5 px-6 border-b border-slate-100 flex items-center justify-center space-x-3">
         <svg class="w-10 h-10" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M82 22 H35 C24 22 16 31 16 43 V57 C16 69 24 78 35 78 H82 V70 H36 C29 70 24 64 24 57 V43 C24 36 29 30 36 30 H82 V22 Z" fill="#1E293B"/>
@@ -104,7 +103,6 @@
         <h1 class="text-xl font-extrabold text-slate-900 tracking-tight">Portal del Estudiante UContinental</h1>
         <p class="text-xs text-slate-500 mt-1 mb-5">Inicie sesión con su correo institucional.</p>
 
-        <!-- Botón de Acceso Directo de Google -->
         <button onclick="directAccess()" class="w-full bg-white hover:bg-slate-50 border border-slate-300 rounded-xl p-3 flex items-center justify-between shadow-sm transition active:scale-[0.98] mb-4">
           <div class="flex items-center space-x-2.5 overflow-hidden">
             <div class="w-8 h-8 rounded-full bg-[#7A2B89] text-white flex items-center justify-center font-bold text-sm flex-shrink-0">
@@ -132,7 +130,6 @@
           <div class="flex-grow border-t border-slate-200"></div>
         </div>
 
-        <!-- Formulario Manual -->
         <form onsubmit="handleManualLogin(event)" class="space-y-3 mt-2">
           <input type="text" id="inputUser" placeholder="Usuario o correo" autocomplete="off"
             class="w-full px-3 py-2 text-xs border border-slate-300 rounded-lg text-left bg-slate-50 focus:bg-white focus:outline-none">
@@ -171,7 +168,7 @@
     <!-- Barra Superior -->
     <header class="bg-[#132433] text-white px-4 h-14 flex items-center justify-between sticky top-0 z-50 shadow-md">
       <div class="flex items-center space-x-3">
-        <button onclick="toggleSidebar()" class="text-white hover:text-slate-300">
+        <button onclick="toggleSidebar()" class="text-white hover:text-slate-300 focus:outline-none">
           <i class="fa-solid fa-bars text-xl"></i>
         </button>
       </div>
@@ -185,11 +182,12 @@
         </div>
       </div>
 
+      <!-- Campanita y Avatar -->
       <div class="flex items-center space-x-3">
-        <div class="relative">
+        <button onclick="toggleNotifications()" class="relative p-1 text-white hover:text-amber-300 transition focus:outline-none" title="Notificaciones">
           <i class="fa-regular fa-bell text-lg"></i>
-          <span class="absolute -top-1 -right-2 bg-amber-500 text-slate-900 text-[10px] font-extrabold px-1.5 py-0.2 rounded-full">6</span>
-        </div>
+          <span id="notifBadge" class="absolute -top-1 -right-1 bg-amber-500 text-slate-900 text-[10px] font-extrabold px-1.5 py-0.2 rounded-full">6</span>
+        </button>
         <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs font-bold">
           <i class="fa-solid fa-user"></i>
         </div>
@@ -205,7 +203,7 @@
       <div class="absolute inset-y-0 left-0 max-w-[310px] w-full bg-[#1b2b3a] text-slate-100 shadow-2xl flex flex-col justify-between overflow-y-auto z-10">
         
         <div>
-          <!-- Cabecera Usuario -->
+          <!-- Ficha Oficial del Estudiante -->
           <div class="p-4 border-b border-slate-700/80 bg-[#152330]">
             <div class="flex items-center space-x-3 mb-2">
               <div class="w-11 h-11 rounded-full bg-blue-500 flex items-center justify-center text-white text-lg">
@@ -280,7 +278,7 @@
               <i class="fa-solid fa-file-lines w-4 text-center text-orange-400"></i>
               <span>Trámites</span>
             </button>
-            <button class="w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-slate-200 hover:bg-slate-700/60 font-medium">
+            <button onclick="openPaymentModal(); toggleSidebar();" class="w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-slate-200 hover:bg-slate-700/60 font-medium">
               <i class="fa-solid fa-building-columns w-4 text-center text-emerald-400"></i>
               <span>Información económica</span>
             </button>
@@ -319,8 +317,8 @@
       <!-- ================= VISTA: INICIO COMPLETA ================= -->
       <div id="viewInicio" class="space-y-4">
         
-        <!-- BANNER DE PAGOS: 100% AL DÍA Y VERIFICADO (ELEGANTE EN VERDE) -->
-        <div class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white p-3.5 rounded-2xl shadow-sm border border-emerald-500/30 flex items-center justify-between">
+        <!-- BANNER DE PAGOS AL DÍA (INTERACTIVO) -->
+        <div onclick="openPaymentModal()" class="cursor-pointer bg-gradient-to-r from-emerald-600 to-teal-700 text-white p-3.5 rounded-2xl shadow-sm border border-emerald-500/30 flex items-center justify-between hover:shadow-md transition active:scale-[0.99]">
           <div class="flex items-center space-x-3">
             <div class="w-9 h-9 rounded-xl bg-white/20 backdrop-blur-xs flex items-center justify-center flex-shrink-0">
               <i class="fa-solid fa-circle-check text-xl text-emerald-100"></i>
@@ -328,14 +326,14 @@
             <div>
               <div class="flex items-center space-x-1.5">
                 <span class="font-extrabold text-xs tracking-wide">ESTADO FINANCIERO: AL DÍA</span>
-                <span class="bg-emerald-400 text-emerald-950 text-[9px] font-black px-1.5 py-0.2 rounded-full uppercase">Verificado</span>
+                <span class="bg-emerald-400 text-emerald-950 text-[9px] font-black px-1.5 py-0.2 rounded-full uppercase">Escala F</span>
               </div>
               <div class="text-[11px] text-emerald-100/90 leading-tight mt-0.5">
-                No registras cuotas pendientes ni compromisos vencidos (2026-2).
+                5 cuotas de S/ 574.90 • Sin compromisos vencidos.
               </div>
             </div>
           </div>
-          <button class="bg-white text-emerald-800 hover:bg-emerald-50 font-bold text-[11px] px-2.5 py-1 rounded-lg shadow-xs transition flex-shrink-0">
+          <button onclick="event.stopPropagation(); openPaymentModal();" class="bg-white text-emerald-800 hover:bg-emerald-50 font-bold text-[11px] px-3 py-1 rounded-lg shadow-xs transition flex-shrink-0">
             Detalle
           </button>
         </div>
@@ -385,13 +383,13 @@
             </div>
           </div>
 
-          <!-- Información económica (Confirmando pagos al día) -->
-          <div class="bg-white rounded-2xl custom-shadow border border-slate-100 h-28 relative overflow-hidden flex flex-col justify-center px-5">
+          <!-- Información económica (Interactiva) -->
+          <div onclick="openPaymentModal()" class="cursor-pointer bg-white rounded-2xl custom-shadow border border-slate-100 h-28 relative overflow-hidden flex flex-col justify-center px-5 active:scale-[0.99] transition">
             <div class="w-7/12">
               <h2 class="text-xl font-black text-slate-900 leading-tight">Información económica</h2>
-              <p class="text-xs text-emerald-600 font-semibold mt-0.5">Al día • Sin obligaciones pendientes</p>
-              <div class="mt-2 flex items-center text-xs text-slate-400 font-semibold">
-                <i class="fa-solid fa-circle-arrow-right mr-1.5 text-slate-500"></i> Más información
+              <p class="text-xs text-emerald-600 font-semibold mt-0.5">Al día • Costo x crédito S/ 136,90</p>
+              <div class="mt-2 flex items-center text-xs text-slate-500 font-semibold">
+                <i class="fa-solid fa-receipt mr-1.5 text-emerald-600"></i> Ver estado de cuenta
               </div>
             </div>
             <div class="card-corner bg-[#28A745]">
@@ -614,10 +612,8 @@
             </div>
           </div>
 
-          <!-- Selector de Ciclos (Pestañas horizontales) -->
           <div class="flex space-x-1.5 overflow-x-auto py-2.5 scrollbar-none" id="cycleTabsBar"></div>
 
-          <!-- TABLA EXACTA EN AZUL MARINO Y GRIS -->
           <div class="overflow-x-auto mt-2 rounded border border-[#1f3b5c]">
             <table class="table-evaluaciones">
               <thead>
@@ -651,9 +647,7 @@
                   <th class="sub-header">PM4</th>
                 </tr>
               </thead>
-              <tbody id="evaluacionesBody">
-                <!-- Se llena con JS -->
-              </tbody>
+              <tbody id="evaluacionesBody"></tbody>
               <tfoot>
                 <tr style="height: 22px;">
                   <td></td>
@@ -706,6 +700,262 @@
 
     </main>
 
+    <!-- ==================== MODAL DE NOTIFICACIONES (INTERACTIVO) ==================== -->
+    <div id="modalNotifications" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+      <div onclick="toggleNotifications()" class="absolute inset-0 bg-black/60 backdrop-blur-xs"></div>
+      <div class="relative bg-white w-full max-w-md rounded-2xl shadow-2xl overflow-hidden border border-slate-200 z-10">
+        
+        <div class="bg-[#132433] text-white px-4 py-3 flex items-center justify-between">
+          <div class="flex items-center space-x-2">
+            <i class="fa-regular fa-bell text-amber-400 text-sm"></i>
+            <h3 class="font-extrabold text-sm tracking-wide">Notificaciones Institucionales</h3>
+          </div>
+          <button onclick="toggleNotifications()" class="text-slate-300 hover:text-white text-base">✕</button>
+        </div>
+
+        <div class="p-3 max-h-96 overflow-y-auto space-y-2 text-xs divide-y divide-slate-100">
+          
+          <div class="pt-2 flex items-start space-x-3">
+            <div class="w-8 h-8 rounded-full bg-purple-100 text-[#7A2B89] flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fa-solid fa-graduation-cap text-xs"></i>
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-slate-900">Registro de Calificaciones Módulo II</span>
+                <span class="text-[10px] text-slate-400">Hace 2 horas</span>
+              </div>
+              <p class="text-slate-600 text-[11px] mt-0.5">Se han publicado las notas parciales correspondientes al Módulo II del período 2026-2.</p>
+            </div>
+          </div>
+
+          <div class="pt-2 flex items-start space-x-3">
+            <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fa-solid fa-receipt text-xs"></i>
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-slate-900">Tesorería: Cuota 2026-2 Al Día</span>
+                <span class="text-[10px] text-slate-400">Ayer</span>
+              </div>
+              <p class="text-slate-600 text-[11px] mt-0.5">Tu pago de pensión ha sido verificado satisfactoriamente. No registras deuda pendiente.</p>
+            </div>
+          </div>
+
+          <div class="pt-2 flex items-start space-x-3">
+            <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fa-solid fa-book-open text-xs"></i>
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-slate-900">Matrícula Regular Confirmada</span>
+                <span class="text-[10px] text-slate-400">01 Oct</span>
+              </div>
+              <p class="text-slate-600 text-[11px] mt-0.5">Tu carga académica del 6° Ciclo (modalidad A distancia) se encuentra validada.</p>
+            </div>
+          </div>
+
+          <div class="pt-2 flex items-start space-x-3">
+            <div class="w-8 h-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fa-solid fa-triangle-exclamation text-xs"></i>
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-slate-900">Actividades Extracurriculares</span>
+                <span class="text-[10px] text-slate-400">28 Set</span>
+              </div>
+              <p class="text-slate-600 text-[11px] mt-0.5">Recuerda completar tus 4 créditos de actividades extracurriculares antes del 10° ciclo.</p>
+            </div>
+          </div>
+
+          <div class="pt-2 flex items-start space-x-3">
+            <div class="w-8 h-8 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fa-solid fa-shield-halved text-xs"></i>
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-slate-900">Seguro de Salud Estudiantil</span>
+                <span class="text-[10px] text-slate-400">20 Set</span>
+              </div>
+              <p class="text-slate-600 text-[11px] mt-0.5">Póliza universitaria activa y vigente para el semestre 2026-2.</p>
+            </div>
+          </div>
+
+          <div class="pt-2 flex items-start space-x-3">
+            <div class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fa-solid fa-circle-info text-xs"></i>
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-slate-900">Encuesta de Satisfacción Docente</span>
+                <span class="text-[10px] text-slate-400">15 Set</span>
+              </div>
+              <p class="text-slate-600 text-[11px] mt-0.5">Encuesta de medio término completada con éxito. ¡Gracias por participar!</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="p-3 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
+          <button onclick="clearNotifications()" class="text-xs text-[#007BFF] hover:underline font-semibold">Marcar todas como leídas</button>
+          <button onclick="toggleNotifications()" class="px-3 py-1 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded text-xs font-bold">Cerrar</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ==================== MODAL DE ESTADO FINANCIERO (CON ESCALA F Y 5 CUOTAS DE S/ 574.90) ==================== -->
+    <div id="modalPaymentDetail" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+      <div onclick="closePaymentModal()" class="absolute inset-0 bg-black/60 backdrop-blur-xs"></div>
+      <div class="relative bg-white w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden border border-slate-200 z-10">
+        
+        <div class="bg-[#132433] text-white px-5 py-3.5 flex items-center justify-between">
+          <div class="flex items-center space-x-2.5">
+            <i class="fa-solid fa-file-invoice-dollar text-emerald-400 text-lg"></i>
+            <div>
+              <h3 class="font-extrabold text-sm tracking-wide">Información Económica / Pagos</h3>
+              <p class="text-[10px] text-slate-300">Universidad Continental • Portal del Estudiante</p>
+            </div>
+          </div>
+          <button onclick="closePaymentModal()" class="text-white hover:text-slate-200 text-lg">✕</button>
+        </div>
+
+        <div class="p-4 space-y-3.5 max-h-[82vh] overflow-y-auto">
+          
+          <!-- Bloque 1: Datos del estudiante idéntico a tu captura -->
+          <div class="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
+            <div class="bg-slate-50 px-4 py-2 border-b border-slate-200 text-xs font-bold text-slate-700">
+              Datos del estudiante
+            </div>
+            <div class="p-4 space-y-2.5 text-xs text-slate-700">
+              <div>
+                <div class="text-[11px] font-bold text-slate-900">Período académico:</div>
+                <div class="text-[#007BFF] font-semibold text-sm">202420</div>
+              </div>
+              <div>
+                <div class="text-[11px] font-bold text-slate-900">Programa Académico:</div>
+                <div class="font-medium text-slate-800 uppercase">ADMINISTRACIÓN Y NEGOCIOS INTERNACIONALES</div>
+              </div>
+              <div>
+                <div class="text-[11px] font-bold text-slate-900">Plan de estudios:</div>
+                <div class="font-medium text-slate-800">202410</div>
+              </div>
+              <div>
+                <div class="text-[11px] font-bold text-slate-900">Campus:</div>
+                <div class="font-medium text-slate-800">VIRTUAL</div>
+              </div>
+              <div>
+                <div class="text-[11px] font-bold text-slate-900">Nombres:</div>
+                <div class="font-bold text-slate-900 uppercase">STACE MELODY FERRO GARAY</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bloque 2: Tarjeta Costo x 1 crédito y Escala actual F idéntica a tu captura -->
+          <div class="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
+            <div class="px-4 py-2 border-b border-slate-100 text-xs text-slate-600 font-medium">
+              Costo x 1 crédito
+            </div>
+            <div class="py-5 text-center">
+              <div class="text-3xl sm:text-4xl font-extrabold text-slate-800 tracking-tight">
+                S/ 136,90
+              </div>
+            </div>
+            <div class="bg-[#FBBF24] py-2 px-4 flex items-center justify-center space-x-2">
+              <span class="text-xs font-semibold text-slate-900">Escala actual</span>
+              <span class="text-base font-black text-slate-900">F</span>
+            </div>
+          </div>
+
+          <!-- Bloque 3: Las 5 cuotas del ciclo de un valor de 574.90 soles -->
+          <div class="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
+            <div class="bg-slate-50 px-4 py-2 border-b border-slate-200 text-xs font-bold text-slate-700 flex items-center justify-between">
+              <span>Cuotas de estudio por ciclo</span>
+              <span class="text-emerald-700 font-extrabold">5 cuotas de S/ 574.90</span>
+            </div>
+            
+            <div class="divide-y divide-slate-100 text-xs">
+              
+              <div class="p-3 flex items-center justify-between hover:bg-slate-50">
+                <div>
+                  <div class="font-bold text-slate-900">Cuota 01 (Semestre 2026-2)</div>
+                  <div class="text-[10px] text-slate-400">Vencimiento: 15/08/2026 • Op. #981240</div>
+                </div>
+                <div class="text-right">
+                  <div class="font-extrabold text-slate-800">S/ 574.90</div>
+                  <span class="inline-block px-2 py-0.2 rounded-full bg-emerald-100 text-emerald-800 font-bold text-[10px]">PAGADO</span>
+                </div>
+              </div>
+
+              <div class="p-3 flex items-center justify-between hover:bg-slate-50">
+                <div>
+                  <div class="font-bold text-slate-900">Cuota 02 (Semestre 2026-2)</div>
+                  <div class="text-[10px] text-slate-400">Vencimiento: 15/09/2026 • Op. #984311</div>
+                </div>
+                <div class="text-right">
+                  <div class="font-extrabold text-slate-800">S/ 574.90</div>
+                  <span class="inline-block px-2 py-0.2 rounded-full bg-emerald-100 text-emerald-800 font-bold text-[10px]">PAGADO</span>
+                </div>
+              </div>
+
+              <div class="p-3 flex items-center justify-between hover:bg-slate-50">
+                <div>
+                  <div class="font-bold text-slate-900">Cuota 03 (Semestre 2026-2)</div>
+                  <div class="text-[10px] text-slate-400">Vencimiento: 15/10/2026 • Cuota programada</div>
+                </div>
+                <div class="text-right">
+                  <div class="font-extrabold text-slate-800">S/ 574.90</div>
+                  <span class="inline-block px-2 py-0.2 rounded-full bg-blue-100 text-blue-800 font-bold text-[10px]">VIGENTE</span>
+                </div>
+              </div>
+
+              <div class="p-3 flex items-center justify-between hover:bg-slate-50">
+                <div>
+                  <div class="font-bold text-slate-900">Cuota 04 (Semestre 2026-2)</div>
+                  <div class="text-[10px] text-slate-400">Vencimiento: 15/11/2026 • Cuota programada</div>
+                </div>
+                <div class="text-right">
+                  <div class="font-extrabold text-slate-800">S/ 574.90</div>
+                  <span class="inline-block px-2 py-0.2 rounded-full bg-slate-100 text-slate-600 font-medium text-[10px]">POR VENCER</span>
+                </div>
+              </div>
+
+              <div class="p-3 flex items-center justify-between hover:bg-slate-50">
+                <div>
+                  <div class="font-bold text-slate-900">Cuota 05 (Semestre 2026-2)</div>
+                  <div class="text-[10px] text-slate-400">Vencimiento: 15/12/2026 • Cuota programada</div>
+                </div>
+                <div class="text-right">
+                  <div class="font-extrabold text-slate-800">S/ 574.90</div>
+                  <span class="inline-block px-2 py-0.2 rounded-full bg-slate-100 text-slate-600 font-medium text-[10px]">POR VENCER</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Resumen de deuda cero -->
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-3 flex items-center justify-between text-xs text-emerald-900">
+            <div>
+              <div class="font-bold">Saldo Vencido Pendiente:</div>
+              <div class="text-[10px] text-emerald-700">Sin retención financiera para matrícula ni notas</div>
+            </div>
+            <div class="text-right">
+              <div class="text-lg font-black text-emerald-700">S/ 0.00</div>
+              <div class="text-[10px] font-bold text-emerald-600">HABILITADO</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="p-3 bg-slate-50 border-t border-slate-200 flex justify-end">
+          <button onclick="closePaymentModal()" class="px-4 py-1.5 bg-[#132433] hover:bg-slate-800 text-white rounded-lg text-xs font-bold transition">
+            Cerrar
+          </button>
+        </div>
+
+      </div>
+    </div>
+
     <!-- Botón Flotante Redondo Azul -->
     <div class="fixed bottom-4 right-4 z-40">
       <button class="w-12 h-12 rounded-full bg-[#007BFF] text-white shadow-xl flex items-center justify-center active:scale-95 transition">
@@ -721,9 +971,8 @@
   </div>
 
   <script>
-    // BASE DE DATOS EXACTA DE LAS CALIFICACIONES POR CICLO
     const databaseCiclos = {
-      // 1er Ciclo (2024-1): Cursos Oficiales de la Malla
+      // 1er Ciclo: Malla oficial exacta
       1: {
         periodo: "2024-1",
         cursos: [
@@ -736,7 +985,7 @@
         ]
       },
 
-      // 2do Ciclo (2024-2): COPIA EXACTA DE LA IMAGEN
+      // 2do Ciclo: Exacto a la imagen
       2: {
         periodo: "2024-2",
         cursos: [
@@ -749,7 +998,7 @@
         ]
       },
 
-      // 3er Ciclo (2025-1): Cursos Oficiales de la Malla
+      // 3er Ciclo: Cursos Oficiales
       3: {
         periodo: "2025-1",
         cursos: [
@@ -762,7 +1011,7 @@
         ]
       },
 
-      // 4to Ciclo (2025-2): COPIA EXACTA DE LA IMAGEN
+      // 4to Ciclo: Exacto a la imagen
       4: {
         periodo: "2025-2",
         cursos: [
@@ -775,7 +1024,7 @@
         ]
       },
 
-      // 5to Ciclo (2026-1): COPIA EXACTA DE LA IMAGEN
+      // 5to Ciclo: Exacto a la imagen
       5: {
         periodo: "2026-1",
         cursos: [
@@ -788,7 +1037,7 @@
         ]
       },
 
-      // 6to Ciclo (2026-2): COPIA EXACTA DE LA IMAGEN (Módulo I y II con notas, Módulo III, IV y PF en '--')
+      // 6to Ciclo: Exacto a la imagen (Módulo I y II con notas, Módulos III, IV y PF en '--')
       6: {
         periodo: "2026-2",
         cursos: [
@@ -801,58 +1050,13 @@
         ]
       },
 
-      // Ciclos 7 al 10: Pendientes
-      7: {
-        periodo: "2027-1",
-        cursos: [
-          { nombre: "ENGLISH COURSE 4", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
-          { nombre: "HERRAMIENTAS TECNOLÓGICAS APLICADAS A LOS NEGOCIOS 2", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
-          { nombre: "AGILIDAD PARA LA GESTIÓN DE PROYECTOS", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
-          { nombre: "GERENCIA DE OPERACIONES", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
-          { nombre: "GESTIÓN ADUANERA Y CAMBIARIA", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
-          { nombre: "ESTÁNDARES INTERNACIONALES DE CALIDAD", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
-          { nombre: "ELECTIVO GENERAL 5", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" }
-        ]
-      },
-      8: {
-        periodo: "2027-2",
-        cursos: [
-          { nombre: "FORMULACIÓN Y EVALUACIÓN DE PROYECTOS", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
-          { nombre: "ENTORNO GLOBAL PARA LOS NEGOCIOS", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
-          { nombre: "ANÁLISIS DE RECURSOS Y CAPACIDADES ORGANIZACIONALES", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
-          { nombre: "DESARROLLO DE PRODUCTOS Y SERVICIOS INTERNACIONALES", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
-          { nombre: "POLÍTICA ECONÓMICA INTERNACIONAL", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
-          { nombre: "LEGISLACIÓN DEL COMERCIO INTERNACIONAL", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" }
-        ]
-      },
-      9: {
-        periodo: "2028-1",
-        cursos: [
-          { nombre: "ESTRATEGIA COMPETITIVA", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
-          { nombre: "DECISIONES BASADAS EN DATOS", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
-          { nombre: "INVESTIGACIÓN 1 EN ADMINISTRACIÓN", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
-          { nombre: "COSTOS, PRECIOS Y COTIZACIONES INTERNACIONALES", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
-          { nombre: "PLAN DE NEGOCIOS INTERNACIONALES", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
-          { nombre: "INTELIGENCIA DE MERCADOS INTERNACIONALES", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
-          { nombre: "ELECTIVO DE ESPECIALIDAD O TRANSVERSAL 1", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" }
-        ]
-      },
-      10: {
-        periodo: "2028-2",
-        cursos: [
-          { nombre: "INTELIGENCIA ARTIFICIAL APLICADA A LOS NEGOCIOS", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
-          { nombre: "SIMULACIÓN DE NEGOCIOS DIGITALES", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
-          { nombre: "TRANSFORMACIÓN DIGITAL", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
-          { nombre: "INVESTIGACIÓN 2 EN ADMINISTRACIÓN", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
-          { nombre: "GERENCIA COMERCIAL INTERNACIONAL", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
-          { nombre: "NEGOCIOS DIGITALES GLOBALES", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
-          { nombre: "NEGOCIACIONES Y TRANSACCIONES INTERNACIONALES", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
-          { nombre: "ELECTIVO DE ESPECIALIDAD O TRANSVERSAL 2", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" }
-        ]
-      }
+      7: { periodo: "2027-1", cursos: [ { nombre: "ENGLISH COURSE 4", m1: ["--","--","--","--"], m2: ["--","--","--","--"], m3: ["--","--","--","--"], m4: ["--","--","--","--"], pf: "--" } ] },
+      8: { periodo: "2027-2", cursos: [ { nombre: "FORMULACIÓN Y EVALUACIÓN DE PROYECTOS", m1: ["--","--","--","--"], m2: ["--","--","--","--"], m3: ["--","--","--","--"], m4: ["--","--","--","--"], pf: "--" } ] },
+      9: { periodo: "2028-1", cursos: [ { nombre: "ESTRATEGIA COMPETITIVA", m1: ["--","--","--","--"], m2: ["--","--","--","--"], m3: ["--","--","--","--"], m4: ["--","--","--","--"], pf: "--" } ] },
+      10: { periodo: "2028-2", cursos: [ { nombre: "INTELIGENCIA ARTIFICIAL APLICADA A LOS NEGOCIOS", m1: ["--","--","--","--"], m2: ["--","--","--","--"], m3: ["--","--","--","--"], m4: ["--","--","--","--"], pf: "--" } ] }
     };
 
-    let selectedCycle = 6; // Por defecto inicia en el ciclo 6 (en curso)
+    let selectedCycle = 6;
 
     function directAccess() {
       enterPortal();
@@ -900,6 +1104,26 @@
 
     function toggleSubmenu(id) {
       document.getElementById(id).classList.toggle("hidden");
+    }
+
+    /* Modales interactivos */
+    function toggleNotifications() {
+      document.getElementById("modalNotifications").classList.toggle("hidden");
+    }
+
+    function clearNotifications() {
+      const badge = document.getElementById("notifBadge");
+      if (badge) badge.innerText = "0";
+      alert("Todas las notificaciones marcadas como leídas.");
+      toggleNotifications();
+    }
+
+    function openPaymentModal() {
+      document.getElementById("modalPaymentDetail").classList.remove("hidden");
+    }
+
+    function closePaymentModal() {
+      document.getElementById("modalPaymentDetail").classList.add("hidden");
     }
 
     function showSection(name) {
