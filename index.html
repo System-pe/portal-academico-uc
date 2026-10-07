@@ -2,744 +2,424 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portal del Estudiante | Universidad Continental</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
     body {
-      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background-color: #F8F9FA;
-      -webkit-tap-highlight-color: transparent;
+      color: #333333;
     }
-    .bg-uc-dark { background-color: #1A2530; }
-    .bg-sidebar { background-color: #263238; }
-    .border-card { border: 1px solid #E2E8F0; }
-    
-    /* Login background */
     .login-bg {
-      background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), 
-                  repeating-linear-gradient(135deg, #caa34a 0px, #caa34a 40px, #b8860b 40px, #b8860b 80px);
-      background-size: cover;
+      background-color: #1a2a3a;
+      background-image: linear-gradient(135deg, #132433 0%, #203a43 50%, #2c5364 100%);
+    }
+    .custom-shadow {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+    .card-corner {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 40%;
+      border-top-left-radius: 120px;
+      border-bottom-left-radius: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
     }
 
-    /* Tarjetas con arcos de colores exactas al video */
-    .card-arc-blue {
-      background: radial-gradient(circle at 100% 100%, #007bff 45%, transparent 46%);
+    /* Tabla exacta al diseño de la imagen */
+    .table-evaluaciones {
+      border: 2px solid #1f3b5c;
+      border-collapse: collapse;
+      font-size: 11px;
+      background-color: #ffffff;
+      width: 100%;
     }
-    .card-arc-purple {
-      background: radial-gradient(circle at 100% 100%, #6f42c1 45%, transparent 46%);
+    .table-evaluaciones th, .table-evaluaciones td {
+      border: 1px solid #8ca0ba;
+      padding: 5px 4px;
+      text-align: center;
+      white-space: nowrap;
     }
-    .card-arc-orange {
-      background: radial-gradient(circle at 100% 100%, #fd7e14 45%, transparent 46%);
+    .table-evaluaciones th.main-header {
+      background-color: #1f3b5c;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.5px;
     }
-    .card-arc-green {
-      background: radial-gradient(circle at 100% 100%, #28a745 45%, transparent 46%);
+    .table-evaluaciones th.sub-header {
+      background-color: #26466d;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 10px;
+    }
+    .table-evaluaciones td.col-avg {
+      background-color: #c7cfdb;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .table-evaluaciones td.course-name {
+      text-align: left;
+      font-weight: 600;
+      color: #1e293b;
+      padding-left: 8px;
     }
   </style>
 </head>
-<body class="text-slate-800 antialiased min-h-screen flex flex-col justify-between select-none">
+<body class="min-h-screen flex flex-col justify-between">
 
-  <!-- ==================== 1. PANTALLA LOGIN EXACTA ==================== -->
+  <!-- ==================== PANTALLA LOGIN ==================== -->
   <div id="loginView" class="login-bg min-h-screen flex flex-col justify-center items-center px-4 py-8">
-    <div class="w-full max-w-sm bg-white rounded-lg shadow-2xl overflow-hidden border border-slate-200">
+    <div class="w-full max-w-sm bg-white rounded-2xl shadow-2xl overflow-hidden border border-slate-200">
       
-      <!-- Logo Superior -->
-      <div class="p-6 text-center border-b border-slate-100 flex flex-col items-center">
-        <svg class="w-12 h-12 mb-2" viewBox="0 0 100 100" fill="none">
+      <!-- Cabecera Logo -->
+      <div class="bg-white py-5 px-6 border-b border-slate-100 flex items-center justify-center space-x-3">
+        <svg class="w-10 h-10" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M82 22 H35 C24 22 16 31 16 43 V57 C16 69 24 78 35 78 H82 V70 H36 C29 70 24 64 24 57 V43 C24 36 29 30 36 30 H82 V22 Z" fill="#1E293B"/>
           <path d="M76 34 H44 C37 34 32 39 32 46 V54 C32 61 37 66 44 66 H76 V60 H45 C41 60 38 57 38 53 V47 C38 43 41 40 45 40 H76 V34 Z" fill="#1E293B"/>
           <path d="M73 46 H47 V54 H73 V46 Z" fill="#1E293B"/>
         </svg>
-        <div class="text-xl font-bold tracking-tight text-slate-800 uppercase leading-tight">Universidad<br>Continental</div>
+        <div class="leading-none text-left">
+          <div class="font-extrabold text-lg tracking-tight text-slate-900">Universidad</div>
+          <div class="font-extrabold text-lg tracking-tight text-slate-900">Continental</div>
+        </div>
       </div>
 
       <div class="p-6 text-center">
-        <h2 class="text-lg font-bold text-slate-900 leading-snug mb-1">Portal del Estudiante<br>UContinental</h2>
-        <p class="text-xs text-slate-500 mb-6">Inicie sesión con su correo institucional.</p>
+        <h1 class="text-xl font-extrabold text-slate-900 tracking-tight">Portal del Estudiante</h1>
+        <p class="text-xs text-slate-500 mt-1 mb-5">Inicie sesión con su usuario institucional.</p>
 
-        <!-- Formulario Manual Estilo Google SSO -->
-        <form id="loginForm" onsubmit="triggerLogin(event)" class="space-y-4 text-left">
-          <div>
-            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Correo Institucional</label>
-            <input type="text" id="userInput" required placeholder="76920198@continental.edu.pe"
-              class="w-full px-3 py-2 border border-slate-300 rounded text-sm focus:outline-none focus:border-purple-600">
-          </div>
-          <div>
-            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Contraseña</label>
-            <input type="password" id="passInput" required placeholder="••••••••"
-              class="w-full px-3 py-2 border border-slate-300 rounded text-sm focus:outline-none focus:border-purple-600">
+        <!-- Formulario Manual de Ingreso -->
+        <form onsubmit="handleManualLogin(event)" class="space-y-3">
+          <div class="text-left">
+            <label class="text-[11px] font-bold text-slate-600 uppercase">Usuario o Correo</label>
+            <input type="text" id="inputUser" placeholder="2024200955@continental.pe" required
+              class="w-full px-3 py-2 text-xs border border-slate-300 rounded-lg bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#1f3b5c]">
           </div>
 
-          <div id="loginError" class="hidden text-xs text-red-600 font-medium bg-red-50 p-2 rounded border border-red-200">
-            Usuario o contraseña incorrectos.
+          <div class="text-left">
+            <label class="text-[11px] font-bold text-slate-600 uppercase">Contraseña</label>
+            <input type="password" id="inputPass" placeholder="••••••••" required
+              class="w-full px-3 py-2 text-xs border border-slate-300 rounded-lg bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#1f3b5c]">
           </div>
 
-          <button type="submit" class="w-full py-2.5 bg-[#4B207F] hover:bg-[#391563] text-white font-bold rounded text-xs shadow tracking-wide transition flex items-center justify-center space-x-2">
-            <i class="fa-solid fa-right-to-bracket"></i>
-            <span>INGRESAR AL PORTAL</span>
+          <div id="loginPassError" class="hidden text-[11px] text-red-600 font-semibold bg-red-50 p-1.5 rounded">
+            Credenciales no válidas. Verifique usuario y contraseña.
+          </div>
+
+          <button type="submit" class="w-full py-2.5 bg-[#1f3b5c] hover:bg-[#152a42] text-white font-bold rounded-lg text-xs shadow-md transition mt-2">
+            Iniciar Sesión
           </button>
         </form>
 
-        <div class="mt-4 pt-4 border-t border-slate-100 flex flex-col space-y-2">
-          <button type="button" onclick="alert('Contacte a la mesa de ayuda: centrodeatencion@continental.edu.pe')" class="py-2 px-3 border border-slate-300 text-slate-600 rounded text-xs font-medium hover:bg-slate-50 flex items-center justify-center space-x-1.5">
-            <i class="fa-solid fa-asterisk text-[10px]"></i>
-            <span>Olvidé mi contraseña</span>
-          </button>
-          <button type="button" class="py-2 px-3 border border-slate-300 text-slate-600 rounded text-xs font-medium hover:bg-slate-50 flex items-center justify-center space-x-1.5">
-            <i class="fa-solid fa-house text-xs"></i>
-            <span>Volver al portal principal</span>
-          </button>
+        <div class="mt-6 text-[11px] text-slate-400">
+          © 2026 - Universidad Continental
         </div>
 
-      </div>
-
-      <div class="bg-slate-50 py-3 border-t border-slate-200 text-center text-[10px] text-slate-500">
-        © 2026 - Universidad Continental
       </div>
     </div>
   </div>
 
-  <!-- ==================== 2. INTRANET PRINCIPAL EXACTA ==================== -->
-  <div id="mainApp" class="hidden min-h-screen flex flex-col bg-[#F8F9FA] relative pb-16">
+  <!-- ==================== PORTAL ESTUDIANTE ==================== -->
+  <div id="mainPortal" class="hidden min-h-screen flex flex-col bg-[#F8F9FA]">
     
-    <!-- Barra Superior Móvil Exacta -->
-    <header class="bg-[#1A2530] text-white sticky top-0 z-40 px-3 py-2.5 flex items-center justify-between shadow-md">
+    <!-- Barra Superior -->
+    <header class="bg-[#132433] text-white px-4 h-14 flex items-center justify-between sticky top-0 z-50 shadow-md">
       <div class="flex items-center space-x-3">
-        <!-- Botón Menú Hamburguesa -->
-        <button onclick="toggleSidebar()" class="text-white text-xl p-1 focus:outline-none">
-          <i class="fa-solid fa-bars"></i>
+        <button onclick="toggleSidebar()" class="text-white hover:text-slate-300">
+          <i class="fa-solid fa-bars text-xl"></i>
         </button>
-      </div>
-
-      <div class="flex-1 max-w-[200px] sm:max-w-xs mx-2">
-        <div class="relative">
-          <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-xs text-slate-400"></i>
-          <input type="text" placeholder="Buscar..." class="w-full bg-[#2A3846] text-white placeholder-slate-400 pl-8 pr-3 py-1 rounded text-xs focus:outline-none">
-        </div>
+        <span class="font-extrabold text-xs sm:text-sm tracking-wide">PORTAL DEL ESTUDIANTE</span>
       </div>
 
       <div class="flex items-center space-x-3">
-        <!-- Notificaciones -->
-        <div class="relative">
-          <button onclick="toggleNotifications()" class="relative p-1">
-            <i class="fa-solid fa-bell text-lg text-slate-300"></i>
-            <span class="absolute -top-1 -right-1 bg-amber-500 text-black font-extrabold text-[10px] w-4 h-4 rounded-full flex items-center justify-center">6</span>
-          </button>
-          <!-- Popover notificaciones -->
-          <div id="notifPopup" class="hidden absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-slate-200 p-3 text-slate-800 text-xs z-50">
-            <div class="font-bold text-amber-600 mb-1 flex items-center space-x-1">
-              <i class="fa-solid fa-triangle-exclamation"></i>
-              <span>Tienes deudas pendientes.</span>
-            </div>
-            <a href="#" class="text-blue-600 text-[11px] underline">Ver todas las notificaciones</a>
-          </div>
+        <div class="text-right hidden sm:block">
+          <div class="text-xs font-bold leading-tight">STACE MELODY FERRO GARAY</div>
+          <div class="text-[10px] text-slate-300">Código: 76920198</div>
         </div>
-
-        <!-- Avatar Usuario -->
-        <div class="relative">
-          <button onclick="toggleUserDropdown()" class="w-7 h-7 rounded-full bg-blue-500 flex items-center justify-center text-white text-xs font-bold">
-            <i class="fa-solid fa-user"></i>
-          </button>
-          <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-slate-200 py-1 text-slate-800 text-xs z-50">
-            <div class="px-3 py-2 border-b border-slate-100 font-bold text-slate-700">Otros Servicios</div>
-            <a href="#" onclick="showSection('inicio')" class="block px-3 py-1.5 hover:bg-slate-100">Portal del Estudiante</a>
-            <a href="#" class="block px-3 py-1.5 hover:bg-slate-100">Aula Virtual</a>
-            <a href="#" class="block px-3 py-1.5 hover:bg-slate-100">Correo institucional</a>
-            <div class="border-t border-slate-100 my-1"></div>
-            <a href="#" onclick="logout()" class="block px-3 py-1.5 hover:bg-red-50 text-red-600 font-bold">Cerrar Sesión</a>
-          </div>
-        </div>
-
+        <button onclick="handleLogout()" class="px-2.5 py-1 bg-red-600/80 hover:bg-red-700 text-white rounded text-xs font-semibold">
+          Salir
+        </button>
       </div>
     </header>
 
-    <!-- Sub-barra breadcrumb -->
-    <div class="bg-white border-b border-slate-200 px-4 py-2 flex items-center justify-between text-xs text-slate-600">
-      <div class="flex items-center space-x-1">
-        <span class="font-bold text-slate-800" id="currentSectionTitle">Portal del Estudiante</span>
-        <span class="text-slate-400">•</span>
-        <span class="text-slate-500" id="currentSubTitle">Inicio</span>
-      </div>
-      <button onclick="showSection('inicio')" class="text-slate-400 hover:text-slate-700">
-        <i class="fa-solid fa-house"></i>
-      </button>
-    </div>
-
-    <!-- SIDEBAR DESPLEGABLE EXACTO AL VIDEO -->
-    <div id="sidebarMenu" class="fixed inset-0 z-50 flex pointer-events-none transition-all duration-300">
-      <!-- Overlay sombra -->
-      <div id="sidebarOverlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/60 opacity-0 pointer-events-none transition-opacity duration-300"></div>
-
-      <!-- Menú lateral -->
-      <div id="sidebarContent" class="relative w-72 max-w-[80%] bg-[#263238] text-white h-full overflow-y-auto transform -translate-x-full transition-transform duration-300 pointer-events-auto flex flex-col justify-between">
-        
+    <!-- Menú Desplegable Lateral -->
+    <div id="sideDrawer" class="fixed inset-0 z-50 hidden">
+      <div onclick="toggleSidebar()" class="absolute inset-0 bg-black/60"></div>
+      <div class="absolute inset-y-0 left-0 max-w-[280px] w-full bg-[#1b2b3a] text-slate-100 shadow-2xl flex flex-col justify-between p-4 z-10">
         <div>
-          <!-- Perfil Alumno Header -->
-          <div class="p-4 bg-[#1E272C] border-b border-slate-700/60">
-            <div class="flex items-center space-x-3 mb-2">
-              <div class="w-11 h-11 rounded-full bg-blue-500 flex items-center justify-center text-white text-base">
-                <i class="fa-solid fa-user"></i>
-              </div>
-              <div>
-                <div class="text-sm font-bold text-white uppercase tracking-tight">Stace Melody</div>
-                <div class="text-[11px] text-slate-300">Código: <span class="font-bold text-white">76920198</span></div>
-                <div class="inline-flex items-center space-x-1 mt-0.5 px-2 py-0.5 bg-emerald-600/40 text-emerald-300 text-[10px] font-bold rounded">
-                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                  <span>ESTUDIANTE - VIR</span>
-                </div>
-              </div>
-            </div>
-            <div class="text-[10px] text-slate-400 leading-tight">
-              [PG] [UVIR] FILIAL LIMA<br>
-              <strong class="text-slate-300 uppercase">ADMINISTRACIÓN Y NEGOCIOS INTERNACIONALES</strong><br>
-              CIENCIAS DE LA EMPRESA
-            </div>
-            <button class="mt-2 w-full py-1 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-[10px] rounded transition">
-              Cambiar perfil del estudiante
+          <div class="border-b border-slate-700 pb-3 mb-3">
+            <h3 class="font-extrabold text-sm uppercase text-white">Stace Melody Ferro Garay</h3>
+            <div class="text-xs text-slate-300">Código: 76920198</div>
+            <div class="text-[10px] text-slate-400 mt-1 uppercase">Administración y Negocios Internacionales</div>
+          </div>
+          <div class="space-y-2 text-xs">
+            <button onclick="showSection('inicio'); toggleSidebar();" class="w-full text-left py-2 px-3 rounded hover:bg-slate-700 block">
+              <i class="fa-solid fa-house mr-2"></i> Inicio
+            </button>
+            <button onclick="showSection('notas'); toggleSidebar();" class="w-full text-left py-2 px-3 rounded bg-[#1f3b5c] font-bold block">
+              <i class="fa-solid fa-table-list mr-2"></i> Evaluaciones Parciales
             </button>
           </div>
-
-          <!-- Opciones de Navegación del Menú Lateral -->
-          <div class="py-2 text-xs">
-            <div class="px-4 py-1.5 text-[10px] font-bold text-slate-400 uppercase tracking-wider">Menú principal</div>
-
-            <a href="#" onclick="showSection('inicio'); toggleSidebar();" class="flex items-center space-x-3 px-4 py-2.5 hover:bg-slate-700/50 text-slate-200">
-              <i class="fa-solid fa-house w-4 text-center"></i>
-              <span>Inicio</span>
-            </a>
-
-            <!-- Acordeón Matrícula -->
-            <div>
-              <button onclick="toggleAccordion('accMatricula')" class="w-full flex items-center justify-between px-4 py-2.5 hover:bg-slate-700/50 text-slate-200">
-                <div class="flex items-center space-x-3">
-                  <i class="fa-solid fa-address-card w-4 text-center text-blue-400"></i>
-                  <span>Matrícula</span>
-                </div>
-                <i class="fa-solid fa-chevron-down text-[10px] transition" id="arrow-accMatricula"></i>
-              </button>
-              <div id="accMatricula" class="hidden bg-[#1E272C] text-[11px] py-1 border-l-2 border-blue-500 ml-4">
-                <a href="#" onclick="showSection('planEstudios'); toggleSidebar();" class="block px-3 py-1.5 text-slate-300 hover:text-white">Plan de estudios</a>
-                <a href="#" class="block px-3 py-1.5 text-slate-300 hover:text-white">Oferta horaria</a>
-                <a href="#" class="block px-3 py-1.5 text-slate-300 hover:text-white">Calendario académico</a>
-                <a href="#" class="block px-3 py-1.5 text-slate-300 hover:text-white">Simulador de pagos</a>
-              </div>
-            </div>
-
-            <!-- Acordeón Vida Académica -->
-            <div>
-              <button onclick="toggleAccordion('accVida')" class="w-full flex items-center justify-between px-4 py-2.5 hover:bg-slate-700/50 text-slate-200">
-                <div class="flex items-center space-x-3">
-                  <i class="fa-solid fa-graduation-cap w-4 text-center text-purple-400"></i>
-                  <span>Vida académica</span>
-                </div>
-                <i class="fa-solid fa-chevron-down text-[10px] transition" id="arrow-accVida"></i>
-              </button>
-              <div id="accVida" class="hidden bg-[#1E272C] text-[11px] py-1 border-l-2 border-purple-500 ml-4">
-                <a href="#" onclick="showSection('boletaNotas'); toggleSidebar();" class="block px-3 py-1.5 text-white font-bold bg-purple-900/40">Boleta de notas</a>
-                <a href="#" onclick="showSection('planEstudios'); toggleSidebar();" class="block px-3 py-1.5 text-slate-300 hover:text-white">Plan de estudios</a>
-                <a href="#" class="block px-3 py-1.5 text-slate-300 hover:text-white">Consolidado de asignaturas</a>
-                <a href="#" class="block px-3 py-1.5 text-slate-300 hover:text-white">Horario de asignaturas</a>
-                <a href="#" class="block px-3 py-1.5 text-slate-300 hover:text-white">Tercio superior</a>
-              </div>
-            </div>
-
-            <!-- Acordeón Trámites -->
-            <div>
-              <button onclick="toggleAccordion('accTramites')" class="w-full flex items-center justify-between px-4 py-2.5 hover:bg-slate-700/50 text-slate-200">
-                <div class="flex items-center space-x-3">
-                  <i class="fa-solid fa-file-lines w-4 text-center text-orange-400"></i>
-                  <span>Trámites</span>
-                </div>
-                <i class="fa-solid fa-chevron-down text-[10px] transition" id="arrow-accTramites"></i>
-              </button>
-              <div id="accTramites" class="hidden bg-[#1E272C] text-[11px] py-1 border-l-2 border-orange-500 ml-4">
-                <a href="#" class="block px-3 py-1.5 text-slate-300 hover:text-white">Seguimiento</a>
-                <a href="#" class="block px-3 py-1.5 text-slate-300 hover:text-white">Cronograma de trámites</a>
-                <a href="#" class="block px-3 py-1.5 text-slate-300 hover:text-white">Solicitudes de Autoservicio</a>
-              </div>
-            </div>
-
-            <!-- Acordeón Oficinas Virtuales -->
-            <a href="#" class="flex items-center space-x-3 px-4 py-2.5 hover:bg-slate-700/50 text-slate-200">
-              <i class="fa-solid fa-building-columns w-4 text-center text-emerald-400"></i>
-              <span>Oficinas virtuales</span>
-            </a>
-
-            <!-- Acordeón Información Económica -->
-            <a href="#" class="flex items-center space-x-3 px-4 py-2.5 hover:bg-slate-700/50 text-slate-200">
-              <i class="fa-solid fa-wallet w-4 text-center text-green-400"></i>
-              <span>Información económica</span>
-            </a>
-
-            <!-- Centro de Ayuda -->
-            <a href="#" class="flex items-center space-x-3 px-4 py-2.5 hover:bg-slate-700/50 text-slate-200">
-              <i class="fa-solid fa-circle-question w-4 text-center text-blue-300"></i>
-              <span>Centro de ayuda</span>
-            </a>
-
-            <div class="border-t border-slate-700 my-2"></div>
-            <a href="#" class="flex items-center space-x-3 px-4 py-2 text-slate-400 hover:text-white">
-              <i class="fa-solid fa-question w-4 text-center"></i>
-              <span>Preguntas frecuentes</span>
-            </a>
-            <a href="#" class="flex items-center space-x-3 px-4 py-2 text-slate-400 hover:text-white">
-              <i class="fa-solid fa-key w-4 text-center"></i>
-              <span>Cambiar contraseña</span>
-            </a>
-          </div>
         </div>
-
-        <div class="p-4 border-t border-slate-800 text-[10px] text-slate-500">
-          UContinental Mobile v4.8<br>© 2026 Universidad Continental
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ==================== CONTENEDOR DE SECCIONES ==================== -->
-
-    <!-- SECCIÓN 1: VISTA INICIAL (CARDS PRINCIPALES) -->
-    <div id="viewInicio" class="p-4 space-y-4 max-w-xl mx-auto w-full">
-      
-      <!-- Alerta amarilla idéntica -->
-      <div class="bg-amber-500 rounded-lg p-3 text-white flex items-center justify-between shadow-sm">
-        <div class="flex items-center space-x-2">
-          <i class="fa-solid fa-triangle-exclamation text-lg"></i>
-          <div>
-            <div class="font-black text-xs leading-none">Alerta!</div>
-            <div class="text-[11px] text-amber-100">Tienes deudas pendientes</div>
-          </div>
-        </div>
-        <button class="px-3 py-1 bg-white/20 hover:bg-white/30 text-white rounded text-xs font-bold">Ver</button>
-      </div>
-
-      <!-- Tarjeta Matrícula -->
-      <div onclick="showSection('planEstudios')" class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden relative p-4 cursor-pointer hover:shadow-md transition">
-        <div class="w-2/3">
-          <h3 class="font-extrabold text-slate-900 text-base">Matrícula</h3>
-          <p class="text-xs text-slate-500 mb-4">Realiza tu matrícula.</p>
-          <div class="text-xs font-bold text-slate-600 flex items-center space-x-1">
-            <i class="fa-solid fa-arrow-right"></i>
-            <span>Más información</span>
-          </div>
-        </div>
-        <!-- Arco Azul -->
-        <div class="absolute right-0 bottom-0 top-0 w-32 bg-blue-600 rounded-tl-[100px] flex items-center justify-center pl-6">
-          <i class="fa-solid fa-laptop-file text-white text-3xl opacity-90"></i>
-        </div>
-      </div>
-
-      <!-- Tarjeta Vida Académica -->
-      <div onclick="showSection('boletaNotas')" class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden relative p-4 cursor-pointer hover:shadow-md transition">
-        <div class="w-2/3">
-          <h3 class="font-extrabold text-slate-900 text-base">Vida académica</h3>
-          <p class="text-xs text-slate-500 mb-4">Revisa tu estado en la universidad.</p>
-          <div class="text-xs font-bold text-slate-600 flex items-center space-x-1">
-            <i class="fa-solid fa-arrow-right"></i>
-            <span>Más información</span>
-          </div>
-        </div>
-        <!-- Arco Morado -->
-        <div class="absolute right-0 bottom-0 top-0 w-32 bg-[#6f42c1] rounded-tl-[100px] flex items-center justify-center pl-6">
-          <i class="fa-solid fa-building-columns text-white text-3xl opacity-90"></i>
-        </div>
-      </div>
-
-      <!-- Tarjeta Trámites -->
-      <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden relative p-4 cursor-pointer hover:shadow-md transition">
-        <div class="w-2/3">
-          <h3 class="font-extrabold text-slate-900 text-base">Trámites</h3>
-          <p class="text-xs text-slate-500 mb-4">Gestiona tus solicitudes.</p>
-          <div class="text-xs font-bold text-slate-600 flex items-center space-x-1">
-            <i class="fa-solid fa-arrow-right"></i>
-            <span>Más información</span>
-          </div>
-        </div>
-        <!-- Arco Naranja -->
-        <div class="absolute right-0 bottom-0 top-0 w-32 bg-[#fd7e14] rounded-tl-[100px] flex items-center justify-center pl-6">
-          <i class="fa-solid fa-file-pen text-white text-3xl opacity-90"></i>
-        </div>
-      </div>
-
-      <!-- Tarjeta Información Económica -->
-      <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden relative p-4 cursor-pointer hover:shadow-md transition">
-        <div class="w-2/3">
-          <h3 class="font-extrabold text-slate-900 text-base">Información económica</h3>
-          <p class="text-xs text-slate-500 mb-4">Revisa tu información económica y beneficios.</p>
-          <div class="text-xs font-bold text-slate-600 flex items-center space-x-1">
-            <i class="fa-solid fa-arrow-right"></i>
-            <span>Más información</span>
-          </div>
-        </div>
-        <!-- Arco Verde -->
-        <div class="absolute right-0 bottom-0 top-0 w-32 bg-[#28a745] rounded-tl-[100px] flex items-center justify-center pl-6">
-          <i class="fa-solid fa-money-check-dollar text-white text-3xl opacity-90"></i>
-        </div>
-      </div>
-
-      <!-- Sección Centro de Ayuda -->
-      <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
-        <div class="flex items-center space-x-2 text-slate-700 font-bold text-sm mb-3">
-          <i class="fa-regular fa-circle-question"></i>
-          <span>Centro de Ayuda</span>
-        </div>
-        <div class="space-y-2">
-          <button class="w-full py-2 bg-blue-600 text-white font-bold rounded text-xs hover:bg-blue-700 flex items-center justify-center space-x-1">
-            <i class="fa-solid fa-plus text-[10px]"></i>
-            <span>Nuevo Ticket</span>
-          </button>
-          <button class="w-full py-2 bg-white border border-blue-600 text-blue-600 font-bold rounded text-xs hover:bg-blue-50 flex items-center justify-center space-x-1">
-            <i class="fa-regular fa-rectangle-list"></i>
-            <span>Mis Tickets</span>
-          </button>
-          <button class="w-full py-2 bg-[#6f42c1] text-white font-bold rounded text-xs hover:bg-[#59339d] flex items-center justify-center space-x-1">
-            <span>ContiGuía</span>
-            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-          </button>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- SECCIÓN 2: BOLETA DE NOTAS OFICIAL (CON CICLOS Y MÓDULOS) -->
-    <div id="viewBoleta" class="hidden p-4 space-y-4 max-w-4xl mx-auto w-full">
-      
-      <!-- Selector de Ciclos (Pestañas móviles) -->
-      <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm">
-        <div class="text-xs font-bold text-slate-700 mb-2 uppercase flex items-center justify-between">
-          <span>Seleccionar Ciclo:</span>
-          <span id="cycleStatusBadge" class="text-purple-700 font-extrabold text-[11px]">Ciclo 06 (En curso)</span>
-        </div>
-        <div class="flex space-x-2 overflow-x-auto pb-1" id="cycleTabsBar"></div>
-      </div>
-
-      <!-- Tabla de Notas por Módulos -->
-      <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-        <div class="p-3 bg-purple-50 border-b border-purple-100 flex items-center justify-between">
-          <div>
-            <h4 id="boletaTitle" class="font-extrabold text-[#4B207F] text-sm">Boleta de Calificaciones - Ciclo 06</h4>
-            <p class="text-[10px] text-slate-500">Modalidad A distancia • Plan 202410</p>
-          </div>
-          <button onclick="window.print()" class="px-2.5 py-1 bg-white border border-slate-300 rounded text-[11px] font-bold text-slate-700 hover:bg-slate-50 flex items-center space-x-1">
-            <i class="fa-solid fa-print"></i>
-            <span>PDF</span>
-          </button>
-        </div>
-
-        <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs border-collapse">
-            <thead>
-              <tr class="bg-slate-100 text-slate-700 font-bold border-b border-slate-200 text-[10px] uppercase">
-                <th class="p-2.5">Asignatura</th>
-                <th class="p-2 text-center">Créd.</th>
-                <th class="p-2 text-center">M1</th>
-                <th class="p-2 text-center">M2</th>
-                <th class="p-2 text-center">M3</th>
-                <th class="p-2 text-center">M4</th>
-                <th class="p-2 text-center bg-purple-100 text-[#4B207F]">Final</th>
-                <th class="p-2 text-center">Condición</th>
-              </tr>
-            </thead>
-            <tbody id="boletaTableBody" class="divide-y divide-slate-100"></tbody>
-          </table>
-        </div>
-
-        <div class="p-3 bg-slate-50 border-t border-slate-200 flex justify-between items-center text-xs">
-          <span class="text-slate-500">Promedio Ponderado Ciclo:</span>
-          <span id="cyclePonderadoValue" class="font-black text-sm text-[#4B207F]">--</span>
-        </div>
-      </div>
-
-      <button onclick="showSection('inicio')" class="w-full py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold rounded text-xs transition">
-        ← Volver a Inicio
-      </button>
-
-    </div>
-
-    <!-- SECCIÓN 3: PLAN DE ESTUDIOS (IDÉNTICO A 02:18 DEL VIDEO) -->
-    <div id="viewPlan" class="hidden p-4 space-y-4 max-w-xl mx-auto w-full">
-      <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm text-center">
-        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Grado a obtener</h4>
-        <div class="text-sm font-black text-slate-800 uppercase mb-3">Bachiller en Administración</div>
-
-        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Título a obtener</h4>
-        <div class="text-xs font-bold text-slate-800 uppercase mb-3 leading-snug">Licenciado en Administración y Negocios Internacionales</div>
-
-        <div class="inline-block bg-slate-100 px-3 py-1 rounded text-xs font-bold text-slate-700 mb-4 border border-slate-200">
-          202410 <span class="font-normal text-slate-500">Plan de estudios</span>
-        </div>
-
-        <div class="grid grid-cols-2 gap-2 text-left text-xs mb-4">
-          <div class="p-2.5 bg-slate-50 rounded border border-slate-200">
-            <div class="text-[10px] text-slate-500">Créditos Totales</div>
-            <div class="text-base font-black text-slate-800">214</div>
-          </div>
-          <div class="p-2.5 bg-purple-50 rounded border border-purple-200">
-            <div class="text-[10px] text-purple-700">Créditos Aprobados</div>
-            <div class="text-base font-black text-purple-900">103 / 214</div>
-          </div>
-        </div>
-
-        <button onclick="showSection('boletaNotas')" class="w-full py-2.5 bg-[#4B207F] text-white font-bold rounded text-xs hover:bg-[#391563]">
-          Ver Boleta de Notas Detallada
+        <button onclick="handleLogout()" class="w-full py-2 bg-red-600 text-white rounded text-xs font-bold">
+          Cerrar sesión
         </button>
       </div>
     </div>
 
-    <!-- Botón Flotante Redondo Azul de Mapas (Igual al Video) -->
-    <div class="fixed bottom-4 right-4 z-30">
-      <button class="w-12 h-12 rounded-full bg-blue-500 hover:bg-blue-600 text-white shadow-xl flex items-center justify-center border-2 border-white">
-        <i class="fa-solid fa-map-location-dot text-lg"></i>
-      </button>
-    </div>
+    <!-- Contenido Principal -->
+    <main class="flex-1 max-w-5xl mx-auto w-full p-3 sm:p-5 space-y-4">
+
+      <!-- ================= VISTA: INICIO ================= -->
+      <div id="viewInicio" class="space-y-4 max-w-lg mx-auto">
+        
+        <!-- ESTADO DE PAGOS: TOTALMENTE AL DÍA (EN VERDE) -->
+        <div class="bg-emerald-600 text-white p-3.5 rounded-xl shadow-sm flex items-center justify-between">
+          <div class="flex items-center space-x-2.5">
+            <div class="w-8 h-8 rounded-full bg-emerald-500/80 flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid fa-circle-check text-lg text-white"></i>
+            </div>
+            <div>
+              <div class="font-bold text-xs">Estado de Pagos: Al día</div>
+              <div class="text-[11px] text-emerald-100">Sin deudas pendientes registradas en este período.</div>
+            </div>
+          </div>
+          <span class="bg-white/20 text-white font-bold text-[11px] px-2.5 py-1 rounded-md">Al día</span>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 border border-slate-200 custom-shadow text-center">
+          <div class="w-14 h-14 rounded-full bg-[#1f3b5c] text-white flex items-center justify-center font-bold text-xl mx-auto mb-2">
+            SF
+          </div>
+          <h2 class="text-base font-black text-slate-800 uppercase">Stace Melody Ferro Garay</h2>
+          <p class="text-xs text-slate-500 font-medium">Administración y Negocios Internacionales</p>
+          <p class="text-xs text-slate-400 mt-0.5">Código: 76920198 | Modalidad: A distancia</p>
+
+          <button onclick="showSection('notas')" class="mt-4 w-full py-2.5 bg-[#1f3b5c] hover:bg-[#152a42] text-white rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2">
+            <i class="fa-solid fa-table-list"></i>
+            <span>Ver Registro de Evaluaciones Parciales</span>
+          </button>
+        </div>
+
+        <!-- Tarjetas del portal -->
+        <div class="space-y-3">
+          <div onclick="showSection('notas')" class="cursor-pointer bg-white rounded-2xl custom-shadow border border-slate-100 h-24 relative overflow-hidden flex flex-col justify-center px-5">
+            <div class="w-7/12">
+              <h2 class="text-lg font-black text-slate-900 leading-tight">Vida académica</h2>
+              <p class="text-xs text-slate-500">Consulta de notas y evaluaciones.</p>
+            </div>
+            <div class="card-corner bg-[#7A2B89]">
+              <i class="fa-solid fa-graduation-cap text-3xl"></i>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl custom-shadow border border-slate-100 h-24 relative overflow-hidden flex flex-col justify-center px-5">
+            <div class="w-7/12">
+              <h2 class="text-lg font-black text-slate-900 leading-tight">Matrícula</h2>
+              <p class="text-xs text-slate-500">Plan de estudios y asignaturas.</p>
+            </div>
+            <div class="card-corner bg-[#007BFF]">
+              <i class="fa-solid fa-book-open text-3xl"></i>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl custom-shadow border border-slate-100 h-24 relative overflow-hidden flex flex-col justify-center px-5">
+            <div class="w-7/12">
+              <h2 class="text-lg font-black text-slate-900 leading-tight">Información económica</h2>
+              <p class="text-xs text-emerald-600 font-semibold">Todo pagado y al día.</p>
+            </div>
+            <div class="card-corner bg-[#28A745]">
+              <i class="fa-solid fa-wallet text-3xl"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= VISTA: REGISTRO DE EVALUACIONES (TABLA EXACTA) ================= -->
+      <div id="viewNotas" class="hidden space-y-4">
+        
+        <div class="bg-white rounded-xl p-4 sm:p-6 border border-slate-300 custom-shadow">
+          
+          <!-- Encabezado con el selector 2025-2 -->
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-200 gap-3">
+            <div class="flex items-center space-x-2">
+              <h2 class="text-xs sm:text-sm font-black text-slate-800 tracking-wide uppercase">
+                REGISTRO DE EVALUACIONES PARCIALES
+              </h2>
+              <select id="periodSelector" onchange="renderEvaluaciones(this.value)" class="text-xs font-bold text-slate-800 bg-white border border-slate-400 rounded px-2 py-0.5 focus:outline-none cursor-pointer">
+                <option value="4" selected>2025-2</option>
+                <option value="1">2024-1</option>
+                <option value="2">2024-2</option>
+                <option value="3">2025-1</option>
+                <option value="5">2026-1</option>
+              </select>
+            </div>
+
+            <div class="flex items-center space-x-2">
+              <button onclick="window.print()" class="text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded border border-slate-300 transition">
+                <i class="fa-solid fa-print mr-1"></i> Imprimir
+              </button>
+              <button onclick="showSection('inicio')" class="text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded border border-slate-300 transition">
+                <i class="fa-solid fa-arrow-left mr-1"></i> Volver
+              </button>
+            </div>
+          </div>
+
+          <!-- TABLA CON EL FORMATO, COLORES Y NOTAS EXACTAS DE TU IMAGEN -->
+          <div class="overflow-x-auto mt-4 rounded border border-[#1f3b5c]">
+            <table class="table-evaluaciones">
+              <thead>
+                <tr>
+                  <th rowspan="2" class="main-header" style="min-width: 220px;">Nombre del Curso</th>
+                  <th colspan="4" class="main-header">MÓDULO I</th>
+                  <th colspan="4" class="main-header">MÓDULO II</th>
+                  <th colspan="4" class="main-header">MÓDULO III</th>
+                  <th colspan="4" class="main-header">MÓDULO IV</th>
+                  <th rowspan="2" class="main-header" style="min-width: 45px;">P.F.</th>
+                </tr>
+                <tr>
+                  <th class="sub-header">EC1</th>
+                  <th class="sub-header">EP1</th>
+                  <th class="sub-header">ED1</th>
+                  <th class="sub-header">PM1</th>
+
+                  <th class="sub-header">EC2</th>
+                  <th class="sub-header">EP2</th>
+                  <th class="sub-header">ED2</th>
+                  <th class="sub-header">PM2</th>
+
+                  <th class="sub-header">EC3</th>
+                  <th class="sub-header">EP3</th>
+                  <th class="sub-header">ED3</th>
+                  <th class="sub-header">PM3</th>
+
+                  <th class="sub-header">EC4</th>
+                  <th class="sub-header">EP4</th>
+                  <th class="sub-header">ED4</th>
+                  <th class="sub-header">PM4</th>
+                </tr>
+              </thead>
+              <tbody id="evaluacionesBody">
+                <!-- Se llena dinámicamente con JS -->
+              </tbody>
+              <tfoot>
+                <tr style="height: 22px;">
+                  <td></td>
+                  <td></td><td></td><td></td><td></td>
+                  <td></td><td></td><td></td><td></td>
+                  <td></td><td></td><td></td><td></td>
+                  <td></td><td></td><td></td><td></td>
+                  <td></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <div class="mt-3 text-[11px] text-slate-500 flex flex-wrap gap-3">
+            <span><strong>EC:</strong> Evaluación Continua</span>
+            <span><strong>EP:</strong> Examen Parcial</span>
+            <span><strong>ED:</strong> Evaluación de Desempeño</span>
+            <span><strong>PM:</strong> Promedio Modular</span>
+            <span><strong>P.F.:</strong> Promedio Final</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-3 text-center text-[11px] text-slate-400">
+      Copyright © 2026 Universidad Continental. Todos los derechos reservados.
+    </footer>
 
   </div>
 
   <script>
-    // Base de datos de los 10 Ciclos para Administración y Negocios Internacionales
-    const curriculumData = {
-      1: {
-        creditos: 20, estado: "Aprobado",
-        cursos: [
-          { codigo: "24UC00007", nombre: "Comprensión y Producción de Textos 1", cred: 3, m1: 16, m2: 17, m3: 16, m4: 18 },
-          { codigo: "24UC00040", nombre: "Laboratorio de Liderazgo e Innovación", cred: 3, m1: 17, m2: 18, m3: 17, m4: 19 },
-          { codigo: "24UC00012", nombre: "Estrategias y Herramientas Digitales", cred: 4, m1: 18, m2: 18, m3: 19, m4: 17 },
-          { codigo: "24UC00013", nombre: "Fundamentos de Matemática", cred: 4, m1: 15, m2: 14, m3: 16, m4: 16 },
-          { codigo: "24UC00009", nombre: "Economía 1", cred: 3, m1: 16, m2: 17, m3: 15, m4: 17 },
-          { codigo: "24UC00021", nombre: "Introducción a la Adm. y Neg. Int.", cred: 3, m1: 17, m2: 18, m3: 18, m4: 19 }
-        ]
-      },
-      2: {
-        creditos: 21, estado: "Aprobado",
-        cursos: [
-          { codigo: "24UC00058", nombre: "Comprensión y Producción de Textos 2", cred: 4, m1: 16, m2: 16, m3: 17, m4: 17 },
-          { codigo: "24UC00051", nombre: "Administración Global", cred: 3, m1: 18, m2: 17, m3: 18, m4: 19 },
-          { codigo: "24UC00083", nombre: "Matemática 2.1", cred: 4, m1: 15, m2: 16, m3: 14, m4: 16 },
-          { codigo: "24UC00069", nombre: "Economía 2", cred: 3, m1: 16, m2: 15, m3: 16, m4: 17 },
-          { codigo: "24UC00074", nombre: "Fundamentos de Contabilidad", cred: 4, m1: 16, m2: 17, m3: 17, m4: 16 },
-          { codigo: "ELEC GEN 1", nombre: "Electivo General 1", cred: 3, m1: 18, m2: 18, m3: 19, m4: 18 }
-        ]
-      },
-      3: {
-        creditos: 21, estado: "Aprobado",
-        cursos: [
-          { codigo: "24UC00417", nombre: "Estadística y Probabilidades", cred: 4, m1: 15, m2: 16, m3: 15, m4: 17 },
-          { codigo: "24UC00679", nombre: "Lab. Liderazgo e Innovación Intermedio", cred: 2, m1: 18, m2: 18, m3: 17, m4: 19 },
-          { codigo: "24UC00231", nombre: "Comportamiento Organizacional", cred: 3, m1: 17, m2: 17, m3: 18, m4: 17 },
-          { codigo: "24UC00294", nombre: "Derecho Empresarial", cred: 5, m1: 16, m2: 16, m3: 17, m4: 16 },
-          { codigo: "24UC00709", nombre: "Matemáticas Financieras", cred: 4, m1: 15, m2: 16, m3: 16, m4: 16 },
-          { codigo: "ELEC GEN 2", nombre: "Electivo General 2", cred: 3, m1: 18, m2: 19, m3: 18, m4: 18 }
-        ]
-      },
-      4: {
-        creditos: 20, estado: "Aprobado",
-        cursos: [
-          { codigo: "24UC00397", nombre: "English Course 1", cred: 3, m1: 18, m2: 17, m3: 18, m4: 19 },
-          { codigo: "24UC00414", nombre: "Estadística Inferencial", cred: 4, m1: 15, m2: 16, m3: 16, m4: 15 },
-          { codigo: "24UC00270", nombre: "Costos y Presupuestos", cred: 4, m1: 16, m2: 17, m3: 16, m4: 17 },
-          { codigo: "24UC00702", nombre: "Marketing", cred: 3, m1: 17, m2: 18, m3: 17, m4: 18 },
-          { codigo: "ELEC GEN 3", nombre: "Electivo General 3", cred: 3, m1: 17, m2: 18, m3: 18, m4: 19 },
-          { codigo: "ELEC GEN 4", nombre: "Electivo General 4", cred: 3, m1: 18, m2: 17, m3: 18, m4: 18 }
-        ]
-      },
-      5: {
-        creditos: 21, estado: "Aprobado",
-        cursos: [
-          { codigo: "24UC00398", nombre: "English Course 2", cred: 3, m1: 18, m2: 18, m3: 19, m4: 18 },
-          { codigo: "24UC00678", nombre: "Lab. Liderazgo e Innovación Avanzado", cred: 3, m1: 17, m2: 18, m3: 18, m4: 19 },
-          { codigo: "24UC00457", nombre: "Finanzas 1", cred: 3, m1: 16, m2: 15, m3: 16, m4: 17 },
-          { codigo: "24UC00545", nombre: "Gestión del Talento Humano", cred: 3, m1: 17, m2: 17, m3: 18, m4: 18 },
-          { codigo: "24UC00671", nombre: "Investigación de Mercados", cred: 5, m1: 16, m2: 17, m3: 17, m4: 18 },
-          { codigo: "24UC00554", nombre: "Gestión Internacional e Intercultural", cred: 4, m1: 18, m2: 18, m3: 17, m4: 19 }
-        ]
-      },
-      6: {
-        creditos: 21, estado: "En curso",
-        cursos: [
-          { codigo: "24UC00666", nombre: "Investigación Académica", cred: 3, m1: 17, m2: 16, m3: 17, m4: 18 },
-          { codigo: "24UC00399", nombre: "English Course 3", cred: 3, m1: 18, m2: 19, m3: 18, m4: 19 },
-          { codigo: "24UC00580", nombre: "Herramientas Tecnológicas Negocios 1", cred: 4, m1: 17, m2: 18, m3: 17, m4: 18 },
-          { codigo: "24UC00458", nombre: "Finanzas 2", cred: 3, m1: 15, m2: 16, m3: 16, m4: 17 },
-          { codigo: "24UC00543", nombre: "Gestión del Comercio Internacional", cred: 4, m1: 17, m2: 17, m3: 18, m4: 18 },
-          { codigo: "24UC00355", nombre: "Distribución Física Internacional", cred: 4, m1: 16, m2: 17, m3: 17, m4: 18 }
-        ]
-      },
-      7: { creditos: 21, estado: "Pendiente", cursos: [] },
-      8: { creditos: 20, estado: "Pendiente", cursos: [] },
-      9: { creditos: 24, estado: "Pendiente", cursos: [] },
-      10: { creditos: 25, estado: "Pendiente", cursos: [] }
+    const cursosData = {
+      4: [
+        { nombre: "ESTADÍSTICA INFERENCIAL", m1: [16, 13, 14, "14.3"], m2: [18, 13, 15, "15.3"], m3: [12, 14, 18, "14.7"], m4: [16, 14, 18, "16.0"], pf: "15.0" },
+        { nombre: "COSTOS Y PRESUPUESTOS", m1: [17, 17, 18, "17.3"], m2: [16, 17, 17, "16.7"], m3: [16, 17, 17, "16.7"], m4: [15, 18, 17, "16.7"], pf: "16.7" },
+        { nombre: "MARKETING", m1: [14, 15, 17, "15.3"], m2: [16, 16, 14, "15.0"], m3: [17, 16, 14, "15.7"], m4: [16, 14, 15, "15.0"], pf: "15.3" },
+        { nombre: "ELECTIVO GENERAL 1", m1: [14, 14, 14, "14.0"], m2: [14, 14, 14, "14.0"], m3: [15, 18, 14, "15.7"], m4: [14, 17, 15, "15.3"], pf: "15.0" },
+        { nombre: "ELECTIVO GENERAL 2", m1: [14, 14, 14, "14.0"], m2: [16, 12, 17, "12.0"], m3: [15, 11, 14, "13.3"], m4: [18, 15, 13, "15.3"], pf: "14.0" },
+        { nombre: "ENGLISH COURSE 1", m1: [17, 17, 17, "17.0"], m2: [14, 14, 14, "14.0"], m3: [17, 13, 18, "16.0"], m4: [13, 16, 19, "16.0"], pf: "15.7" }
+      ],
+      1: [
+        { nombre: "COMPRENSIÓN Y PRODUCCIÓN DE TEXTOS 1", m1: [16, 16, 17, "16.3"], m2: [17, 17, 17, "17.0"], m3: [16, 16, 17, "16.3"], m4: [18, 18, 18, "18.0"], pf: "16.9" },
+        { nombre: "LABORATORIO DE LIDERAZGO E INNOVACIÓN", m1: [17, 17, 18, "17.3"], m2: [18, 18, 19, "18.3"], m3: [17, 17, 17, "17.0"], m4: [19, 19, 18, "18.7"], pf: "17.8" },
+        { nombre: "ESTRATEGIAS Y HERRAMIENTAS DIGITALES...", m1: [18, 18, 18, "18.0"], m2: [18, 19, 18, "18.3"], m3: [19, 18, 19, "18.7"], m4: [17, 17, 18, "17.3"], pf: "18.1" },
+        { nombre: "FUNDAMENTOS DE MATEMÁTICA", m1: [15, 15, 16, "15.3"], m2: [14, 14, 15, "14.3"], m3: [16, 16, 16, "16.0"], m4: [16, 16, 17, "16.3"], pf: "15.5" },
+        { nombre: "ECONOMÍA 1", m1: [16, 16, 17, "16.3"], m2: [17, 16, 17, "16.7"], m3: [15, 15, 16, "15.3"], m4: [17, 17, 17, "17.0"], pf: "16.3" },
+        { nombre: "INTRODUCCIÓN A LA ADMINISTRACIÓN Y NEG.", m1: [17, 17, 18, "17.3"], m2: [18, 18, 18, "18.0"], m3: [18, 18, 19, "18.3"], m4: [19, 19, 19, "19.0"], pf: "18.2" }
+      ]
     };
 
-    let activeCycle = 6;
+    function handleManualLogin(e) {
+      e.preventDefault();
+      const user = document.getElementById("inputUser").value.trim().toLowerCase();
+      const pass = document.getElementById("inputPass").value.trim();
+      const err = document.getElementById("loginPassError");
 
-    // Login flexible
-    function triggerLogin(e) {
-      if (e) e.preventDefault();
-      const u = document.getElementById("userInput").value.trim().toLowerCase();
-      const p = document.getElementById("passInput").value.trim();
-      const err = document.getElementById("loginError");
+      const validUsers = ["2024200955@continental.pe", "76920198@continental.edu.pe", "2024200955", "76920198"];
 
-      const validUsers = [
-        "76920198@continental.edu.pe",
-        "76920198@continental.pe",
-        "76920198",
-        "2024200955@continental.pe",
-        "2024200955"
-      ];
-
-      if (validUsers.includes(u) && p === "28012004") {
+      if (validUsers.includes(user) && pass === "28012004") {
         err.classList.add("hidden");
         document.getElementById("loginView").classList.add("hidden");
-        document.getElementById("mainApp").classList.remove("hidden");
-        showSection('inicio');
-        buildTabs();
-        loadBoleta(6);
+        document.getElementById("mainPortal").classList.remove("hidden");
+        renderEvaluaciones(4);
       } else {
         err.classList.remove("hidden");
       }
     }
 
-    function logout() {
-      document.getElementById("mainApp").classList.add("hidden");
+    function handleLogout() {
+      document.getElementById("mainPortal").classList.add("hidden");
       document.getElementById("loginView").classList.remove("hidden");
-      document.getElementById("passInput").value = "";
+      document.getElementById("sideDrawer").classList.add("hidden");
     }
 
-    // Navegación entre vistas
-    function showSection(sectionId) {
-      document.getElementById("viewInicio").classList.add("hidden");
-      document.getElementById("viewBoleta").classList.add("hidden");
-      document.getElementById("viewPlan").classList.add("hidden");
-
-      if (sectionId === 'inicio') {
-        document.getElementById("viewInicio").classList.remove("hidden");
-        document.getElementById("currentSectionTitle").innerText = "Portal del Estudiante";
-        document.getElementById("currentSubTitle").innerText = "Inicio";
-      } else if (sectionId === 'boletaNotas') {
-        document.getElementById("viewBoleta").classList.remove("hidden");
-        document.getElementById("currentSectionTitle").innerText = "Vida académica";
-        document.getElementById("currentSubTitle").innerText = "Boleta de notas";
-      } else if (sectionId === 'planEstudios') {
-        document.getElementById("viewPlan").classList.remove("hidden");
-        document.getElementById("currentSectionTitle").innerText = "Matrícula";
-        document.getElementById("currentSubTitle").innerText = "Plan de estudios";
-      }
-      window.scrollTo(0, 0);
-    }
-
-    // Control de Sidebar
     function toggleSidebar() {
-      const sb = document.getElementById("sidebarContent");
-      const ov = document.getElementById("sidebarOverlay");
-      const root = document.getElementById("sidebarMenu");
+      document.getElementById("sideDrawer").classList.toggle("hidden");
+    }
 
-      if (sb.classList.contains("-translate-x-full")) {
-        root.classList.remove("pointer-events-none");
-        ov.classList.remove("pointer-events-none");
-        ov.classList.add("opacity-100");
-        sb.classList.remove("-translate-x-full");
-      } else {
-        sb.classList.add("-translate-x-full");
-        ov.classList.remove("opacity-100");
-        setTimeout(() => {
-          root.classList.add("pointer-events-none");
-          ov.classList.add("pointer-events-none");
-        }, 300);
+    function showSection(name) {
+      document.getElementById("viewInicio").classList.add("hidden");
+      document.getElementById("viewNotas").classList.add("hidden");
+
+      if (name === 'inicio') {
+        document.getElementById("viewInicio").classList.remove("hidden");
+      } else if (name === 'notas') {
+        document.getElementById("viewNotas").classList.remove("hidden");
+        renderEvaluaciones(document.getElementById("periodSelector").value);
       }
     }
 
-    function toggleAccordion(id) {
-      const el = document.getElementById(id);
-      const icon = document.getElementById(`arrow-${id}`);
-      el.classList.toggle("hidden");
-      if (icon) icon.classList.toggle("rotate-180");
-    }
-
-    function toggleNotifications() {
-      document.getElementById("notifPopup").classList.toggle("hidden");
-    }
-
-    function toggleUserDropdown() {
-      document.getElementById("userDropdown").classList.toggle("hidden");
-    }
-
-    // Pestañas de Ciclos
-    function buildTabs() {
-      const container = document.getElementById("cycleTabsBar");
-      container.innerHTML = "";
-      for (let i = 1; i <= 10; i++) {
-        const btn = document.createElement("button");
-        const isActive = i === activeCycle;
-        btn.className = `px-3 py-1.5 rounded-lg text-xs font-bold transition flex-shrink-0 border ${
-          isActive 
-            ? "bg-[#4B207F] text-white border-[#4B207F]" 
-            : "bg-slate-50 text-slate-700 border-slate-200"
-        }`;
-        btn.innerText = `Ciclo 0${i === 10 ? '10' : i}`;
-        btn.onclick = () => loadBoleta(i);
-        container.appendChild(btn);
-      }
-    }
-
-    function loadBoleta(cycleNum) {
-      activeCycle = cycleNum;
-      buildTabs();
-
-      const data = curriculumData[cycleNum];
-      document.getElementById("boletaTitle").innerText = `Boleta de Calificaciones - Ciclo 0${cycleNum === 10 ? '10' : cycleNum}`;
-      document.getElementById("cycleStatusBadge").innerText = `Ciclo 0${cycleNum} (${data.estado})`;
-
-      const tbody = document.getElementById("boletaTableBody");
+    function renderEvaluaciones(periodKey) {
+      const list = cursosData[periodKey] || cursosData[4];
+      const tbody = document.getElementById("evaluacionesBody");
       tbody.innerHTML = "";
 
-      let sumPond = 0;
-      let sumCred = 0;
-
-      if (data.cursos.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="8" class="text-center py-6 text-slate-400 text-xs">Cursos proyectados para periodos posteriores.</td></tr>`;
-        document.getElementById("cyclePonderadoValue").innerText = "Pendiente";
-        return;
-      }
-
-      data.cursos.forEach(c => {
-        let prom = "--";
-        let isPass = false;
-
-        if (typeof c.m1 === "number") {
-          const val = (c.m1 + c.m2 + c.m3 + c.m4) / 4;
-          prom = Math.round(val);
-          sumPond += (prom * c.cred);
-          sumCred += c.cred;
-          isPass = prom >= 12;
-        }
-
+      list.forEach(c => {
         const tr = document.createElement("tr");
-        tr.className = "hover:bg-slate-50 border-b border-slate-100";
         tr.innerHTML = `
-          <td class="p-2.5">
-            <div class="font-bold text-slate-800">${c.nombre}</div>
-            <div class="text-[9px] text-slate-400">${c.codigo}</div>
-          </td>
-          <td class="p-2 text-center text-slate-500 font-bold">${c.cred}</td>
-          <td class="p-2 text-center text-slate-700 font-medium">${c.m1}</td>
-          <td class="p-2 text-center text-slate-700 font-medium">${c.m2}</td>
-          <td class="p-2 text-center text-slate-700 font-medium">${c.m3}</td>
-          <td class="p-2 text-center text-slate-700 font-medium">${c.m4}</td>
-          <td class="p-2 text-center font-black bg-purple-50 text-slate-900">${prom}</td>
-          <td class="p-2 text-center">
-            ${isPass 
-              ? '<span class="px-1.5 py-0.5 bg-emerald-100 text-emerald-800 rounded font-bold text-[10px]">Aprobado</span>' 
-              : '<span class="px-1.5 py-0.5 bg-red-100 text-red-800 rounded font-bold text-[10px]">Desaprobado</span>'}
-          </td>
+          <td class="course-name">${c.nombre}</td>
+          <td>${c.m1[0]}</td><td>${c.m1[1]}</td><td>${c.m1[2]}</td><td class="col-avg">${c.m1[3]}</td>
+          <td>${c.m2[0]}</td><td>${c.m2[1]}</td><td>${c.m2[2]}</td><td class="col-avg">${c.m2[3]}</td>
+          <td>${c.m3[0]}</td><td>${c.m3[1]}</td><td>${c.m3[2]}</td><td class="col-avg">${c.m3[3]}</td>
+          <td>${c.m4[0]}</td><td>${c.m4[1]}</td><td>${c.m4[2]}</td><td class="col-avg">${c.m4[3]}</td>
+          <td class="col-avg" style="background-color: #bcc3cd; font-weight: 800;">${c.pf}</td>
         `;
         tbody.appendChild(tr);
       });
-
-      if (sumCred > 0) {
-        document.getElementById("cyclePonderadoValue").innerText = (sumPond / sumCred).toFixed(2);
-      }
     }
   </script>
 </body>
