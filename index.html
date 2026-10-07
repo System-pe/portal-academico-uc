@@ -35,10 +35,9 @@
     
     <div class="w-full max-w-md bg-white rounded-2xl shadow-2xl overflow-hidden border border-slate-100">
       
-      <!-- Banner Cabecera Login -->
+      <!-- Cabecera Institucional -->
       <div class="bg-gradient-to-r from-[#4B207F] to-[#6A32B0] p-6 text-center text-white relative">
         <div class="flex justify-center mb-3">
-          <!-- Logo Oficial Universidad Continental -->
           <div class="bg-white p-2.5 rounded-xl shadow-md flex items-center justify-center">
             <svg class="w-12 h-12" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M82 22 H35 C24 22 16 31 16 43 V57 C16 69 24 78 35 78 H82 V70 H36 C29 70 24 64 24 57 V43 C24 36 29 30 36 30 H82 V22 Z" fill="#1E293B"/>
@@ -56,7 +55,7 @@
         <div class="mb-5 bg-purple-50 border-l-4 border-[#4B207F] p-3 rounded text-xs text-purple-900 flex items-start space-x-2">
           <i class="fa-solid fa-lock mt-0.5 text-[#4B207F]"></i>
           <div>
-            Ingrese con su cuenta de correo institucional y contraseña asignada para acceder al registro de notas.
+            Ingrese con su cuenta institucional y contraseña asignada para acceder al registro de notas.
           </div>
         </div>
 
@@ -118,7 +117,6 @@
   <!-- ==================== PANTALLA INTRANET ==================== -->
   <div id="portalSection" class="hidden min-h-screen flex flex-col bg-[#F4F6F9]">
     
-    <!-- Barra Superior -->
     <header class="bg-[#4B207F] text-white shadow-md sticky top-0 z-40 no-print">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         
@@ -150,7 +148,6 @@
       </div>
     </header>
 
-    <!-- Contenido Principal -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full flex-1">
       
       <!-- Ficha de la Estudiante -->
@@ -170,7 +167,6 @@
             </div>
           </div>
 
-          <!-- Métricas Resumen -->
           <div class="grid grid-cols-3 gap-2 sm:gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200/80">
             <div class="text-center px-2">
               <div class="text-[10px] text-slate-500 uppercase font-semibold">Ciclo Actual</div>
@@ -178,30 +174,27 @@
             </div>
             <div class="text-center px-2 border-x border-slate-200">
               <div class="text-[10px] text-slate-500 uppercase font-semibold">Promedio P.</div>
-              <div id="metricPonderado" class="text-lg font-black text-emerald-600">16.85</div>
+              <div class="text-lg font-black text-emerald-600">16.85</div>
             </div>
             <div class="text-center px-2">
               <div class="text-[10px] text-slate-500 uppercase font-semibold">Créd. Acum.</div>
-              <div id="metricCreditos" class="text-lg font-black text-slate-800">103 / 213</div>
+              <div class="text-lg font-black text-slate-800">103 / 213</div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Selector de Ciclos (Pestañas 1 al 10) -->
+      <!-- Selector de Ciclos -->
       <div class="mb-5 no-print">
         <div class="flex items-center justify-between mb-2">
           <label class="text-xs font-extrabold text-slate-700 uppercase tracking-wider">Malla Curricular por Ciclos:</label>
           <span class="text-xs text-purple-700 font-semibold" id="cicloStatusBadge">Mostrando: Ciclo 06 (En curso)</span>
         </div>
-        <div class="flex space-x-2 overflow-x-auto pb-2 scrollbar-thin" id="cycleTabs">
-          <!-- Pestañas generadas por JavaScript -->
-        </div>
+        <div class="flex space-x-2 overflow-x-auto pb-2 scrollbar-thin" id="cycleTabs"></div>
       </div>
 
-      <!-- Tabla de Calificaciones y Módulos -->
+      <!-- Tabla de Notas -->
       <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-        
         <div class="p-4 sm:p-5 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2 bg-slate-50/50">
           <div>
             <h3 id="tableTitle" class="font-extrabold text-slate-900 text-base">Boleta de Calificaciones - Ciclo 06</h3>
@@ -227,23 +220,18 @@
                 <th class="py-3 px-4 text-center">Estado</th>
               </tr>
             </thead>
-            <tbody id="gradesTableBody" class="divide-y divide-slate-200">
-              <!-- Filas generadas por JavaScript -->
-            </tbody>
+            <tbody id="gradesTableBody" class="divide-y divide-slate-200"></tbody>
           </table>
         </div>
 
-        <!-- Pie de Tabla con Ponderado del Ciclo -->
         <div class="bg-slate-50 p-4 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-600 gap-2">
           <div>Total de créditos del ciclo: <strong id="totalCredsCycle" class="text-slate-900">21</strong></div>
           <div>Promedio Ponderado del Ciclo: <strong id="cycleAverageFinal" class="text-base font-black text-[#4B207F]">--</strong></div>
         </div>
-
       </div>
 
     </main>
 
-    <!-- Pie de página -->
     <footer class="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-500 no-print mt-6">
       Universidad Continental • Sistema Integrado de Gestión Académica (Intranet Estudiante)
     </footer>
@@ -251,7 +239,6 @@
   </div>
 
   <script>
-    // Malla curricular con los 10 ciclos
     const curriculumData = {
       1: {
         creditos: 20,
@@ -381,12 +368,16 @@
 
     let selectedCycle = 6;
 
-    // Lógica de inicio de sesión manual
+    // Validación precisa y flexible
     function handleLogin(e) {
-      e.preventDefault();
-      const user = document.getElementById("usernameInput").value.trim().toLowerCase();
-      const pass = document.getElementById("passwordInput").value.trim();
+      if (e) e.preventDefault();
+      
+      const userEl = document.getElementById("usernameInput");
+      const passEl = document.getElementById("passwordInput");
       const errorMsg = document.getElementById("loginError");
+
+      const user = userEl.value.trim().toLowerCase();
+      const pass = passEl.value.trim();
 
       const validUsers = [
         "2024200955@continental.pe",
@@ -409,6 +400,7 @@
       document.getElementById("portalSection").classList.add("hidden");
       document.getElementById("loginSection").classList.remove("hidden");
       document.getElementById("passwordInput").value = "";
+      document.getElementById("usernameInput").value = "";
     }
 
     function togglePassword() {
@@ -481,4 +473,22 @@
             ${
               prom === "--" 
                 ? '<span class="text-xs text-slate-400 font-semibold">Pendiente</span>'
-                : isApproved
+                : isApproved 
+                  ? '<span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded-full font-bold text-[11px]">Aprobado</span>'
+                  : '<span class="px-2 py-0.5 bg-red-100 text-red-800 rounded-full font-bold text-[11px]">Desaprobado</span>'
+            }
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      const avgEl = document.getElementById("cycleAverageFinal");
+      if (sumCreditos > 0) {
+        avgEl.innerText = (sumPonderada / sumCreditos).toFixed(2);
+      } else {
+        avgEl.innerText = "Por cursar";
+      }
+    }
+  </script>
+</body>
+</html>
