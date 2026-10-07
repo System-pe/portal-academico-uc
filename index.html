@@ -172,13 +172,12 @@
           </button>
         </form>
 
-        <!-- Botones Secundarios Oficiales (CORREGIDOS) -->
+        <!-- Botones Secundarios Oficiales -->
         <div class="space-y-1.5 mt-3 pt-3 border-t border-slate-100">
           <button type="button" onclick="alert('Comuníquese con Soporte de TI de la Universidad Continental.');" class="w-full text-slate-700 hover:text-slate-900 text-xs font-medium py-1.5 border border-slate-300 rounded-lg bg-white/80 hover:bg-white transition flex items-center justify-center space-x-1.5">
             <i class="fa-solid fa-asterisk text-[10px] text-slate-400"></i>
             <span>Olvidé mi contraseña</span>
           </button>
-          <!-- Redirige a la web oficial institucional -->
           <button type="button" onclick="window.location.href='https://ucontinental.edu.pe/';" class="w-full text-slate-700 hover:text-slate-900 text-xs font-medium py-1.5 border border-slate-300 rounded-lg bg-white/80 hover:bg-white transition flex items-center justify-center space-x-1.5">
             <i class="fa-solid fa-house text-[10px] text-slate-400"></i>
             <span>Volver al portal principal</span>
@@ -1156,6 +1155,7 @@
 
   <script>
     const databaseCiclos = {
+      // 1er Ciclo: Malla oficial exacta
       1: {
         periodo: "2024-1",
         cursos: [
@@ -1167,6 +1167,8 @@
           { nombre: "Introducción a la Administración y Negocios Internacionales", m1: [17, 17, 18, "17.3"], m2: [18, 18, 18, "18.0"], m3: [18, 18, 19, "18.3"], m4: [19, 19, 19, "19.0"], pf: "18.2" }
         ]
       },
+
+      // 2do Ciclo: Exacto a la imagen
       2: {
         periodo: "2024-2",
         cursos: [
@@ -1178,6 +1180,8 @@
           { nombre: "Administración Global", m1: [19, 17, 17, "17.6"], m2: [19, 15, 15, "16.2"], m3: [16, 15, 16, "15.6"], m4: [17, 17, 17, "17.0"], pf: "16.6" }
         ]
       },
+
+      // 3er Ciclo: Cursos Oficiales
       3: {
         periodo: "2025-1",
         cursos: [
@@ -1189,6 +1193,8 @@
           { nombre: "Electivo General 2", m1: [18, 18, 19, "18.3"], m2: [19, 19, 19, "19.0"], m3: [18, 18, 18, "18.0"], m4: [18, 18, 19, "18.3"], pf: "18.4" }
         ]
       },
+
+      // 4to Ciclo: Exacto a la imagen
       4: {
         periodo: "2025-2",
         cursos: [
@@ -1200,6 +1206,8 @@
           { nombre: "ENGLISH COURSE 1", m1: [17, 17, 17, "17.0"], m2: [14, 14, 14, "14.0"], m3: [17, 13, 18, "16.0"], m4: [13, 16, 19, "16.0"], pf: "15.7" }
         ]
       },
+
+      // 5to Ciclo: Exacto a la imagen
       5: {
         periodo: "2026-1",
         cursos: [
@@ -1211,6 +1219,8 @@
           { nombre: "GESTIÓN INTERNACIONAL E INTERCULTURAL", m1: [15, 14, 12, "13.6"], m2: [15, 15, 14, "14.7"], m3: [16, 16, 16, "16.0"], m4: [12, 12, 12, "12.0"], pf: "14.1" }
         ]
       },
+
+      // 6to Ciclo: Exacto a la imagen (en curso)
       6: {
         periodo: "2026-2",
         cursos: [
@@ -1222,10 +1232,62 @@
           { nombre: "DISTRIBUCIÓN FÍSICA INTERNACIONAL", m1: [15, 14, 12, "13.6"], m2: [14, 16, 12, "14.3"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" }
         ]
       },
-      7: { periodo: "2027-1", cursos: [ { nombre: "ENGLISH COURSE 4", m1: ["--","--","--","--"], m2: ["--","--","--","--"], m3: ["--","--","--","--"], m4: ["--","--","--","--"], pf: "--" } ] },
-      8: { periodo: "2027-2", cursos: [ { nombre: "FORMULACIÓN Y EVALUACIÓN DE PROYECTOS", m1: ["--","--","--","--"], m2: ["--","--","--","--"], m3: ["--","--","--","--"], m4: ["--","--","--","--"], pf: "--" } ] },
-      9: { periodo: "2028-1", cursos: [ { nombre: "ESTRATEGIA COMPETITIVA", m1: ["--","--","--","--"], m2: ["--","--","--","--"], m3: ["--","--","--","--"], m4: ["--","--","--","--"], pf: "--" } ] },
-      10: { periodo: "2028-2", cursos: [ { nombre: "INTELIGENCIA ARTIFICIAL APLICADA A LOS NEGOCIOS", m1: ["--","--","--","--"], m2: ["--","--","--","--"], m3: ["--","--","--","--"], m4: ["--","--","--","--"], pf: "--" } ] }
+
+      // 7mo Ciclo: TODOS LOS 7 CURSOS OFICIALES
+      7: {
+        periodo: "2027-1",
+        cursos: [
+          { nombre: "ENGLISH COURSE 4", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "HERRAMIENTAS TECNOLÓGICAS APLICADAS A LOS NEGOCIOS 2", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "AGILIDAD PARA LA GESTIÓN DE PROYECTOS", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "GERENCIA DE OPERACIONES", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "GESTIÓN ADUANERA Y CAMBIARIA", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "ESTÁNDARES INTERNACIONALES DE CALIDAD", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "ELECTIVO GENERAL 5", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" }
+        ]
+      },
+
+      // 8vo Ciclo: TODOS LOS 6 CURSOS OFICIALES
+      8: {
+        periodo: "2027-2",
+        cursos: [
+          { nombre: "FORMULACIÓN Y EVALUACIÓN DE PROYECTOS", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "ENTORNO GLOBAL PARA LOS NEGOCIOS", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "ANÁLISIS DE RECURSOS Y CAPACIDADES ORGANIZACIONALES", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "DESARROLLO DE PRODUCTOS Y SERVICIOS INTERNACIONALES", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "POLÍTICA ECONÓMICA INTERNACIONAL", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "LEGISLACIÓN DEL COMERCIO INTERNACIONAL", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" }
+        ]
+      },
+
+      // 9no Ciclo: TODOS LOS 7 CURSOS OFICIALES
+      9: {
+        periodo: "2028-1",
+        cursos: [
+          { nombre: "ESTRATEGIA COMPETITIVA", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "DECISIONES BASADAS EN DATOS", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "INVESTIGACIÓN 1 EN ADMINISTRACIÓN", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "COSTOS, PRECIOS Y COTIZACIONES INTERNACIONALES", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "PLAN DE NEGOCIOS INTERNACIONALES", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "INTELIGENCIA DE MERCADOS INTERNACIONALES", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "ELECTIVO DE ESPECIALIDAD O TRANSVERSAL 1", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" }
+        ]
+      },
+
+      // 10mo Ciclo: TODOS LOS 8 CURSOS OFICIALES
+      10: {
+        periodo: "2028-2",
+        cursos: [
+          { nombre: "INTELIGENCIA ARTIFICIAL APLICADA A LOS NEGOCIOS", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "SIMULACIÓN DE NEGOCIOS DIGITALES", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "TRANSFORMACIÓN DIGITAL", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "INVESTIGACIÓN 2 EN ADMINISTRACIÓN", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "GERENCIA COMERCIAL INTERNACIONAL", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "NEGOCIOS DIGITALES GLOBALES", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "NEGOCIACIONES Y TRANSACCIONES INTERNACIONALES", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" },
+          { nombre: "ELECTIVO DE ESPECIALIDAD O TRANSVERSAL 2", m1: ["--", "--", "--", "--"], m2: ["--", "--", "--", "--"], m3: ["--", "--", "--", "--"], m4: ["--", "--", "--", "--"], pf: "--" }
+        ]
+      }
     };
 
     let selectedCycle = 6;
@@ -1369,18 +1431,20 @@
       const tbody = document.getElementById("evaluacionesBody");
       tbody.innerHTML = "";
 
-      data.cursos.forEach(c => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td class="course-name">${c.nombre}</td>
-          <td>${c.m1[0]}</td><td>${c.m1[1]}</td><td>${c.m1[2]}</td><td class="col-avg">${c.m1[3]}</td>
-          <td>${c.m2[0]}</td><td>${c.m2[1]}</td><td>${c.m2[2]}</td><td class="col-avg">${c.m2[3]}</td>
-          <td>${c.m3[0]}</td><td>${c.m3[1]}</td><td>${c.m3[2]}</td><td class="col-avg">${c.m3[3]}</td>
-          <td>${c.m4[0]}</td><td>${c.m4[1]}</td><td>${c.m4[2]}</td><td class="col-avg">${c.m4[3]}</td>
-          <td class="col-avg" style="background-color: #bcc3cd; font-weight: 800;">${c.pf}</td>
-        `;
-        tbody.appendChild(tr);
-      });
+      if (data && data.cursos) {
+        data.cursos.forEach(c => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td class="course-name">${c.nombre}</td>
+            <td>${c.m1[0]}</td><td>${c.m1[1]}</td><td>${c.m1[2]}</td><td class="col-avg">${c.m1[3]}</td>
+            <td>${c.m2[0]}</td><td>${c.m2[1]}</td><td>${c.m2[2]}</td><td class="col-avg">${c.m2[3]}</td>
+            <td>${c.m3[0]}</td><td>${c.m3[1]}</td><td>${c.m3[2]}</td><td class="col-avg">${c.m3[3]}</td>
+            <td>${c.m4[0]}</td><td>${c.m4[1]}</td><td>${c.m4[2]}</td><td class="col-avg">${c.m4[3]}</td>
+            <td class="col-avg" style="background-color: #bcc3cd; font-weight: 800;">${c.pf}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
     }
   </script>
 </body>
