@@ -79,6 +79,36 @@
       color: #1e293b;
       padding-left: 8px;
     }
+
+    /* ESTILOS DE IMPRESIÓN EXCLUSIVOS PARA LA TABLA */
+    @media print {
+      body * {
+        visibility: hidden !important;
+      }
+      header, footer, #sideDrawer, #loginView, #viewInicio, #viewConsolidado, #viewPlan, 
+      .fixed, button, select, #cycleTabsBar, .no-print {
+        display: none !important;
+      }
+      #viewNotas, #areaImpresionNotas, #areaImpresionNotas * {
+        visibility: visible !important;
+      }
+      #areaImpresionNotas {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        background: white !important;
+        padding: 10px !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+      .table-evaluaciones {
+        width: 100% !important;
+        font-size: 10px !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between">
@@ -333,7 +363,7 @@
     </div>
 
     <!-- Breadcrumb e indicador -->
-    <div class="bg-white border-b border-slate-200 px-4 py-2 text-xs text-slate-500 flex items-center justify-between">
+    <div class="bg-white border-b border-slate-200 px-4 py-2 text-xs text-slate-500 flex items-center justify-between no-print">
       <div class="flex items-center space-x-1">
         <span class="font-extrabold text-slate-800">Portal del Estudiante</span>
         <i class="fa-solid fa-chevron-right text-[10px] text-slate-300"></i>
@@ -386,7 +416,7 @@
             </div>
           </div>
 
-          <!-- Vida académica (Menú de opciones académicas) -->
+          <!-- Vida académica -->
           <div class="bg-white rounded-2xl custom-shadow border border-slate-100 p-4 space-y-3">
             <div class="flex items-center justify-between border-b border-slate-100 pb-2">
               <div>
@@ -398,7 +428,6 @@
               </div>
             </div>
 
-            <!-- Accesos rápidos oficiales dentro de Vida académica -->
             <div class="grid grid-cols-2 gap-2 text-xs">
               <button onclick="showSection('consolidado')" class="p-2.5 bg-emerald-50 hover:bg-emerald-100/70 border border-emerald-200 text-emerald-900 rounded-xl font-bold flex items-center justify-between transition">
                 <div class="flex items-center space-x-1.5 truncate">
@@ -448,7 +477,7 @@
 
         </div>
 
-        <!-- Sección: Centro de Ayuda -->
+        <!-- Centro de Ayuda -->
         <div class="bg-white rounded-2xl p-4 border border-slate-200 custom-shadow space-y-2.5">
           <div class="flex items-center space-x-2 text-slate-800 font-black text-sm">
             <i class="fa-regular fa-circle-question text-slate-600"></i>
@@ -471,7 +500,7 @@
           </div>
         </div>
 
-        <!-- Sección: Oficinas virtuales -->
+        <!-- Oficinas virtuales -->
         <div class="bg-white rounded-2xl p-4 border border-slate-200 custom-shadow space-y-2.5">
           <div class="flex items-center space-x-2 text-slate-800 font-black text-sm">
             <i class="fa-solid fa-building text-slate-600"></i>
@@ -764,9 +793,10 @@
       <!-- ================= VISTA: REGISTRO DE EVALUACIONES PARCIALES ================= -->
       <div id="viewNotas" class="hidden space-y-4">
         
-        <div class="bg-white rounded-xl p-3 sm:p-5 border border-slate-300 custom-shadow">
+        <div id="areaImpresionNotas" class="bg-white rounded-xl p-3 sm:p-5 border border-slate-300 custom-shadow">
           
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-200 gap-3">
+          <!-- Encabezado Visible en Pantalla -->
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-200 gap-3 no-print">
             <div class="flex items-center space-x-2">
               <h2 class="text-xs sm:text-sm font-black text-slate-800 tracking-wide uppercase">
                 REGISTRO DE EVALUACIONES PARCIALES
@@ -795,8 +825,29 @@
             </div>
           </div>
 
-          <div class="flex space-x-1.5 overflow-x-auto py-2.5 scrollbar-none" id="cycleTabsBar"></div>
+          <!-- Membrete Exclusivo de Impresión -->
+          <div class="hidden print:block mb-3 border-b border-slate-400 pb-2 text-left">
+            <div class="flex justify-between items-center">
+              <div>
+                <h1 class="text-base font-extrabold text-slate-900 uppercase">UNIVERSIDAD CONTINENTAL</h1>
+                <h2 class="text-xs font-bold text-slate-700 uppercase">REGISTRO OFICIAL DE EVALUACIONES PARCIALES</h2>
+              </div>
+              <div class="text-right text-[11px] text-slate-600">
+                <div>Período: <strong id="printPeriodText" class="text-slate-900 font-bold">2026-2</strong></div>
+                <div>Fecha: <strong>07/10/2026</strong></div>
+              </div>
+            </div>
+            <div class="text-[11px] text-slate-700 mt-2 flex justify-between">
+              <div>Estudiante: <strong>STACE MELODY FERRO GARAY</strong></div>
+              <div>Código: <strong>76920198</strong></div>
+              <div>Carrera: <strong>Administración y Negocios Internacionales</strong></div>
+            </div>
+          </div>
 
+          <!-- Selector de Ciclos (Pestañas horizontales) -->
+          <div class="flex space-x-1.5 overflow-x-auto py-2.5 scrollbar-none no-print" id="cycleTabsBar"></div>
+
+          <!-- TABLA DE EVALUACIONES -->
           <div class="overflow-x-auto mt-2 rounded border border-[#1f3b5c]">
             <table class="table-evaluaciones">
               <thead>
@@ -1140,14 +1191,14 @@
     </div>
 
     <!-- Botón Flotante Redondo Azul -->
-    <div class="fixed bottom-4 right-4 z-40">
+    <div class="fixed bottom-4 right-4 z-40 no-print">
       <button class="w-12 h-12 rounded-full bg-[#007BFF] text-white shadow-xl flex items-center justify-center active:scale-95 transition">
         <i class="fa-regular fa-map text-lg"></i>
       </button>
     </div>
 
     <!-- Pie de página Oficial -->
-    <footer class="bg-white border-t border-slate-200 py-3 text-center text-[11px] text-slate-400">
+    <footer class="bg-white border-t border-slate-200 py-3 text-center text-[11px] text-slate-400 no-print">
       Copyright © 2026 <a href="#" class="text-[#007BFF] underline">Universidad Continental</a>.
     </footer>
 
@@ -1414,7 +1465,8 @@
             ? "bg-[#1f3b5c] text-white border-[#1f3b5c] shadow-xs" 
             : "bg-white text-slate-700 border-slate-300 hover:bg-slate-100"
         }`;
-        btn.innerText = `Ciclo 0${i === 10 ? '10' : i}`;
+        // Corrección: del 1 al 9 lleva '0' y el 10 queda como 'Ciclo 10'
+        btn.innerText = `Ciclo ${i < 10 ? '0' + i : i}`;
         btn.onclick = () => loadCycle(i);
         container.appendChild(btn);
       }
@@ -1428,6 +1480,11 @@
       if (selectEl) selectEl.value = cycleNum;
 
       const data = databaseCiclos[cycleNum];
+      const printPeriod = document.getElementById("printPeriodText");
+      if (printPeriod && data) {
+        printPeriod.innerText = `${data.periodo} (Ciclo ${cycleNum < 10 ? '0' + cycleNum : cycleNum})`;
+      }
+
       const tbody = document.getElementById("evaluacionesBody");
       tbody.innerHTML = "";
 
