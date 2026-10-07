@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Académico | Universidad Continental</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --uc-purple: #4B207F;
+      --uc-purple-dark: #321356;
+      --uc-purple-light: #6A32B0;
+      --uc-orange: #F39200;
+      --uc-accent: #00B4D8;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #F4F6F9;
+    }
+    .bg-uc-purple { background-color: var(--uc-purple); }
+    .bg-uc-purple-dark { background-color: var(--uc-purple-dark); }
+    .text-uc-purple { color: var(--uc-purple); }
+    .border-uc-purple { border-color: var(--uc-purple); }
+    .bg-uc-orange { background-color: var(--uc-orange); }
+    .text-uc-orange { color: var(--uc-orange); }
+    
+    @media print {
+      .no-print { display: none !important; }
+      body { background: white !important; }
+      .print-shadow-none { box-shadow: none !important; border: 1px solid #ddd !important; }
+    }
+  </style>
+</head>
+<body class="text-slate-800 min-h-screen flex flex-col justify-between">
+
+  <!-- ==================== PANTALLA LOGIN ==================== -->
+  <div id="loginSection" class="min-h-screen flex flex-col justify-center items-center px-4 py-8 bg-gradient-to-br from-slate-900 via-[#321356] to-[#4B207F]">
+    
+    <div class="w-full max-w-md bg-white rounded-2xl shadow-2xl overflow-hidden border border-slate-100">
+      
+      <!-- Banner Cabecera Login -->
+      <div class="bg-gradient-to-r from-[#4B207F] to-[#6A32B0] p-6 text-center text-white relative">
+        <div class="flex justify-center mb-3">
+          <!-- Logo Oficial Universidad Continental -->
+          <div class="bg-white p-2.5 rounded-xl shadow-md flex items-center justify-center">
+            <svg class="w-12 h-12" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M82 22 H35 C24 22 16 31 16 43 V57 C16 69 24 78 35 78 H82 V70 H36 C29 70 24 64 24 57 V43 C24 36 29 30 36 30 H82 V22 Z" fill="#1E293B"/>
+              <path d="M76 34 H44 C37 34 32 39 32 46 V54 C32 61 37 66 44 66 H76 V60 H45 C41 60 38 57 38 53 V47 C38 43 41 40 45 40 H76 V34 Z" fill="#1E293B"/>
+              <path d="M73 46 H47 V54 H73 V46 Z" fill="#1E293B"/>
+            </svg>
+          </div>
+        </div>
+        <h1 class="text-xl font-bold tracking-tight">UNIVERSIDAD CONTINENTAL</h1>
+        <p class="text-xs text-purple-200 mt-1 uppercase tracking-wider font-medium">Portal de Consulta Académica y Calificaciones</p>
+      </div>
+
+      <!-- Formulario Login -->
+      <div class="p-8">
+        <div class="mb-5 bg-amber-50 border-l-4 border-amber-500 p-3 rounded text-xs text-amber-800 flex items-start space-x-2">
+          <i class="fa-solid fa-clock mt-0.5 text-amber-600"></i>
+          <div>
+            <span class="font-bold">Periodo Lectivo Activo:</span> Consulta oficial de actas y consolidados por módulos.
+          </div>
+        </div>
+
+        <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Correo Institucional / Código</label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                <i class="fa-solid fa-user text-sm"></i>
+              </div>
+              <input type="text" id="usernameInput" required 
+                placeholder="2024200955@continental.pe" 
+                class="w-full pl-10 pr-3 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:bg-white transition">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Contraseña</label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                <i class="fa-solid fa-lock text-sm"></i>
+              </div>
+              <input type="password" id="passwordInput" required 
+                placeholder="••••••••" 
+                class="w-full pl-10 pr-10 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:bg-white transition">
+              <button type="button" onclick="togglePassword()" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600">
+                <i id="eyeIcon" class="fa-solid fa-eye text-sm"></i>
+              </button>
+            </div>
+          </div>
+
+          <div id="loginError" class="hidden text-xs text-red-600 font-semibold bg-red-50 p-2.5 rounded border border-red-200">
+            <i class="fa-solid fa-circle-exclamation mr-1"></i> Credenciales incorrectas. Verifique correo y clave.
+          </div>
+
+          <button type="submit" class="w-full py-3 bg-[#4B207F] hover:bg-[#391563] text-white font-bold rounded-lg text-sm shadow-lg hover:shadow-xl transition transform active:scale-[0.99] flex items-center justify-center space-x-2">
+            <span>INGRESAR AL PORTAL</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </form>
+
+        <!-- Botón de acceso directo para prueba rápida -->
+        <div class="mt-6 pt-5 border-t border-slate-200 text-center">
+          <p class="text-xs text-slate-500 mb-2">Acceso de prueba con un clic:</p>
+          <button type="button" onclick="fillQuickAccess()" class="px-3 py-1.5 bg-slate-100 hover:bg-purple-100 hover:text-purple-800 text-slate-700 rounded-md text-xs font-semibold transition border border-slate-300">
+            Cargar credenciales de Stace Ferro
+          </button>
+        </div>
+
+      </div>
+
+      <div class="bg-slate-50 px-6 py-3 border-t border-slate-200 text-center text-[11px] text-slate-500">
+        Dirección de Tecnologías de Información © Universidad Continental
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== PANTALLA INTRANET ==================== -->
+  <div id="portalSection" class="hidden min-h-screen flex flex-col bg-[#F4F6F9]">
+    
+    <!-- Barra Superior -->
+    <header class="bg-[#4B207F] text-white shadow-md sticky top-0 z-40 no-print">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        
+        <div class="flex items-center space-x-3">
+          <div class="bg-white p-1 rounded-lg">
+            <svg class="w-8 h-8" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M82 22 H35 C24 22 16 31 16 43 V57 C16 69 24 78 35 78 H82 V70 H36 C29 70 24 64 24 57 V43 C24 36 29 30 36 30 H82 V22 Z" fill="#4B207F"/>
+              <path d="M76 34 H44 C37 34 32 39 32 46 V54 C32 61 37 66 44 66 H76 V60 H45 C41 60 38 57 38 53 V47 C38 43 41 40 45 40 H76 V34 Z" fill="#4B207F"/>
+              <path d="M73 46 H47 V54 H73 V46 Z" fill="#4B207F"/>
+            </svg>
+          </div>
+          <div>
+            <div class="font-extrabold text-sm sm:text-base tracking-wide leading-none">UNIVERSIDAD CONTINENTAL</div>
+            <div class="text-[10px] text-purple-200">INTRANET ACADÉMICA VIRTUAL</div>
+          </div>
+        </div>
+
+        <div class="flex items-center space-x-3">
+          <button onclick="window.print()" class="hidden sm:inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-semibold transition border border-white/20">
+            <i class="fa-solid fa-print"></i>
+            <span>Imprimir Boleta</span>
+          </button>
+          <button onclick="handleLogout()" class="inline-flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-red-600/80 hover:bg-red-700 text-xs font-semibold transition">
+            <i class="fa-solid fa-power-off"></i>
+            <span>Cerrar Sesión</span>
+          </button>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full flex-1">
+      
+      <!-- Ficha de la Estudiante -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sm:p-6 mb-6">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="flex items-center space-x-4">
+            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-tr from-[#4B207F] to-[#8C52FF] flex items-center justify-center text-white text-xl sm:text-2xl font-bold shadow-inner">
+              SF
+            </div>
+            <div>
+              <div class="flex items-center space-x-2">
+                <h2 class="text-lg sm:text-xl font-black text-slate-900 uppercase">Stace Melody Ferro Garay</h2>
+                <span class="bg-emerald-100 text-emerald-800 text-[11px] font-bold px-2 py-0.5 rounded-full">Regular</span>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-600 font-medium">Carrera: <span class="font-bold text-slate-900">Administración y Negocios Internacionales</span></p>
+              <p class="text-xs text-slate-500">Código: <span class="font-semibold text-slate-800">2024200955</span> | Plan: <span class="font-semibold">2024 - 10 Ciclos (5 años)</span></p>
+            </div>
+          </div>
+
+          <!-- Métricas Resumen -->
+          <div class="grid grid-cols-3 gap-2 sm:gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200/80">
+            <div class="text-center px-2">
+              <div class="text-[10px] text-slate-500 uppercase font-semibold">Ciclo Actual</div>
+              <div class="text-lg font-black text-[#4B207F]">6° Ciclo</div>
+            </div>
+            <div class="text-center px-2 border-x border-slate-200">
+              <div class="text-[10px] text-slate-500 uppercase font-semibold">Promedio P.</div>
+              <div id="metricPonderado" class="text-lg font-black text-emerald-600">16.85</div>
+            </div>
+            <div class="text-center px-2">
+              <div class="text-[10px] text-slate-500 uppercase font-semibold">Créd. Acum.</div>
+              <div id="metricCreditos" class="text-lg font-black text-slate-800">103 / 213</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Selector de Ciclos (Pestañas 1 al 10) -->
+      <div class="mb-5 no-print">
+        <div class="flex items-center justify-between mb-2">
+          <label class="text-xs font-extrabold text-slate-700 uppercase tracking-wider">Malla Curricular por Ciclos:</label>
+          <span class="text-xs text-purple-700 font-semibold" id="cicloStatusBadge">Mostrando: Ciclo 06 (En curso)</span>
+        </div>
+        <div class="flex space-x-2 overflow-x-auto pb-2 scrollbar-thin" id="cycleTabs">
+          <!-- Pestañas generadas por JavaScript -->
+        </div>
+      </div>
+
+      <!-- Tabla de Calificaciones y Módulos -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+        
+        <div class="p-4 sm:p-5 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2 bg-slate-50/50">
+          <div>
+            <h3 id="tableTitle" class="font-extrabold text-slate-900 text-base">Boleta de Calificaciones - Ciclo 06</h3>
+            <p class="text-xs text-slate-500">Evaluación distribuida en 4 módulos académicos oficiales.</p>
+          </div>
+          <div class="text-xs font-semibold text-slate-600 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-sm inline-flex items-center space-x-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
+            <span>Nota mínima aprobatoria: <strong>11.5 (Aprobado: 12 - 20)</strong></span>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="bg-slate-100 text-slate-700 text-[11px] uppercase tracking-wider font-bold border-b border-slate-200">
+                <th class="py-3 px-4">Asignatura</th>
+                <th class="py-3 px-3 text-center">Créd.</th>
+                <th class="py-3 px-3 text-center">Módulo 1</th>
+                <th class="py-3 px-3 text-center">Módulo 2</th>
+                <th class="py-3 px-3 text-center">Módulo 3</th>
+                <th class="py-3 px-3 text-center">Módulo 4</th>
+                <th class="py-3 px-3 text-center bg-purple-50 text-[#4B207F]">Promedio</th>
+                <th class="py-3 px-4 text-center">Estado</th>
+              </tr>
+            </thead>
+            <tbody id="gradesTableBody" class="divide-y divide-slate-200">
+              <!-- Filas generadas por JavaScript -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pie de Tabla con Ponderado del Ciclo -->
+        <div class="bg-slate-50 p-4 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-600 gap-2">
+          <div>Total de créditos del ciclo: <strong id="totalCredsCycle" class="text-slate-900">21</strong></div>
+          <div>Promedio Ponderado del Ciclo: <strong id="cycleAverageFinal" class="text-base font-black text-[#4B207F]">--</strong></div>
+        </div>
+
+      </div>
+
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-500 no-print mt-6">
+      Universidad Continental • Sistema Integrado de Gestión Académica (Intranet Estudiante)
+    </footer>
+
+  </div>
+
+  <script>
+    // Datos completos de la malla curricular (10 ciclos de Administración y Negocios Internacionales)
+    const curriculumData = {
+      1: {
+        creditos: 20,
+        estado: "Aprobado",
+        cursos: [
+          { nombre: "Comprensión y Producción de Textos 1", cred: 3, m1: 16, m2: 17, m3: 16, m4: 18 },
+          { nombre: "Laboratorio de Liderazgo e Innovación", cred: 3, m1: 17, m2: 18, m3: 17, m4: 19 },
+          { nombre: "Estrategias y Herramientas Digitales para el Aprendizaje", cred: 4, m1: 18, m2: 18, m3: 19, m4: 17 },
+          { nombre: "Fundamentos de Matemática", cred: 4, m1: 15, m2: 14, m3: 16, m4: 16 },
+          { nombre: "Economía 1", cred: 3, m1: 16, m2: 17, m3: 15, m4: 17 },
+          { nombre: "Introducción a la Administración y Negocios Internacionales", cred: 3, m1: 17, m2: 18, m3: 18, m4: 19 }
+        ]
+      },
+      2: {
+        creditos: 21,
+        estado: "Aprobado",
+        cursos: [
+          { nombre: "Comprensión y Producción de Textos 2", cred: 4, m1: 16, m2: 16, m3: 17, m4: 17 },
+          { nombre: "Administración Global", cred: 3, m1: 18, m2: 17, m3: 18, m4: 19 },
+          { nombre: "Matemática 2.1", cred: 4, m1: 15, m2: 16, m3: 14, m4: 16 },
+          { nombre: "Economía 2", cred: 3, m1: 16, m2: 15, m3: 16, m4: 17 },
+          { nombre: "Fundamentos de Contabilidad", cred: 4, m1: 16, m2: 17, m3: 17, m4: 16 },
+          { nombre: "Electivo General 1", cred: 3, m1: 18, m2: 18, m3: 19, m4: 18 }
+        ]
+      },
+      3: {
+        creditos: 21,
+        estado: "Aprobado",
+        cursos: [
+          { nombre: "Estadística y Probabilidades", cred: 4, m1: 15, m2: 16, m3: 15, m4: 17 },
+          { nombre: "Laboratorio de Liderazgo e Innovación Intermedio", cred: 2, m1: 18, m2: 18, m3: 17, m4: 19 },
+          { nombre: "Comportamiento Organizacional", cred: 3, m1: 17, m2: 17, m3: 18, m4: 17 },
+          { nombre: "Derecho Empresarial", cred: 5, m1: 16, m2: 16, m3: 17, m4: 16 },
+          { nombre: "Matemáticas Financieras", cred: 4, m1: 15, m2: 16, m3: 16, m4: 16 },
+          { nombre: "Electivo General 2", cred: 3, m1: 18, m2: 19, m3: 18, m4: 18 }
+        ]
+      },
+      4: {
+        creditos: 20,
+        estado: "Aprobado",
+        cursos: [
+          { nombre: "English Course 1", cred: 3, m1: 18, m2: 17, m3: 18, m4: 19 },
+          { nombre: "Estadística Inferencial", cred: 4, m1: 15, m2: 16, m3: 16, m4: 15 },
+          { nombre: "Costos y Presupuestos", cred: 4, m1: 16, m2: 17, m3: 16, m4: 17 },
+          { nombre: "Marketing", cred: 3, m1: 17, m2: 18, m3: 17, m4: 18 },
+          { nombre: "Electivo General 3", cred: 3, m1: 17, m2: 18, m3: 18, m4: 19 },
+          { nombre: "Electivo General 4", cred: 3, m1: 18, m2: 17, m3: 18, m4: 18 }
+        ]
+      },
+      5: {
+        creditos: 21,
+        estado: "Aprobado",
+        cursos: [
+          { nombre: "English Course 2", cred: 3, m1: 18, m2: 18, m3: 19, m4: 18 },
+          { nombre: "Laboratorio de Liderazgo e Innovación Avanzado", cred: 3, m1: 17, m2: 18, m3: 18, m4: 19 },
+          { nombre: "Finanzas 1", cred: 3, m1: 16, m2: 15, m3: 16, m4: 17 },
+          { nombre: "Gestión del Talento Humano", cred: 3, m1: 17, m2: 17, m3: 18, m4: 18 },
+          { nombre: "Investigación de Mercados", cred: 5, m1: 16, m2: 17, m3: 17, m4: 18 },
+          { nombre: "Gestión Internacional e Intercultural", cred: 4, m1: 18, m2: 18, m3: 17, m4: 19 }
+        ]
+      },
+      6: {
+        creditos: 21,
+        estado: "En curso",
+        cursos: [
+          { nombre: "Investigación Académica", cred: 3, m1: 17, m2: 16, m3: 17, m4: 18 },
+          { nombre: "English Course 3", cred: 3, m1: 18, m2: 19, m3: 18, m4: 19 },
+          { nombre: "Herramientas Tecnológicas Aplicadas a los Negocios 1", cred: 4, m1: 17, m2: 18, m3: 17, m4: 18 },
+          { nombre: "Finanzas 2", cred: 3, m1: 15, m2: 16, m3: 16, m4: 17 },
+          { nombre: "Gestión del Comercio Internacional", cred: 4, m1: 17, m2: 17, m3: 18, m4: 18 },
+          { nombre: "Distribución Física Internacional", cred: 4, m1: 16, m2: 17, m3: 17, m4: 18 }
+        ]
+      },
+      7: {
+        creditos: 21,
+        estado: "Pendiente",
+        cursos: [
+          { nombre: "English Course 4", cred: 3, m1: "-", m2: "-", m3: "-", m4: "-" },
+          { nombre: "Herramientas Tecnológicas Aplicadas a los Negocios 2", cred: 4, m1: "-", m2: "-", m3: "-", m4: "-" },
+          { nombre: "Agilidad para la Gestión de Proyectos", cred: 3, m1: "-", m2: "-", m3: "-", m4: "-" },
+          { nombre: "Gerencia de Operaciones", cred: 4, m1: "-", m2: "-", m3: "-", m4: "-" },
+          { nombre: "Gestión Aduanera y Cambiaria", cred: 3, m1: "-", m2: "-", m3: "-", m4: "-" },
+          { nombre: "Estándares Internacionales de Calidad", cred: 3, m1: "-", m2: "-", m3: "-", m4: "-" },
+          { nombre: "Electivo General 5", cred: 1, m1: "-", m2: "-", m3: "-", m4: "-" }
+        ]
+      },
+      8: {
+        creditos: 20,
+        estado: "Pendiente",
+        cursos: [
+          { nombre: "Formulación y Evaluación de Proyectos", cred: 4, m1: "-", m2: "-", m3: "-", m4: "-" },
+          { nombre: "Entorno Global para los Negocios", cred: 3, m1: "-", m2: "-", m3: "-", m4: "-" },
+          { nombre: "Análisis de Recursos y Capacidades Organizacionales", cred: 3, m1: "-", m2: "-", m3: "-", m4: "-" },
+          { nombre: "Desarrollo de Productos y Servicios Internacionales", cred: 4, m1: "-", m2: "-", m3: "-", m4: "-" },
+          { nombre: "Política Económica Internacional", cred: 3, m1: "-", m2: "-", m3: "-", m4: "-" },
+          { nombre: "Legislación del Comercio Internacional", cred: 3, m1: "-", m2: "-", m3: "-", m4: "-" }
+        ]
+      },
+      9: {
+        creditos: 24,
+        estado: "Pendiente",
+        cursos: [
+          { nombre: "Estrategia Competitiva", cred: 3, m1: "-", m2: "-", m3: "-", m4: "-" },
+          { nombre: "Decisiones Basadas en Datos", cred: 4, m1: "-", m2: "-", m3: "-", m4: "-" },
+          { nombre: "Investigación 1 en Administración", cred: 3, m1: "-", m2: "-", m3: "-", m4: "-" },
+          { nombre: "Costos, Precios y Cotizaciones Internacionales", cred: 3, m1: "-", m2: "-", m3: "-", m4: "-" },
+          { nombre: "Plan de Negocios Internacionales", cred: 4, m1: "-", m2: "-", m3: "-", m4: "-" },
+          { nombre: "Inteligencia de Mercados Internacionales", cred: 4, m1: "-", m2: "-", m3: "-", m4: "-" },
+          { nombre: "Electivo de Especialidad o Transversal 1", cred: 3, m1: "-", m2: "-", m3: "-", m4: "-" }
+        ]
+      },
+      10: {
+        creditos: 25,
+        estado: "Pendiente",
+        cursos: [
+          { nombre: "Inteligencia Artificial Aplicada a los Negocios", cred: 3, m1: "-", m2: "-", m3: "-", m4: "-" },
+          { nombre: "Simulación de Negocios Digitales", cred: 3, m1: "-", m2: "-", m3: "-", m4: "-" },
+          { nombre: "Transformación Digital", cred: 3, m1: "-", m2: "-", m3: "-", m4: "-" },
+          { nombre: "Investigación 2 en Administración", cred: 4, m1: "-", m2: "-", m3: "-", m4: "-" },
+          { nombre: "Gerencia Comercial Internacional", cred: 3, m1: "-", m2: "-", m3: "-", m4: "-" },
+          { nombre: "Negocios Digitales Globales", cred: 3, m1: "-", m2: "-", m3: "-", m4: "-" },
+          { nombre: "Negociaciones y Transacciones Internacionales", cred: 3, m1: "-", m2: "-", m3: "-", m4: "-" },
+          { nombre: "Electivo de Especialidad o Transversal 2", cred: 3, m1: "-", m2: "-", m3: "-", m4: "-" }
+        ]
+      }
+    };
+
+    let selectedCycle = 6;
+
+    // Login logic
+    function handleLogin(e) {
+      e.preventDefault();
+      const user = document.getElementById("usernameInput").value.trim().toLowerCase();
+      const pass = document.getElementById("passwordInput").value.trim();
+      const errorMsg = document.getElementById("loginError");
+
+      if ((user === "2024200955@continental.pe" || user === "2024200955") && pass === "28012004") {
+        errorMsg.classList.add("hidden");
+        document.getElementById("loginSection").classList.add("hidden");
+        document.getElementById("portalSection").classList.remove("hidden");
+        renderTabs();
+        loadCycle(6);
+      } else {
+        errorMsg.classList.remove("hidden");
+      }
+    }
+
+    function handleLogout() {
+      document.getElementById("portalSection").classList.add("hidden");
+      document.getElementById("loginSection").classList.remove("hidden");
+      document.getElementById("passwordInput").value = "";
+    }
+
+    function fillQuickAccess() {
+      document.getElementById("usernameInput").value = "2024200955@continental.pe";
+      document.getElementById("passwordInput").value = "28012004";
+    }
+
+    function togglePassword() {
+      const input = document.getElementById("passwordInput");
+      const icon = document.getElementById("eyeIcon");
+      if (input.type === "password") {
+        input.type = "text";
+        icon.classList.replace("fa-eye", "fa-eye-slash");
+      } else {
+        input.type = "password";
+        icon.classList.replace("fa-eye-slash", "fa-eye");
+      }
+    }
+
+    // Renderizado de Ciclos
+    function renderTabs() {
+      const container = document.getElementById("cycleTabs");
+      container.innerHTML = "";
+      for (let i = 1; i <= 10; i++) {
+        const btn = document.createElement("button");
+        const isActive = i === selectedCycle;
+        btn.className = `px-4 py-2 rounded-xl text-xs font-bold transition flex-shrink-0 flex items-center space-x-2 border ${
+          isActive 
+            ? "bg-[#4B207F] text-white border-[#4B207F] shadow-sm" 
+            : "bg-white text-slate-700 border-slate-200 hover:bg-purple-50"
+        }`;
+        btn.innerHTML = `<span>Ciclo 0${i === 10 ? '10' : '0' + i}</span>`;
+        btn.onclick = () => loadCycle(i);
+        container.appendChild(btn);
+      }
+    }
+
+    function loadCycle(cycleNum) {
+      selectedCycle = cycleNum;
+      renderTabs();
+
+      const cycle = curriculumData[cycleNum];
+      document.getElementById("tableTitle").innerText = `Boleta de Calificaciones - Ciclo 0${cycleNum === 10 ? '10' : cycleNum}`;
+      document.getElementById("cicloStatusBadge").innerText = `Estado: ${cycle.estado}`;
+      document.getElementById("totalCredsCycle").innerText = cycle.creditos;
+
+      const tbody = document.getElementById("gradesTableBody");
+      tbody.innerHTML = "";
+
+      let sumPonderada = 0;
+      let sumCreditos = 0;
+
+      cycle.cursos.forEach(curso => {
+        let prom = "--";
+        let isApproved = false;
+
+        if (typeof curso.m1 === "number") {
+          const valor = (curso.m1 + curso.m2 + curso.m3 + curso.m4) / 4;
+          prom = Math.round(valor);
+          sumPonderada += (prom * curso.cred);
+          sumCreditos += curso.cred;
+          isApproved = prom >= 12;
+        }
+
+        const tr = document.createElement("tr");
+        tr.className = "hover:bg-slate-50 transition border-b border-slate-100";
+        tr.innerHTML = `
+          <td class="py-3 px-4 font-semibold text-slate-800">${curso.nombre}</td>
+          <td class="py-3 px-3 text-center text-slate-500 font-bold">${curso.cred}</td>
+          <td class="py-3 px-3 text-center text-slate-700 font-medium">${curso.m1}</td>
+          <td class="py-3 px-3 text-center text-slate-700 font-medium">${curso.m2}</td>
+          <td class="py-3 px-3 text-center text-slate-700 font-medium">${curso.m3}</td>
+          <td class="py-3 px-3 text-center text-slate-700 font-medium">${curso.m4}</td>
+          <td class="py-3 px-3 text-center font-black bg-purple-50 text-slate-900">${prom}</td>
+          <td class="py-3 px-4 text-center">
+            ${
+              prom === "--" 
+                ? '<span class="text-xs text-slate-400 font-semibold">Pendiente</span>'
+                : isApproved 
+                  ? '<span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded-full font-bold text-[11px]">Aprobado</span>'
+                  : '<span class="px-2 py-0.5 bg-red-100 text-red-800 rounded-full font-bold text-[11px]">Desaprobado</span>'
+            }
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      const avgEl = document.getElementById("cycleAverageFinal");
+      if (sumCreditos > 0) {
+        avgEl.innerText = (sumPonderada / sumCreditos).toFixed(2);
+      } else {
+        avgEl.innerText = "Por cursar";
+      }
+    }
+  </script>
+</body>
+</html>
